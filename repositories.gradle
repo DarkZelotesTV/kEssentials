@@ -1,3 +1,8 @@
 repositories {
-    // Add your repositories here, no need to add mavenCentral, Sonatype, SpigotMC, or PaperMC as they are already included
+    maven {
+        url = "https://repo.kettlemc.net/repository/maven-public/"
+    }
+    maven {
+        url = "https://s01.oss.sonatype.org/content/repositories/iogithubalmighty-satan-1010"
+    }
 }

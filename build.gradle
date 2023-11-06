@@ -3,16 +3,7 @@
 
 plugins {
     id "java"
-}
-
-// Use repositories from "repositories.gradle"
-if (file("repositories.gradle").exists()) {
-    apply from: "repositories.gradle"
-}
-
-// Use dependencies from "dependencies.gradle"
-if (file("dependencies.gradle").exists()) {
-    apply from: "dependencies.gradle"
+    id "com.github.johnrengelman.shadow" version "7.0.0"
 }
 
 
@@ -37,6 +28,7 @@ jar {
     from {
         configurations.internal.collect { it.isDirectory() ? it : zipTree(it) }
     }
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE
 }
 
 compileJava { options.encoding = "UTF-8" }
@@ -61,8 +53,16 @@ repositories {
         url = "https://oss.sonatype.org/content/repositories/snapshots"
     }
     maven {
-        name 'velocity'
-        url 'https://nexus.velocitypowered.com/repository/maven-public/'
+        name "velocity"
+        url "https://nexus.velocitypowered.com/repository/maven-public/"
+    }
+    maven {
+        name = "sonatype-almighty-satan"
+        url = "https://s01.oss.sonatype.org/content/repositories/iogithubalmighty-satan-1012"
+    }
+    maven {
+        name = "kettlemc"
+        url = "https://repo.kettlemc.net/repository/maven-public/"
     }
 }
 
@@ -97,12 +97,13 @@ if (bungeeVersion) {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs/implementation', include: '*.jar')
-    internal fileTree(dir: 'libs/internal', include: '*.jar')
+    implementation fileTree(dir: "libs/implementation", include: "*.jar")
+    internal fileTree(dir: "libs/internal", include: "*.jar")
+    compileOnly "org.jetbrains:annotations:24.0.1"
 }
 
 if (jasklVersion && jasklImplementation) {
-    if (jasklShadow) {
+    if (jasklShadow == "true") {
         dependencies {
             internal "io.github.almighty-satan.jaskl:jaskl-${jasklImplementation}:${jasklVersion}"
         }
@@ -113,11 +114,50 @@ if (jasklVersion && jasklImplementation) {
     }
 }
 
+if (slamsVersion && (slamsParser || slamsImplementation) ) {
+    if (slamsShadow == "true") {
+        dependencies {
+            internal "io.github.almighty-satan.slams:slams-parser-${slamsParser}:${slamsVersion}"
+            internal "io.github.almighty-satan.slams:slams-${slamsImplementation}:${slamsVersion}"
+        }
+    } else {
+        dependencies {
+            implementation "io.github.almighty-satan.slams:slams-parser-${slamsParser}:${slamsVersion}"
+            implementation "io.github.almighty-satan.slams:slams-${slamsImplementation}:${slamsVersion}"
+        }
+    }
+}
+
+if (klanguageVersion) {
+    dependencies {
+        implementation "net.kettlemc.klanguage:klanguage-core:${klanguageVersion}"
+        implementation "net.kettlemc.klanguage:klanguage-${klanguageImplementation}:${klanguageVersion}"
+        implementation 'net.kyori:adventure-text-minimessage:4.14.0'
+        implementation 'net.kyori:adventure-platform-bukkit:4.3.0'
+    }
+}
+
+if (kcommonVersion) {
+    dependencies {
+        implementation "net.kettlemc:kcommon:${kcommonVersion}"
+    }
+}
+
+// Use repositories from "repositories.gradle"
+if (file("repositories.gradle").exists()) {
+    apply from: "repositories.gradle"
+}
+
+// Use dependencies from "dependencies.gradle"
+if (file("dependencies.gradle").exists()) {
+    apply from: "dependencies.gradle"
+}
+
 processResources {
     outputs.upToDateWhen { false }
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
     from sourceSets.main.resources.srcDirs
-    include "**/plugin.yml"
+    include "**/*.*"
     expand(
             "name": pluginName,
             "version": pluginVersion,
@@ -131,4 +171,29 @@ processResources {
 
 static JavaVersion getVersionForMajor(String version) {
     return JavaVersion.values().find { (it.majorVersion == version) }
+}
+
+if (libby == "true") {
+
+    repositories {
+        maven {
+            name = "AlessioDP"
+            url = "https://repo.alessiodp.com/snapshots/"
+        }
+    }
+
+    dependencies {
+        implementation "com.alessiodp.libby:libby-bukkit:2.0.0-SNAPSHOT"
+    }
+
+    shadowJar {
+        // Add dependencies you want to relocate here if needed
+        dependencies {
+            include dependency("com.alessiodp.libby:libby-bukkit:2.0.0-SNAPSHOT")
+            include dependency("com.alessiodp.libby:libby-core:2.0.0-SNAPSHOT")
+        }
+
+        // Configure relocations
+        relocate 'com.alessiodp.libby', "net.kettlemc.${pluginName}.libs.com.alessiodp.libby"
+    }
 }

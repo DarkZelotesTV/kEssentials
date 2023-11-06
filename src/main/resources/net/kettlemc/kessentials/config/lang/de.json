@@ -1,0 +1,131 @@
+{
+  "messages": {
+	"common": {
+	  "prefix": "<blue>Essentials</blue> <dark_gray>»</dark_gray> ",
+	  "no-permission": "<gray>Du darfst diesen Befehl nicht nutzen.</gray>",
+	  "player-only": "<gray>Du musst ein Spieler sein, um diesen Befehl nutzen zu können.</gray>",
+	  "console-only": "<gray>Du musst die Konsole sein, um diesen Befehl nutzen zu können.</gray>",
+	  "player-not-found": "<gray>Bitte gib einen gültigen Spieler an.</gray>",
+	  "join": "<dark_gray>[<green>+</green>]</dark_gray> <gray><dark_aqua><player></dark_aqua> hat den Server betreten.</gray>",
+	  "leave": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> hat den Server verlassen.</gray>",
+	  "command-disabled": "<gray>Dieser Befehl ist deaktiviert.</gray>"
+	},
+	"gamemode": {
+	  "set": "<gray>Dein Spielmodus wurde zu <dark_aqua><gamemode></dark_aqua> geändert.</gray>",
+	  "set-other": "<gray><dark_aqua><player></dark_aqua>'s Spielmodus wurde zu <dark_aqua><gamemode></dark_aqua> geändert.</gray>",
+	  "invalid": "<gray>Bitte gib einen gültigen Spielmodus an.</gray>",
+	  "usage": "<gray>/gamemode <Spielmodus> [<Spieler>]</gray>"
+	},
+	"fly": {
+	  "enabled": "<gray>Du kannst nun <green>fliegen</green>.</gray>",
+	  "enabled-other": "<gray><dark_aqua><player></dark_aqua> kann nun fliegen.</gray>",
+	  "disabled": "<gray>Du kannst nun <red>nicht mehr fliegen</red>.</gray>",
+	  "disabled-other": "<gray><dark_aqua><player></dark_aqua> kann nun <red>nicht mehr fliegen</red>.</gray>",
+	  "usage": "<gray>/fly [<Spieler>]</gray>"
+	},
+	"speed": {
+	  "set": {
+		"walking": "<gray>Deine Lauf-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>",
+		"flying": "<gray>Deine Flug-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>"
+	  },
+	  "set-other": {
+		"walking": "<gray><dark_aqua><player></dark_aqua>'s Lauf-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>",
+		"flying": "<gray><dark_aqua><player></dark_aqua>'s Flug-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>"
+	  },
+	  "invalid": "<gray>Bitte gib eine gültige Geschwindigkeit zwischen 1 und 10 ein.</gray>",
+	  "usage": "<gray>/speed <Geschwindigkeit> [<Spieler>]"
+	},
+	"teleport": {
+	  "teleported": "<gray>Du wurdest zu <dark_aqua><target></dark_aqua> teleportiert.</gray>",
+	  "teleported-other": "<gray>Du hast <dark_aqua><player></dark_aqua> zu <dark_aqua><target></dark_aqua> teleportiert.</gray>",
+	  "teleportation-cooldown": "<gray>Du wirst in <dark_aqua><cooldown></dark_aqua> Sekunden teleportiert.</gray>",
+	  "teleportation-successful": "<gray>Du wurdest teleportiert.</gray>",
+	  "teleportation-cancelled": "<gray>Du hast dich bewegt.</gray>",
+	  "usage": "<gray>/teleport <Spieler> [<Spieler>]</gray>"
+	},
+	"freeze": {
+	  "frozen": "<gray>Du wurdest eingefroren.</gray>",
+	  "frozen-other": "<gray><dark_aqua><player></dark_aqua> wurde eingefroren.</gray>",
+	  "unfrozen": "<gray>Du wurdest aufgetaut.</gray>",
+	  "unfrozen-other": "<gray><dark_aqua><player></dark_aqua> wurde aufgetaut.</gray>",
+	  "usage": "<gray>/freeze <Spieler></gray>"
+	},
+	"vanish": {
+	  "vanished": "<gray>Du bist nun <green>unsichtbar</green>.</gray>",
+	  "vanished-other": "<gray><dark_aqua><player></dark_aqua> ist nun <green>unsichtbar</green>.</gray>",
+	  "unvanished": "<gray>Du bist wieder sichtbar.</gray>",
+	  "unvanished-other": "<gray><dark_aqua><player></dark_aqua> ist wieder sichtbar geworden.</gray>",
+	  "usage": "<gray>/vanish [<Spieler>]</gray>"
+	},
+	"heal": {
+	  "healed": "<gray>Du wurdest geheilt.</gray>",
+	  "healed-other": "<gray><dark_aqua><player></dark_aqua> wurde geheilt.</gray>",
+	  "usage": "<gray>/heal [<Spieler>]</gray>"
+	},
+	"feed": {
+	  "fed": "<gray>Dein Hunger wurde gestillt.</gray>",
+	  "fed-other": "<gray><dark_aqua><player></dark_aqua>'s Hunger wurde gestillt.</gray>",
+	  "usage": "<gray>/feed [<Spieler>]</gray>"
+	},
+	"repair": {
+	  "repaired": "<gray>Das Item in deiner Hand wurde repariert.</gray>",
+	  "repaired-other": "<gray><dark_aqua><player></dark_aqua>'s Item wurde repariert.</gray>",
+	  "usage": "<gray>/repair [<Spieler>]<gray>"
+	},
+	"inventory": {
+	  "usage": "<gray>/inventorysee <Spieler></gray>"
+	},
+	"armor": {
+	  "usage": "<gray>/armorsee <Spieler></gray>"
+	},
+	"weather": {
+	  "sun": "<gray>Das Wetter wurde auf <dark_aqua>Sonnig</dark_aqua> geändert.</gray>",
+	  "rain": "<gray>Das Wetter wurde auf <dark_aqua>Regen</dark_aqua> geändert.</gray>",
+	  "thunder": "<gray>Das Wetter wurde auf <dark_aqua>Gewitter</dark_aqua> geändert.</gray>",
+	  "usage": "<gray>/<command> [<Welt>]</gray>"
+	},
+	"time": {
+	  "morning": "<gray>Es ist jetzt <dark_aqua>Morgen.</gray>",
+	  "day": "<gray>Es ist jetzt <dark_aqua>Tag.</gray>",
+	  "midday": "<gray>Es ist jetzt <dark_aqua>Mittag</dark_aqua>.</gray>",
+	  "evening": "<gray>Es ist jetzt <dark_aqua>Abend</dark_aqua>.</gray>",
+	  "night": "<gray>Es ist jetzt <dark_aqua>Nacht</dark_aqua>.</gray>",
+	  "usage": "<gray>/<command> [<Welt>]</gray>"
+	},
+	"chat": {
+	  "cleared": "<gray>Der Chat wurde geleert.</gray>"
+	},
+	"suicide": {
+	  "killed": "<gray>Du hast dich selbst getötet.</gray>"
+	},
+	"tpa": {
+	  "tpa": {
+		"sent": "<gray>Du hast eine TPA-Anfrage an <dark_aqua><target></dark_aqua> gesendet.</gray>",
+		"already-sent": "<gray>Du hast bereits eine Anfrage an <dark_aqua><target></dark_aqua> gesendet.</gray>",
+		"other-only": "<gray>Du kannst dir keine Anfrage senden.</gray>",
+		"denied": "<gray>Deine TPA-Anfrage an <dark_aqua><target></dark_aqua> wurde abgelehnt.</gray>",
+		"accepted": "<gray>Deine TPA-Anfrage an <dark_aqua><target></dark_aqua> wurde angenommen.</gray>",
+		"received": "<gray>Du hast eine Teleport-Anfrage von <dark_aqua><requester></dark_aqua> erhalten.</gray>",
+		"accept": "<green>Akzeptieren</green>",
+		"deny": "<red>Ablehnen</red>",
+		"accept-hover": "<gray>Klicke um die Anfrage von <requester> <green>anzunehmen</green>.</gray>",
+		"deny-hover": "<gray>Klicke um die Anfrage von <requester> <red>abzulehnen</red>.</gray>",
+		"usage": "<gray>/tpa <Spieler></gray>"
+	  },
+	  "list": {
+		"header": "<gray>Ausstehende TPA-Anfragen:</gray>",
+		"entry": "<dark_aqua><requester></dark_aqua>",
+		"no-request": "<gray>Du hast keine ausstehenden TPA-Anfragen.</gray>"
+	  },
+	  "tpaccept": {
+		"tpaccept": "<gray>Du hast die TPA-Anfrage von <dark_aqua><requester></dark_aqua> angenommen.</gray>",
+		"usage": "<gray>/tpaccept <Spieler></gray>",
+		"no-request": "<gray>Du hast keine aktive Anfrage von diesem Spieler.</gray>"
+	  },
+	  "tpdeny": {
+		"tpaccept": "<gray>Du hast die TPA-Anfrage von <dark_aqua><player></dark_aqua> abgelehnt.</gray>",
+		"usage": "<gray>/tpdeny <Spieler></gray>"
+	  }
+	}
+  }
+}

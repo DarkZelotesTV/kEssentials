@@ -5,3 +5,70 @@ author: ${author}
 description: ${description}
 api-version: ${apiversion}
 website: ${website}
+depend:
+  - kLanguage
+commands:
+  morning:
+    description: Set the time to morning
+    usage: /morning [<world>]
+    aliases: [ morgen ]
+  day:
+    description: Set the time to day
+    usage: /day [<world>]
+    aliases: [ tag ]
+  midday:
+    description: Set the time to midday
+    usage: /midday [<world>]
+    aliases: [ mittag ]
+  evening:
+    description: Set the time to evening
+    usage: /evening [<world>]
+    aliases: [ abend ]
+  night:
+    description: Set the time to night
+    usage: /night [<world>]
+    aliases: [ nacht ]
+  tpa:
+    description: Request a teleport to another player
+    usage: /tpa <player>
+    aliases: [ tpanfrage ]
+  tpaccept:
+    description: Accept a teleport request
+    usage: /tpaccept <player>
+    aliases: [ tpakzeptieren ]
+  tpdeny:
+    description: Deny a teleport request
+    usage: /tpdeny <player>
+    aliases: [ tpablehnen ]
+  tplist:
+    description: List all teleport request
+    usage: /tplist
+    aliases: [ tpanfragen ]
+  gamemode:
+    description: Change the gamemode of a player
+    usage: /gamemode <gamemode> [<player>]
+    aliases: [ gm ]
+  suicide:
+    description: Kills the executor
+    usage: /suicide
+    aliases: [ suizid, selbstmord ]
+  f3d:
+    description: Clears your chat
+    usage: /f3d
+    aliases: [ clearmychat, meinenchatleeren ]
+  fly:
+    description: Toggles flight
+    usage: /fly [<player>]
+    aliases: [ flight, flug, flugmodus, fliegen ]
+  speed:
+    description: Changes walking/flying speed
+    usage: /speed <speed> [<player>]
+    aliases: [ geschwindigkeit ]
+  chatclear:
+    description: Clears the chat for all players
+    usage: /chatclear
+    aliases: [ cc, chatleeren ]
+  enderchest:
+    description: Opens a enderchest
+    usage: /enderchest [<player>]
+    aliases: [ ec, enderkiste ]
