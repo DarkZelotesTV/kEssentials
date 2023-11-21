@@ -12,15 +12,15 @@
 	},
 	"gamemode": {
 	  "set": "<gray>Your game mode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
-	  "set-other": "<gray><dark_aqua><player></dark_aqua>'s gamemode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
+	  "set-other": "<gray><dark_aqua><target></dark_aqua>'s gamemode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
 	  "invalid": "<gray>Please specify a valid game mode.</gray>",
 	  "usage": "<gray>/gamemode <gamemode> [<player>]</gray>"
 	},
 	"fly": {
 	  "enabled": "<gray>You can now <green>fly</green>.</gray>",
-	  "enabled-other": "<gray><dark_aqua><player></dark_aqua> can now fly.</gray>",
+	  "enabled-other": "<gray><dark_aqua><target></dark_aqua> can now fly.</gray>",
 	  "disabled": "<gray>You can no longer <red>fly</red>.</gray>",
-	  "disabled-other": "<gray><dark_aqua><player></dark_aqua> can no longer <red>fly</red>.</gray>",
+	  "disabled-other": "<gray><dark_aqua><target></dark_aqua> can no longer <red>fly</red>.</gray>",
 	  "usage": "<gray>/fly [<player>]</gray>"
 	},
 	"speed": {
@@ -29,8 +29,8 @@
 		"flying": "<gray>Your flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
 	  },
 	  "set-other": {
-		"walking": "<gray><dark_aqua><player></dark_aqua>'s speed has been set to <dark_aqua><speed></dark_aqua>.</gray>",
-		"flying": "<gray><dark_aqua><player></dark_aqua>'s flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
+		"walking": "<gray><dark_aqua><target></dark_aqua>'s speed has been set to <dark_aqua><speed></dark_aqua>.</gray>",
+		"flying": "<gray><dark_aqua><target></dark_aqua>'s flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
 	  },
 	  "invalid": "<gray>Please specify a valid speed between 1 and 10.</gray>",
 	  "usage": "<gray>/speed <speed> [<player>]</gray>"
@@ -45,32 +45,37 @@
 	},
 	"freeze": {
 	  "frozen": "<gray>You have been frozen.</gray>",
-	  "frozen-other": "<gray><dark_aqua><player></dark_aqua> has been frozen.</gray>",
+	  "frozen-other": "<gray><dark_aqua><target></dark_aqua> has been frozen.</gray>",
 	  "unfrozen": "<gray>You have been unfrozen.</gray>",
-	  "unfrozen-other": "<gray><dark_aqua><player></dark_aqua> has been unfrozen.</gray>",
+	  "unfrozen-other": "<gray><dark_aqua><target></dark_aqua> has been unfrozen.</gray>",
 	  "usage": "<gray>/freeze <player></gray>"
 	},
 	"vanish": {
 	  "vanished": "<gray>You are now <green>invisible</green>.</gray>",
-	  "vanished-other": "<gray><dark_aqua><player></dark_aqua> is now <green>invisible</green>.</gray>",
+	  "vanished-other": "<gray><dark_aqua><target></dark_aqua> is now <green>invisible</green>.</gray>",
 	  "unvanished": "<gray>You are visible again.</gray>",
-	  "unvanished-other": "<gray><dark_aqua><player></dark_aqua> has become visible again.</gray>",
+	  "unvanished-other": "<gray><dark_aqua><target></dark_aqua> has become visible again.</gray>",
 	  "usage": "<gray>/vanish [<player>]</gray>"
 	},
 	"heal": {
 	  "healed": "<gray>You have been healed.</gray>",
-	  "healed-other": "<gray><dark_aqua><player></dark_aqua> has been healed.</gray>",
+	  "healed-other": "<gray><dark_aqua><target></dark_aqua> has been healed.</gray>",
 	  "usage": "<gray>/heal [<player>]</gray>"
 	},
 	"feed": {
 	  "fed": "<gray>Your hunger has been satisfied.</gray>",
-	  "fed-other": "<gray><dark_aqua><player></dark_aqua>'s hunger has been satisfied.</gray>",
+	  "fed-other": "<gray><dark_aqua><target></dark_aqua>'s hunger has been satisfied.</gray>",
 	  "usage": "<gray>/feed [<player>]</gray>"
 	},
 	"repair": {
 	  "repaired": "<gray>The item in your hand has been repaired.</gray>",
-	  "repaired-other": "<gray><dark_aqua><player></dark_aqua>'s item has been repaired.</gray>",
-	  "usage": "<gray>/repair [<player>]</gray>"
+	  "repaired-other": "<gray><dark_aqua><target></dark_aqua>'s item has been repaired.</gray>",
+	  "usage": "<gray>/repair [<player>]</gray>",
+	  "no-item": "<gray>You must be holding an item to repair it.</gray>",
+	  "no-item-other": "<gray><dark_aqua><target></dark_aqua> must be holding an item to repair it.</gray>",
+	  "not-repairable": "<gray>This item cannot be repaired.</gray>",
+	  "not-repairable-other": "<gray><dark_aqua><target></dark_aqua>'s item cannot be repaired.</gray>"
+
 	},
 	"inventory": {
 	  "usage": "<gray>/inventorysee <player></gray>"
@@ -100,11 +105,11 @@
 	},
 	"tpa": {
 	  "tpa": {
-		"sent": "<gray>TPA request sent to <dark_aqua><player></dark_aqua>.</gray>",
-		"already-sent": "<gray>You already sent a request to <dark_aqua><player></dark_aqua>.</gray>",
+		"sent": "<gray>TPA request sent to <dark_aqua><target></dark_aqua>.</gray>",
+		"already-sent": "<gray>You already sent a request to <dark_aqua><target></dark_aqua>.</gray>",
 		"other-only": "<gray>You cannot send a request to yourself.</gray>",
-		"denied": "<gray>Your TPA request to <dark_aqua><player></dark_aqua> has been denied.</gray>",
-		"accepted": "<gray>Your TPA request from <dark_aqua><player></dark_aqua> has been accepted.</gray>",
+		"denied": "<gray>Your TPA request to <dark_aqua><target></dark_aqua> has been denied.</gray>",
+		"accepted": "<gray>Your TPA request to <dark_aqua><target></dark_aqua> has been accepted.</gray>",
 		"received": "<gray>You received a teleport request from <dark_aqua><requester></dark_aqua>.</gray>",
 		"accept": "<green>Accept</green>",
 		"deny": "<red>Deny</red>",
@@ -123,7 +128,7 @@
 		"no-request": "<gray>You don't have any active requests from this player.</gray>"
 	  },
 	  "tpdeny": {
-		"tpaccept": "<gray>You have denied the TPA request from <dark_aqua><player></dark_aqua>.</gray>",
+		"tpaccept": "<gray>You have denied the TPA request from <dark_aqua><requester></dark_aqua>.</gray>",
 		"usage": "<gray>/tpdeny <player></gray>"
 	  }
 	}

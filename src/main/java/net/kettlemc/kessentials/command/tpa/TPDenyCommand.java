@@ -22,18 +22,18 @@ public class TPDenyCommand implements CommandExecutor, TabCompleter {
     public void tpDeny(Player requester, Player target) {
 
         if (requester == null) {
-            Essentials.instance().sendMessage(target, Messages.TPA_TPDENY_USAGE);
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_TPDENY_USAGE);
             return;
         }
 
         if (TeleportRequest.getRequestsFor(target).contains(requester)) {
-            Essentials.instance().sendMessage(requester, Messages.TPA_REQUEST_DENIED, Placeholder.of("target", (ctx, args) -> target.getName()));
-            Essentials.instance().sendMessage(target, Messages.TPA_TPDENY, Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_DENIED, Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_TPDENY, Placeholder.of("requester", (ctx, args) -> requester.getName()));
             TeleportRequest.remove(target, requester);
 
 
         } else {
-            Essentials.instance().sendMessage(target, Messages.TPA_LIST_NO_REQUEST, Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_NO_REQUEST, Placeholder.of("requester", (ctx, args) -> requester.getName()));
         }
     }
 
@@ -41,14 +41,14 @@ public class TPDenyCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            Essentials.instance().sendMessage(sender, Messages.PLAYER_ONLY);
+            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
             return true;
         }
 
         Player target = (Player) sender;
 
         if (args.length == 0) {
-            Essentials.instance().sendMessage(target, Messages.TPA_TPDENY_USAGE);
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_TPDENY_USAGE);
             return true;
         }
 

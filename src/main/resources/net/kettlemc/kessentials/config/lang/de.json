@@ -12,15 +12,15 @@
 	},
 	"gamemode": {
 	  "set": "<gray>Dein Spielmodus wurde zu <dark_aqua><gamemode></dark_aqua> geändert.</gray>",
-	  "set-other": "<gray><dark_aqua><player></dark_aqua>'s Spielmodus wurde zu <dark_aqua><gamemode></dark_aqua> geändert.</gray>",
+	  "set-other": "<gray><dark_aqua><target></dark_aqua>'s Spielmodus wurde zu <dark_aqua><gamemode></dark_aqua> geändert.</gray>",
 	  "invalid": "<gray>Bitte gib einen gültigen Spielmodus an.</gray>",
 	  "usage": "<gray>/gamemode <Spielmodus> [<Spieler>]</gray>"
 	},
 	"fly": {
 	  "enabled": "<gray>Du kannst nun <green>fliegen</green>.</gray>",
-	  "enabled-other": "<gray><dark_aqua><player></dark_aqua> kann nun fliegen.</gray>",
+	  "enabled-other": "<gray><dark_aqua><target></dark_aqua> kann nun fliegen.</gray>",
 	  "disabled": "<gray>Du kannst nun <red>nicht mehr fliegen</red>.</gray>",
-	  "disabled-other": "<gray><dark_aqua><player></dark_aqua> kann nun <red>nicht mehr fliegen</red>.</gray>",
+	  "disabled-other": "<gray><dark_aqua><target></dark_aqua> kann nun <red>nicht mehr fliegen</red>.</gray>",
 	  "usage": "<gray>/fly [<Spieler>]</gray>"
 	},
 	"speed": {
@@ -29,8 +29,8 @@
 		"flying": "<gray>Deine Flug-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>"
 	  },
 	  "set-other": {
-		"walking": "<gray><dark_aqua><player></dark_aqua>'s Lauf-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>",
-		"flying": "<gray><dark_aqua><player></dark_aqua>'s Flug-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>"
+		"walking": "<gray><dark_aqua><target></dark_aqua>'s Lauf-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>",
+		"flying": "<gray><dark_aqua><target></dark_aqua>'s Flug-Geschwindigkeit wurde auf <dark_aqua><speed></dark_aqua> gesetzt.</gray>"
 	  },
 	  "invalid": "<gray>Bitte gib eine gültige Geschwindigkeit zwischen 1 und 10 ein.</gray>",
 	  "usage": "<gray>/speed <Geschwindigkeit> [<Spieler>]"
@@ -45,32 +45,36 @@
 	},
 	"freeze": {
 	  "frozen": "<gray>Du wurdest eingefroren.</gray>",
-	  "frozen-other": "<gray><dark_aqua><player></dark_aqua> wurde eingefroren.</gray>",
+	  "frozen-other": "<gray><dark_aqua><target></dark_aqua> wurde eingefroren.</gray>",
 	  "unfrozen": "<gray>Du wurdest aufgetaut.</gray>",
-	  "unfrozen-other": "<gray><dark_aqua><player></dark_aqua> wurde aufgetaut.</gray>",
+	  "unfrozen-other": "<gray><dark_aqua><target></dark_aqua> wurde aufgetaut.</gray>",
 	  "usage": "<gray>/freeze <Spieler></gray>"
 	},
 	"vanish": {
 	  "vanished": "<gray>Du bist nun <green>unsichtbar</green>.</gray>",
-	  "vanished-other": "<gray><dark_aqua><player></dark_aqua> ist nun <green>unsichtbar</green>.</gray>",
+	  "vanished-other": "<gray><dark_aqua><target></dark_aqua> ist nun <green>unsichtbar</green>.</gray>",
 	  "unvanished": "<gray>Du bist wieder sichtbar.</gray>",
-	  "unvanished-other": "<gray><dark_aqua><player></dark_aqua> ist wieder sichtbar geworden.</gray>",
+	  "unvanished-other": "<gray><dark_aqua><target></dark_aqua> ist wieder sichtbar geworden.</gray>",
 	  "usage": "<gray>/vanish [<Spieler>]</gray>"
 	},
 	"heal": {
 	  "healed": "<gray>Du wurdest geheilt.</gray>",
-	  "healed-other": "<gray><dark_aqua><player></dark_aqua> wurde geheilt.</gray>",
+	  "healed-other": "<gray><dark_aqua><target></dark_aqua> wurde geheilt.</gray>",
 	  "usage": "<gray>/heal [<Spieler>]</gray>"
 	},
 	"feed": {
 	  "fed": "<gray>Dein Hunger wurde gestillt.</gray>",
-	  "fed-other": "<gray><dark_aqua><player></dark_aqua>'s Hunger wurde gestillt.</gray>",
+	  "fed-other": "<gray><dark_aqua><target></dark_aqua>'s Hunger wurde gestillt.</gray>",
 	  "usage": "<gray>/feed [<Spieler>]</gray>"
 	},
 	"repair": {
 	  "repaired": "<gray>Das Item in deiner Hand wurde repariert.</gray>",
-	  "repaired-other": "<gray><dark_aqua><player></dark_aqua>'s Item wurde repariert.</gray>",
-	  "usage": "<gray>/repair [<Spieler>]<gray>"
+	  "repaired-other": "<gray><dark_aqua><target></dark_aqua>'s Item wurde repariert.</gray>",
+	  "usage": "<gray>/repair [<Spieler>]<gray>",
+	  "no-item": "<gray>Bitte halte ein Item in deiner Hand.</gray>",
+	  "no-item-other": "<gray><dark_aqua><target></dark_aqua> muss ein Item in der Hand halten.</gray>",
+	  "not-repairable": "<gray>Das Item in deiner Hand kann nicht repariert werden.</gray>",
+	  "not-repairable-other": "<gray><dark_aqua><target></dark_aqua>'s Item kann nicht repariert werden.</gray>"
 	},
 	"inventory": {
 	  "usage": "<gray>/inventorysee <Spieler></gray>"
@@ -123,7 +127,7 @@
 		"no-request": "<gray>Du hast keine aktive Anfrage von diesem Spieler.</gray>"
 	  },
 	  "tpdeny": {
-		"tpaccept": "<gray>Du hast die TPA-Anfrage von <dark_aqua><player></dark_aqua> abgelehnt.</gray>",
+		"tpaccept": "<gray>Du hast die TPA-Anfrage von <dark_aqua><requester></dark_aqua> abgelehnt.</gray>",
 		"usage": "<gray>/tpdeny <Spieler></gray>"
 	  }
 	}

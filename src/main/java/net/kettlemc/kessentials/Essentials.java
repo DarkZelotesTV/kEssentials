@@ -1,8 +1,7 @@
 package net.kettlemc.kessentials;
 
-import io.github.almightysatan.slams.Placeholder;
-import io.github.almightysatan.slams.minimessage.AdventureMessage;
 import net.kettlemc.kcommon.bukkit.ContentManager;
+import net.kettlemc.kcommon.language.MessageManager;
 import net.kettlemc.kessentials.command.*;
 import net.kettlemc.kessentials.command.tpa.TPACommand;
 import net.kettlemc.kessentials.command.tpa.TPAcceptCommand;
@@ -10,13 +9,14 @@ import net.kettlemc.kessentials.command.tpa.TPDenyCommand;
 import net.kettlemc.kessentials.command.tpa.TPListCommand;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
+import net.kettlemc.kessentials.listener.BlockListener;
+import net.kettlemc.kessentials.listener.InventoryClickListener;
 import net.kettlemc.kessentials.listener.JoinQuitListener;
+import net.kettlemc.kessentials.listener.PlayerMoveListener;
 import net.kettlemc.kessentials.loading.Loadable;
 import net.kettlemc.klanguage.api.LanguageAPI;
 import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
-import net.kyori.adventure.audience.Audience;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -31,6 +31,7 @@ public final class Essentials implements Loadable {
     private static Essentials instance;
 
     private final ContentManager contentManager;
+    private MessageManager messageManager;
     private final JavaPlugin plugin;
     private BukkitAudiences adventure;
 
@@ -41,13 +42,6 @@ public final class Essentials implements Loadable {
 
     public static Essentials instance() {
         return instance;
-    }
-
-    public BukkitAudiences adventure() {
-        if (this.adventure == null) {
-            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
-        }
-        return this.adventure;
     }
 
     @Override
@@ -68,7 +62,11 @@ public final class Essentials implements Loadable {
             this.plugin.getLogger().severe("Failed to load messages!");
         }
 
+        messageManager = new MessageManager(Messages.PREFIX, LANGUAGE_API, adventure);
+
         this.plugin.getLogger().info("Registering commands and listeners...");
+
+        // Register all the time commands with one instance of the TimeCommands class
         TimeCommands timeCommands = new TimeCommands();
         TimeCommands.TIME_MAP.keySet().forEach(time -> contentManager.registerCommand(time, timeCommands));
 
@@ -76,24 +74,29 @@ public final class Essentials implements Loadable {
         contentManager.registerCommand("tpaccept", new TPAcceptCommand());
         contentManager.registerCommand("tpdeny", new TPDenyCommand());
         contentManager.registerCommand("tplist", new TPListCommand());
-
         contentManager.registerCommand("gamemode", new GamemodeCommand());
-
         contentManager.registerCommand("suicide", new SuicideCommand());
-
         contentManager.registerCommand("f3d", new F3DCommand());
-
         contentManager.registerCommand("speed", new SpeedCommand());
-
         contentManager.registerCommand("fly", new FlyCommand());
-
         contentManager.registerCommand("chatclear", new ChatClearCommand());
-
         contentManager.registerCommand("enderchest", new EnderchestCommand());
+        contentManager.registerCommand("teleportplayer", new TeleportPlayerCommand());
+        contentManager.registerCommand("freeze", new FreezeCommand());
+        contentManager.registerCommand("vanish", new VanishCommand());
+        contentManager.registerCommand("heal", new HealCommand());
+        contentManager.registerCommand("feed", new FeedCommand());
+        contentManager.registerCommand("repair", new RepairCommand());
+        contentManager.registerCommand("inventorysee", new InventorySeeCommand());
+        contentManager.registerCommand("armorsee", new ArmorSeeCommand());
 
+        // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));
 
         contentManager.registerListener(new JoinQuitListener());
+        contentManager.registerListener(new BlockListener());
+        contentManager.registerListener(new PlayerMoveListener());
+        contentManager.registerListener(new InventoryClickListener());
     }
 
     @Override
@@ -103,44 +106,48 @@ public final class Essentials implements Loadable {
         instance = null;
     }
 
-    public void sendMessage(CommandSender sender, AdventureMessage message) {
-        Audience audience = Essentials.instance().adventure().sender(sender);
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            audience.sendMessage(Messages.PREFIX.value().append(message.value(LANGUAGE_API.getEntity(player))));
-            return;
+    /**
+     * Returns the adventure instance
+     *
+     * @return The adventure instance
+     */
+    public BukkitAudiences adventure() {
+        if (this.adventure == null) {
+            throw new IllegalStateException("Tried to access Adventure when the plugin was disabled!");
         }
-        audience.sendMessage(Messages.PREFIX.value().append(message.value()));
+        return this.adventure;
     }
 
-    public void sendMessage(CommandSender sender, AdventureMessage message, Placeholder... placeholders) {
-        sendMessage(sender, message, null, null, placeholders);
-    }
 
-    public void sendMessage(CommandSender sender, AdventureMessage message, AdventureMessage hover, String command, Placeholder... placeholders) {
-        Audience audience = Essentials.instance().adventure().sender(sender);
-        if (sender instanceof Player) {
-            Player player = (Player) sender;
-            Component component = message.value(LANGUAGE_API.getEntity(player), placeholders);
-            if (hover != null) {
-                component = component.hoverEvent(net.kyori.adventure.text.event.HoverEvent.showText(hover.value(LANGUAGE_API.getEntity(player), placeholders)));
-            }
-            if (command != null) {
-                component = component.clickEvent(net.kyori.adventure.text.event.ClickEvent.runCommand(command));
-            }
-            audience.sendMessage(Messages.PREFIX.value().append(component));
-            return;
-        }
-        audience.sendMessage(Messages.PREFIX.value().append(message.value(placeholders)));
-    }
-
+    /**
+     * Returns the underlying plugin
+     *
+     * @return The underlying plugin
+     */
     public Plugin getPlugin() {
         return plugin;
     }
 
+    /**
+     * Checks if the sender has permission to run the command.
+     * When other is true, it checks for the permission to run the command on other players.
+     * When other is false, it checks for the permission to run the command on themselves.
+     * When the sender is a console, it always returns true.
+     * <p>
+     * When the sender has the permission to run the command on other players, they also have the permission to run the command on themselves.
+     *
+     * @param sender  The sender to check
+     * @param command The command to check
+     * @param other   Whether to check for the permission to run the command on other players
+     * @return True if the sender has permission to run the command, false otherwise
+     */
     public boolean checkPermission(CommandSender sender, Command command, boolean other) {
         return (sender instanceof ConsoleCommandSender)
                 || (sender.hasPermission(Configuration.PERMISSION_LAYOUT_OTHER.getValue().replace("%command%", command.getLabel())))
                 || (!other && sender.hasPermission(Configuration.PERMISSION_LAYOUT.getValue().replace("%command%", command.getLabel())));
+    }
+
+    public MessageManager messages() {
+        return this.messageManager;
     }
 }

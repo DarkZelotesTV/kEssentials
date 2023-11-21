@@ -19,23 +19,23 @@ public class TPACommand implements CommandExecutor, TabCompleter {
     public void tpa(Player requester, Player target) {
 
         if (target == null) {
-            Essentials.instance().sendMessage(requester, Messages.PLAYER_NOT_FOUND);
+            Essentials.instance().messages().sendMessage(requester, Messages.PLAYER_NOT_FOUND);
             return;
         }
 
         if (target == requester) {
-            Essentials.instance().sendMessage(requester, Messages.TPA_OTHER_ONLY);
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_OTHER_ONLY);
             return;
         }
 
         if (TeleportRequest.request(requester, target)) {
-            Essentials.instance().sendMessage(requester, Messages.TPA_REQUEST_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
-            Essentials.instance().sendMessage(target, Messages.TPA_REQUEST_RECEIVED, Placeholder.of("requester", (ctx, args) -> requester.getName()));
-            Essentials.instance().sendMessage(target, Messages.TPA_REQUEST_ACCEPT, Messages.TPA_REQUEST_ACCEPT_HOVER, "/tpaccept " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
-            Essentials.instance().sendMessage(target, Messages.TPA_REQUEST_DENY, Messages.TPA_REQUEST_DENY_HOVER, "/tpdeny " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_RECEIVED, Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_ACCEPT, Messages.TPA_REQUEST_ACCEPT_HOVER, "/tpaccept " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_DENY, Messages.TPA_REQUEST_DENY_HOVER, "/tpdeny " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
 
         } else {
-            Essentials.instance().sendMessage(requester, Messages.TPA_REQUEST_ALREADY_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_ALREADY_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
         }
     }
 
@@ -43,14 +43,14 @@ public class TPACommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            Essentials.instance().sendMessage(sender, Messages.PLAYER_ONLY);
+            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
             return true;
         }
 
         Player requester = (Player) sender;
 
         if (args.length == 0) {
-            Essentials.instance().sendMessage(requester, Messages.TPA_REQUEST_USAGE);
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_USAGE);
             return true;
         }
 

@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 public class DisabledCommandExecutor implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        Essentials.instance().sendMessage(sender, Messages.JOIN_MESSAGE);
+        Essentials.instance().messages().sendMessage(sender, Messages.COMMAND_DISABLED);
         return true;
     }
 }

@@ -17,8 +17,8 @@ public class Configuration {
     private static final Path CONFIG_PATH = Paths.get("plugins", "kEssentials", "kessentials.conf");
     private static final Config CONFIG = HoconConfig.of(CONFIG_PATH.toFile(), "Config for kEssentials");
 
-    public static final StringConfigEntry PERMISSION_LAYOUT = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-prefix", "The default permission layout", "system.%s");
-    public static final StringConfigEntry PERMISSION_LAYOUT_OTHER = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-layout-other", "The default permission layout for targeting other players", "system.%s.other");
+    public static final StringConfigEntry PERMISSION_LAYOUT = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-prefix", "The default permission layout", "system.%command%");
+    public static final StringConfigEntry PERMISSION_LAYOUT_OTHER = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-layout-other", "The default permission layout for targeting other players", "system.%command%.other");
 
     public static final ListConfigEntry<String> DISABLED_COMMANDS = ListConfigEntry.of(CONFIG, "kessentials.settings.disabled-commands", "The disabled commands", Collections.emptyList(), Type.STRING);
 

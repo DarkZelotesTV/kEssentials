@@ -1,9 +1,8 @@
-package net.kettlemc.kessentials.command.tpa;
+package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
-import net.kettlemc.kessentials.teleport.TeleportRequest;
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,34 +12,35 @@ import org.bukkit.entity.Player;
 import java.util.Collections;
 import java.util.List;
 
-public class TPListCommand implements CommandExecutor, TabCompleter {
+public class InventorySeeCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+
+        if (!Essentials.instance().checkPermission(sender, command, true)) {
+            Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
+            return true;
+        }
 
         if (!(sender instanceof Player)) {
             Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
             return true;
         }
 
-        Player target = (Player) sender;
+        Player target = Bukkit.getPlayer(args[0]);
 
-        if (TeleportRequest.getRequestsFor(target).isEmpty()) {
-            Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_NO_REQUEST);
+        if (target == null) {
+            Essentials.instance().messages().sendMessage(sender, Messages.INVENTORY_USAGE);
             return true;
         }
 
-        Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST);
-
-        TeleportRequest.getRequestsFor(target).forEach(
-                requester -> Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_ENTRY, Placeholder.of("requester", (ctx, args1) -> requester.getName()))
-        );
+        ((Player) sender).openInventory(target.getInventory());
 
         return true;
     }
 
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
-        return Collections.emptyList();
+        return args.length <= 1 ? null : Collections.emptyList();
     }
 }

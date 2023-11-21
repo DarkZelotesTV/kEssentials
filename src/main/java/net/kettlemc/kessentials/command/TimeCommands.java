@@ -36,14 +36,14 @@ public class TimeCommands implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!Essentials.instance().checkPermission(sender, command, false)) {
-            Essentials.instance().sendMessage(sender, Messages.NO_PERMISSION);
+            Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
             return true;
         }
 
         World world;
         if (args.length == 0) {
             if (!(sender instanceof Player)) {
-                Essentials.instance().sendMessage(sender, Messages.TIME_USAGE);
+                Essentials.instance().messages().sendMessage(sender, Messages.TIME_USAGE);
                 return true;
             }
             world = ((Player) sender).getWorld();
@@ -52,7 +52,7 @@ public class TimeCommands implements CommandExecutor, TabCompleter {
         }
 
         if (world == null) {
-            Essentials.instance().sendMessage(sender, Messages.TIME_USAGE);
+            Essentials.instance().messages().sendMessage(sender, Messages.TIME_USAGE);
             return true;
         }
 
@@ -64,10 +64,18 @@ public class TimeCommands implements CommandExecutor, TabCompleter {
         return true;
     }
 
+    /**
+     * Sets the time of the world to the given time
+     *
+     * @param sender         The sender of the command
+     * @param world          The world to set the time of
+     * @param time           The time to set the world to
+     * @param successMessage The message to send to the sender if the time was set successfully
+     */
     private void setTime(CommandSender sender, World world, int time, AdventureMessage successMessage) {
 
         if (sender instanceof ConsoleCommandSender && world == null) {
-            Essentials.instance().sendMessage(sender, Messages.TIME_USAGE);
+            Essentials.instance().messages().sendMessage(sender, Messages.TIME_USAGE);
             return;
         }
 
@@ -78,7 +86,7 @@ public class TimeCommands implements CommandExecutor, TabCompleter {
         }
 
         world.setTime(time);
-        Essentials.instance().sendMessage(sender, successMessage);
+        Essentials.instance().messages().sendMessage(sender, successMessage);
     }
 
     @Override

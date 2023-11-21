@@ -7,6 +7,7 @@ api-version: ${apiversion}
 website: ${website}
 depend:
   - kLanguage
+  - kLoader
 commands:
   morning:
     description: Set the time to morning
@@ -72,3 +73,35 @@ commands:
     description: Opens a enderchest
     usage: /enderchest [<player>]
     aliases: [ ec, enderkiste ]
+  teleportplayer:
+    description: Teleports players to each other
+    usage: /teleportplayer <player> [<player>]
+    aliases: [ tpp ]
+  freeze:
+    description: Freezes a player so that they cannot move
+    usage: /freeze [<player>]
+    aliases: [ einfrieren ]
+  vanish:
+    description: Makes a player invisible for all other players
+    usage: /vanish [<player>]
+    aliases: [ verschwinden, v ]
+  heal:
+    description: Heals a player
+    usage: /heal [<player>]
+    aliases: [ heilen ]
+  feed:
+    description: Feeds a player
+    usage: /feed [<player>]
+    aliases: [ essen ]
+  repair:
+    description: Repairs the item in your hand
+    usage: /repair [<player>]
+    aliases: [ reparieren ]
+  inventorysee:
+    description: Opens the inventory of a player
+    usage: /inventorysee [<player>]
+    aliases: [ invsee, inv, inventory, inventar ]
+  armorsee:
+    description: Opens the armor inventory of a player
+    usage: /armorsee [<player>]
+    aliases: [ armor, armsee, ruestung ]

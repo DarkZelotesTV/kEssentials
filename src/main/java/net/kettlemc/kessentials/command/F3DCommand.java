@@ -17,7 +17,7 @@ public class F3DCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            Essentials.instance().sendMessage(sender, Messages.PLAYER_ONLY);
+            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
             return true;
         }
 

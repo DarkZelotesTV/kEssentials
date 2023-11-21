@@ -16,12 +16,12 @@ public class SuicideCommand implements CommandExecutor, TabCompleter {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!(sender instanceof Player)) {
-            Essentials.instance().sendMessage(sender, Messages.PLAYER_ONLY);
+            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
             return true;
         }
 
         ((Player) sender).setHealth(0);
-        Essentials.instance().sendMessage(sender, Messages.SUICIDE);
+        Essentials.instance().messages().sendMessage(sender, Messages.SUICIDE);
 
         return true;
     }

@@ -51,7 +51,7 @@ public class Teleportation {
 
     private static void startScheduler(Teleportation teleportation) {
 
-        Essentials.instance().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_COOLDOWN, Placeholder.of("cooldown", (ctx, args) -> String.valueOf(teleportation.cooldown)));
+        Essentials.instance().messages().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_COOLDOWN, Placeholder.of("cooldown", (ctx, args) -> String.valueOf(teleportation.cooldown)));
 
         new BukkitRunnable() {
 
@@ -76,14 +76,14 @@ public class Teleportation {
                         }.runTask(Essentials.instance().getPlugin());
 
 
-                        Essentials.instance().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_SUCCESSFUL);
+                        Essentials.instance().messages().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_SUCCESSFUL);
                         TELEPORTATION.remove(teleportation.getPlayer());
                         cancel();
                     }
 
                     // If the player moves, cancel the teleportation
                     if (teleportation.getPlayer().getLocation().distance(teleportation.start) > 0.2) {
-                        Essentials.instance().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_CANCELLED);
+                        Essentials.instance().messages().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_CANCELLED);
                         TELEPORTATION.remove(teleportation.getPlayer());
                         teleportation.onFinish.run();
                         cancel();

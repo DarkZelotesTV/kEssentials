@@ -18,12 +18,12 @@ public class EnderchestCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!(sender instanceof Player)) {
-            Essentials.instance().sendMessage(sender, Messages.PLAYER_ONLY);
+            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
             return true;
         }
 
         if (!Essentials.instance().checkPermission(sender, command, false)) {
-            Essentials.instance().sendMessage(sender, Messages.NO_PERMISSION);
+            Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
             return true;
         }
 
@@ -36,7 +36,7 @@ public class EnderchestCommand implements CommandExecutor, TabCompleter {
         } else if (args.length == 1 && Bukkit.getPlayer(args[0]) != null) {
 
             if (!Essentials.instance().checkPermission(sender, command, true)) {
-                Essentials.instance().sendMessage(sender, Messages.NO_PERMISSION);
+                Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
                 return true;
             }
 
@@ -44,7 +44,7 @@ public class EnderchestCommand implements CommandExecutor, TabCompleter {
             player.openInventory(target.getEnderChest());
 
         } else {
-            Essentials.instance().sendMessage(sender, Messages.PLAYER_NOT_FOUND);
+            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_NOT_FOUND);
         }
 
         return true;

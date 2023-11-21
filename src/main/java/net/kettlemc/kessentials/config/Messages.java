@@ -77,6 +77,10 @@ public class Messages {
     public static final AdventureMessage REPAIR_REPAIRED = AdventureMessage.of("messages.repair.repaired", LANGUAGE_MANAGER);
     public static final AdventureMessage REPAIR_REPAIRED_OTHER = AdventureMessage.of("messages.repair.repaired-other", LANGUAGE_MANAGER);
     public static final AdventureMessage REPAIR_USAGE = AdventureMessage.of("messages.repair.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage REPAIR_NOT_REPAIRABLE = AdventureMessage.of("messages.repair.not-repairable", LANGUAGE_MANAGER);
+    public static final AdventureMessage REPAIR_NOT_REPAIRABLE_OTHER = AdventureMessage.of("messages.repair.not-repairable-other", LANGUAGE_MANAGER);
+    public static final AdventureMessage REPAIR_NO_ITEM = AdventureMessage.of("messages.repair.no-item", LANGUAGE_MANAGER);
+    public static final AdventureMessage REPAIR_NO_ITEM_OTHER = AdventureMessage.of("messages.repair.no-item-other", LANGUAGE_MANAGER);
 
     public static final AdventureMessage INVENTORY_USAGE = AdventureMessage.of("messages.inventory.usage", LANGUAGE_MANAGER);
 

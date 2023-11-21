@@ -17,7 +17,7 @@ public class ChatClearCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
         if (!Essentials.instance().checkPermission(sender, command, false)) {
-            Essentials.instance().sendMessage(sender, Messages.NO_PERMISSION);
+            Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
             return true;
         }
 
@@ -26,7 +26,7 @@ public class ChatClearCommand implements CommandExecutor, TabCompleter {
                 player.sendMessage("");
             }
         });
-        Bukkit.getOnlinePlayers().forEach(player -> Essentials.instance().sendMessage(player, Messages.CHATCLEAR_CLEARED));
+        Bukkit.getOnlinePlayers().forEach(player -> Essentials.instance().messages().sendMessage(player, Messages.CHATCLEAR_CLEARED));
 
         return true;
     }
