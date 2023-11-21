@@ -7,7 +7,7 @@
 	  "console-only": "<gray>This command can only be used by the console.</gray>",
 	  "player-not-found": "<gray>Please specify a valid player.</gray>",
 	  "join": "<dark_gray>[<green>+</green>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has joined the game.</gray>",
-	  "leave": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has left the game.</gray>",
+	  "quit": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has left the game.</gray>",
 	  "command-disabled": "<gray>This command has been disabled.</gray>"
 	},
 	"gamemode": {

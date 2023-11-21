@@ -7,7 +7,7 @@
 	  "console-only": "<gray>Du musst die Konsole sein, um diesen Befehl nutzen zu können.</gray>",
 	  "player-not-found": "<gray>Bitte gib einen gültigen Spieler an.</gray>",
 	  "join": "<dark_gray>[<green>+</green>]</dark_gray> <gray><dark_aqua><player></dark_aqua> hat den Server betreten.</gray>",
-	  "leave": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> hat den Server verlassen.</gray>",
+	  "quit": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> hat den Server verlassen.</gray>",
 	  "command-disabled": "<gray>Dieser Befehl ist deaktiviert.</gray>"
 	},
 	"gamemode": {
