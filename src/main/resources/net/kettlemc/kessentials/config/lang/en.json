@@ -128,8 +128,33 @@
 		"no-request": "<gray>You don't have any active requests from this player.</gray>"
 	  },
 	  "tpdeny": {
-		"tpaccept": "<gray>You have denied the TPA request from <dark_aqua><requester></dark_aqua>.</gray>",
+		"tpdeny": "<gray>You have denied the TPA request from <dark_aqua><requester></dark_aqua>.</gray>",
 		"usage": "<gray>/tpdeny <player></gray>"
+	  }
+	},
+	"discord": {
+	  "minecraft": {
+		"chat-format": "<blue><rank></blue> <dark_gray>|</dark_gray> <gray><name> (<white>Discord</white>)</gray> <dark_gray>»</dark_gray> <message>",
+		"restart": {
+		  "instant": "<gray>The server will restart <red>now</red>.</gray>",
+		  "countdown": "<gray>The server will restart in <red><seconds> seconds</red>.</gray>"
+		},
+		"welcome": "<hover:show_text:'<gray>Klicke zum Beitreten.</gray>'><click:open_url:'https://discord.gg/'><gray>The chat of this server is linked with <blue>#<channel></blue> on our discord.</gray></click></hover>"
+	  },
+	  "no-permission": ":x: You're not allowed to use this command!",
+	  "chat-format": ":speech_left: **[<rank>] <player> »** <message>",
+	  "join": ":arrow_right: <message>",
+	  "quit": ":arrow_left: <message>",
+	  "startup": ":white_check_mark: The server has been started!.",
+	  "shutdown": ":octagonal_sign: The server has been stopped.",
+	  "clearlagg": ":broom: <items> have been cleared!",
+	  "online": {
+		"list": ":family_mwgb: **Online (<amount>):** <list>",
+		"no-players": ":person_shrugging: No players online!"
+	  },
+	  "restart": {
+		"instant": ":x: The server will now restart.",
+		"countdown": ":x: The server will restart in <seconds> seconds."
 	  }
 	}
   }

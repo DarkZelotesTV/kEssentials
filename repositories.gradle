@@ -5,4 +5,7 @@ repositories {
     maven {
         url = "https://s01.oss.sonatype.org/content/repositories/iogithubalmighty-satan-1010"
     }
+    maven {
+        url 'https://m2.dv8tion.net/releases'
+    }
 }

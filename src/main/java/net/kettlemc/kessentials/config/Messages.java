@@ -125,6 +125,21 @@ public class Messages {
     public static final AdventureMessage TPA_TPDENY = AdventureMessage.of("messages.tpa.tpdeny.tpdeny", LANGUAGE_MANAGER);
     public static final AdventureMessage TPA_TPDENY_USAGE = AdventureMessage.of("messages.tpa.tpdeny.usage", LANGUAGE_MANAGER);
 
+    public static final AdventureMessage DISCORD_CHAT_FORMAT = AdventureMessage.of("messages.discord.chat-format", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_NO_PERMISSION = AdventureMessage.of("messages.discord.no-permission", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_JOIN = AdventureMessage.of("messages.discord.join", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_QUIT = AdventureMessage.of("messages.discord.quit", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_STARTUP = AdventureMessage.of("messages.discord.startup", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_SHUTDOWN = AdventureMessage.of("messages.discord.shutdown", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_CLEARLAGG = AdventureMessage.of("messages.discord.clearlagg", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_ONLINE_LIST = AdventureMessage.of("messages.discord.online.list", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_NO_PLAYERS = AdventureMessage.of("messages.discord.online.no-players", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_RESTART = AdventureMessage.of("messages.discord.restart.countdown", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_RESTART_INSTANT = AdventureMessage.of("messages.discord.restart.instant", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_CHAT_FORMAT_MINECRAFT = AdventureMessage.of("messages.discord.minecraft.chat-format", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_RESTART_MINECRAFT = AdventureMessage.of("messages.discord.minecraft.restart.countdown", LANGUAGE_MANAGER);
+    public static final AdventureMessage DISCORD_WELCOME_MESSAGE = AdventureMessage.of("messages.discord.minecraft.welcome", LANGUAGE_MANAGER);
+
 
     private static String getDefaultLocale() {
         return Locale.forLanguageTag(Configuration.DEFAULT_LANGUAGE.getValue()).toLanguageTag();

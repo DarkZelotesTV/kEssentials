@@ -8,12 +8,18 @@ import net.kettlemc.kessentials.command.tpa.TPAcceptCommand;
 import net.kettlemc.kessentials.command.tpa.TPDenyCommand;
 import net.kettlemc.kessentials.command.tpa.TPListCommand;
 import net.kettlemc.kessentials.config.Configuration;
+import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
+import net.kettlemc.kessentials.discord.DiscordBot;
+import net.kettlemc.kessentials.discord.listener.bukkit.DiscordAsyncChatListener;
+import net.kettlemc.kessentials.discord.listener.bukkit.DiscordClearLaggListener;
+import net.kettlemc.kessentials.discord.listener.bukkit.DiscordJoinQuitListener;
 import net.kettlemc.kessentials.listener.BlockListener;
 import net.kettlemc.kessentials.listener.InventoryClickListener;
 import net.kettlemc.kessentials.listener.JoinQuitListener;
 import net.kettlemc.kessentials.listener.PlayerMoveListener;
 import net.kettlemc.kessentials.loading.Loadable;
+import net.kettlemc.kessentials.util.Util;
 import net.kettlemc.klanguage.api.LanguageAPI;
 import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
@@ -31,9 +37,11 @@ public final class Essentials implements Loadable {
     private static Essentials instance;
 
     private final ContentManager contentManager;
-    private MessageManager messageManager;
     private final JavaPlugin plugin;
+    private MessageManager messageManager;
     private BukkitAudiences adventure;
+
+    private DiscordBot discordBot;
 
     public Essentials(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -62,7 +70,7 @@ public final class Essentials implements Loadable {
             this.plugin.getLogger().severe("Failed to load messages!");
         }
 
-        messageManager = new MessageManager(Messages.PREFIX, LANGUAGE_API, adventure);
+        this.messageManager = new MessageManager(Messages.PREFIX, LANGUAGE_API, adventure);
 
         this.plugin.getLogger().info("Registering commands and listeners...");
 
@@ -70,39 +78,69 @@ public final class Essentials implements Loadable {
         TimeCommands timeCommands = new TimeCommands();
         TimeCommands.TIME_MAP.keySet().forEach(time -> contentManager.registerCommand(time, timeCommands));
 
-        contentManager.registerCommand("tpa", new TPACommand());
-        contentManager.registerCommand("tpaccept", new TPAcceptCommand());
-        contentManager.registerCommand("tpdeny", new TPDenyCommand());
-        contentManager.registerCommand("tplist", new TPListCommand());
-        contentManager.registerCommand("gamemode", new GamemodeCommand());
-        contentManager.registerCommand("suicide", new SuicideCommand());
-        contentManager.registerCommand("f3d", new F3DCommand());
-        contentManager.registerCommand("speed", new SpeedCommand());
-        contentManager.registerCommand("fly", new FlyCommand());
-        contentManager.registerCommand("chatclear", new ChatClearCommand());
-        contentManager.registerCommand("enderchest", new EnderchestCommand());
-        contentManager.registerCommand("teleportplayer", new TeleportPlayerCommand());
-        contentManager.registerCommand("freeze", new FreezeCommand());
-        contentManager.registerCommand("vanish", new VanishCommand());
-        contentManager.registerCommand("heal", new HealCommand());
-        contentManager.registerCommand("feed", new FeedCommand());
-        contentManager.registerCommand("repair", new RepairCommand());
-        contentManager.registerCommand("inventorysee", new InventorySeeCommand());
-        contentManager.registerCommand("armorsee", new ArmorSeeCommand());
+        this.contentManager.registerCommand("tpa", new TPACommand());
+        this.contentManager.registerCommand("tpaccept", new TPAcceptCommand());
+        this.contentManager.registerCommand("tpdeny", new TPDenyCommand());
+        this.contentManager.registerCommand("tplist", new TPListCommand());
+        this.contentManager.registerCommand("gamemode", new GamemodeCommand());
+        this.contentManager.registerCommand("suicide", new SuicideCommand());
+        this.contentManager.registerCommand("f3d", new F3DCommand());
+        this.contentManager.registerCommand("speed", new SpeedCommand());
+        this.contentManager.registerCommand("fly", new FlyCommand());
+        this.contentManager.registerCommand("chatclear", new ChatClearCommand());
+        this.contentManager.registerCommand("enderchest", new EnderchestCommand());
+        this.contentManager.registerCommand("teleportplayer", new TeleportPlayerCommand());
+        this.contentManager.registerCommand("freeze", new FreezeCommand());
+        this.contentManager.registerCommand("vanish", new VanishCommand());
+        this.contentManager.registerCommand("heal", new HealCommand());
+        this.contentManager.registerCommand("feed", new FeedCommand());
+        this.contentManager.registerCommand("repair", new RepairCommand());
+        this.contentManager.registerCommand("inventorysee", new InventorySeeCommand());
+        this.contentManager.registerCommand("armorsee", new ArmorSeeCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));
 
-        contentManager.registerListener(new JoinQuitListener());
-        contentManager.registerListener(new BlockListener());
-        contentManager.registerListener(new PlayerMoveListener());
-        contentManager.registerListener(new InventoryClickListener());
+        this.contentManager.registerListener(new JoinQuitListener());
+        this.contentManager.registerListener(new BlockListener());
+        this.contentManager.registerListener(new PlayerMoveListener());
+        this.contentManager.registerListener(new InventoryClickListener());
+
+        this.plugin.getLogger().info("Loading Discord bot...");
+
+        if (!DiscordConfiguration.load()) {
+            this.plugin.getLogger().severe("Failed to load discord config!");
+        }
+
+        // If the token is the default value, don't start the bot (disabled)
+        if (!DiscordConfiguration.DISCORD_TOKEN.getValue().equals(DiscordConfiguration.DISCORD_TOKEN.getDefaultValue())) {
+            this.discordBot = new DiscordBot();
+            if (!this.discordBot.enable()) {
+                this.discordBot = null;
+                DiscordConfiguration.unload();
+            } else {
+                this.contentManager.registerListener(new DiscordAsyncChatListener());
+                this.contentManager.registerListener(new DiscordJoinQuitListener());
+                if (Bukkit.getPluginManager().getPlugin(Util.CLEARLAGG_PLUGIN_NAME) != null)
+                    this.contentManager.registerListener(new DiscordClearLaggListener());
+                this.plugin.getLogger().info("Discord bot loaded successfully!");
+            }
+        } else {
+            this.plugin.getLogger().info("No token provided, disabling discord bot...");
+        }
+
     }
 
     @Override
     public void onDisable() {
         this.plugin.getLogger().info("Disabling plugin...");
+
+        if (this.discordBot != null) {
+            this.discordBot.shutdown();
+        }
+
         Configuration.unload();
+        DiscordConfiguration.unload();
         instance = null;
     }
 
@@ -147,7 +185,21 @@ public final class Essentials implements Loadable {
                 || (!other && sender.hasPermission(Configuration.PERMISSION_LAYOUT.getValue().replace("%command%", command.getLabel())));
     }
 
+    /**
+     * Utility handler for sending messages to players
+     *
+     * @return The message manager
+     */
     public MessageManager messages() {
         return this.messageManager;
+    }
+
+    /**
+     * The discord bot instance
+     *
+     * @return The discord bot instance
+     */
+    public DiscordBot getDiscordBot() {
+        return this.discordBot;
     }
 }
