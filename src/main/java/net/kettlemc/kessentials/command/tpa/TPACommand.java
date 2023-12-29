@@ -31,8 +31,8 @@ public class TPACommand implements CommandExecutor, TabCompleter {
         if (TeleportRequest.request(requester, target)) {
             Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
             Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_RECEIVED, Placeholder.of("requester", (ctx, args) -> requester.getName()));
-            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_ACCEPT, Messages.TPA_REQUEST_ACCEPT_HOVER, "/tpaccept " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
-            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_DENY, Messages.TPA_REQUEST_DENY_HOVER, "/tpdeny " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_ACCEPT, true, Messages.TPA_REQUEST_ACCEPT_HOVER, "/tpaccept " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_DENY, true, Messages.TPA_REQUEST_DENY_HOVER, "/tpdeny " + requester.getName(), Placeholder.of("requester", (ctx, args) -> requester.getName()));
 
         } else {
             Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_ALREADY_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
@@ -65,4 +65,5 @@ public class TPACommand implements CommandExecutor, TabCompleter {
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         return null;
     }
+
 }

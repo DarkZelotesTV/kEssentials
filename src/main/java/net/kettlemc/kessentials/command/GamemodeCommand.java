@@ -92,4 +92,5 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
             return NumberUtil.isInteger(gm) ? GameMode.getByValue(Integer.parseInt(gm)) : null;
         }
     }
+
 }

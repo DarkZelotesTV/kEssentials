@@ -37,6 +37,7 @@
 	},
 	"teleport": {
 	  "teleported": "<gray>Du wurdest zu <dark_aqua><target></dark_aqua> teleportiert.</gray>",
+	  "already-scheduled": "<gray>Du wirst bereits teleportiert.</gray>",
 	  "teleported-other": "<gray>Du hast <dark_aqua><player></dark_aqua> zu <dark_aqua><target></dark_aqua> teleportiert.</gray>",
 	  "teleportation-cooldown": "<gray>Du wirst in <dark_aqua><cooldown></dark_aqua> Sekunden teleportiert.</gray>",
 	  "teleportation-successful": "<gray>Du wurdest teleportiert.</gray>",
@@ -154,6 +155,47 @@
 		"instant": ":x: Der server wird jetzt neugestartet.",
 		"countdown": ":x: Der Server wird in <seconds> Sekunden neugestartet."
 	  }
+	},
+	"home": {
+	  "set": {
+		"set": "<gray>Dein Home <dark_aqua><name></dark_aqua> wurde gesetzt.</gray>",
+		"invalid-name": "<gray>Dieser Name ist nicht erlaubt.</gray>",
+		"usage": "<gray>/sethome <Name></gray>",
+		"max": "<gray>Du hast bereits die maximale Anzahl an Homes erreicht.</gray>",
+		"already-exists": "<gray>Ein Home mit diesem Namen existiert bereits.</gray>"
+	  },
+	  "delete": {
+		"deleted": "<gray>Dein Home <dark_aqua><name></dark_aqua> wurde gelöscht.</gray>",
+		"usage": "<gray>/delhome <Name></gray>",
+		"doesnt-exist": "<gray>Ein Home mit diesem Namen existiert nicht.</gray>"
+	  },
+	  "list": {
+		"header": "<gray>Deine Homes:</gray>",
+		"entry": "<dark_aqua><name></dark_aqua>",
+		"hover": "<gray>Klicke um dich zu deinem Home <name> zu teleportieren.</gray>"
+	  },
+	  "not-found": "<gray>Ein Home mit diesem Namen existiert nicht.</gray>",
+	  "usage": "<gray>/home <Name></gray>"
+	},
+	"warp": {
+	  "set": {
+		"set": "<gray>Der Warp <dark_aqua><name></dark_aqua> wurde gesetzt.</gray>",
+		"invalid-name": "<gray>Dieser Name ist nicht erlaubt.</gray>",
+		"usage": "<gray>/setwarp <Name></gray>",
+		"already-exists": "<gray>Ein Warp mit diesem Namen existiert bereits.</gray>"
+	  },
+	  "delete": {
+		"deleted": "<gray>Der Warp <dark_aqua><name></dark_aqua> wurde gelöscht.</gray>",
+		"usage": "<gray>/delwarp <Name></gray>",
+		"doesnt-exist": "<gray>Ein Warp mit diesem Namen existiert nicht.</gray>"
+	  },
+	  "list": {
+		"header": "<gray>Warps:</gray>",
+		"entry": "<dark_aqua><name></dark_aqua>",
+		"hover": "<gray>Klicke, um dich zum Warp <name> zu teleportieren.</gray>"
+	  },
+	  "not-found": "<gray>Ein Warp mit diesem Namen existiert nicht.</gray>",
+	  "usage": "<gray>/warp <Name></gray>"
 	}
   }
 }

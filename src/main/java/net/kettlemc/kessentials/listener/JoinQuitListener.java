@@ -1,6 +1,7 @@
 package net.kettlemc.kessentials.listener;
 
 import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.command.VanishCommand;
 import net.kettlemc.kessentials.config.Messages;
 import net.kyori.adventure.text.Component;
@@ -18,6 +19,9 @@ public class JoinQuitListener implements Listener {
 
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
+
+        Essentials.instance().homeHandler().loadHomes(event.getPlayer().getUniqueId());
+
         Component component = Messages.JOIN_MESSAGE.value(Placeholder.of("player", (ctx, args) -> event.getPlayer().getName()));
         event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', LegacyComponentSerializer.legacyAmpersand().serialize(component)));
 
@@ -48,6 +52,8 @@ public class JoinQuitListener implements Listener {
         if (VanishCommand.isVanished(event.getPlayer())) {
             event.setQuitMessage("");
         }
+
+        Essentials.instance().homeHandler().saveHomes(event.getPlayer().getUniqueId(), true);
     }
 
 }

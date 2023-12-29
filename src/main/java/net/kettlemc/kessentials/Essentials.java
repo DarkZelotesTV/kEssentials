@@ -3,10 +3,16 @@ package net.kettlemc.kessentials;
 import net.kettlemc.kcommon.bukkit.ContentManager;
 import net.kettlemc.kcommon.language.MessageManager;
 import net.kettlemc.kessentials.command.*;
+import net.kettlemc.kessentials.command.home.DeleteHomeCommand;
+import net.kettlemc.kessentials.command.home.HomeCommand;
+import net.kettlemc.kessentials.command.home.SetHomeCommand;
 import net.kettlemc.kessentials.command.tpa.TPACommand;
 import net.kettlemc.kessentials.command.tpa.TPAcceptCommand;
 import net.kettlemc.kessentials.command.tpa.TPDenyCommand;
 import net.kettlemc.kessentials.command.tpa.TPListCommand;
+import net.kettlemc.kessentials.command.warp.DeleteWarpCommand;
+import net.kettlemc.kessentials.command.warp.SetWarpCommand;
+import net.kettlemc.kessentials.command.warp.WarpCommand;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
@@ -19,6 +25,8 @@ import net.kettlemc.kessentials.listener.InventoryClickListener;
 import net.kettlemc.kessentials.listener.JoinQuitListener;
 import net.kettlemc.kessentials.listener.PlayerMoveListener;
 import net.kettlemc.kessentials.loading.Loadable;
+import net.kettlemc.kessentials.teleport.HomeHandler;
+import net.kettlemc.kessentials.teleport.WarpHandler;
 import net.kettlemc.kessentials.util.Util;
 import net.kettlemc.klanguage.api.LanguageAPI;
 import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
@@ -42,6 +50,8 @@ public final class Essentials implements Loadable {
     private BukkitAudiences adventure;
 
     private DiscordBot discordBot;
+    private HomeHandler homeHandler;
+    private WarpHandler warpHandler;
 
     public Essentials(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -97,6 +107,12 @@ public final class Essentials implements Loadable {
         this.contentManager.registerCommand("repair", new RepairCommand());
         this.contentManager.registerCommand("inventorysee", new InventorySeeCommand());
         this.contentManager.registerCommand("armorsee", new ArmorSeeCommand());
+        this.contentManager.registerCommand("home", new HomeCommand());
+        this.contentManager.registerCommand("sethome", new SetHomeCommand());
+        this.contentManager.registerCommand("delhome", new DeleteHomeCommand());
+        this.contentManager.registerCommand("warp", new WarpCommand());
+        this.contentManager.registerCommand("setwarp", new SetWarpCommand());
+        this.contentManager.registerCommand("delwarp", new DeleteWarpCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));
@@ -129,6 +145,12 @@ public final class Essentials implements Loadable {
             this.plugin.getLogger().info("No token provided, disabling discord bot...");
         }
 
+        this.plugin.getLogger().info("Loading warps and homes...");
+        this.warpHandler = new WarpHandler();
+        this.warpHandler.loadWarps();
+        this.homeHandler = new HomeHandler();
+        this.homeHandler.init();
+
     }
 
     @Override
@@ -141,6 +163,14 @@ public final class Essentials implements Loadable {
 
         Configuration.unload();
         DiscordConfiguration.unload();
+
+        if (this.warpHandler != null) {
+            this.warpHandler.unload();
+        }
+
+        if (this.homeHandler != null) {
+            this.homeHandler.unload();
+        }
         instance = null;
     }
 
@@ -201,5 +231,23 @@ public final class Essentials implements Loadable {
      */
     public DiscordBot getDiscordBot() {
         return this.discordBot;
+    }
+
+    /**
+     * The home handler instance
+     *
+     * @return The home handler instance
+     */
+    public HomeHandler homeHandler() {
+        return this.homeHandler;
+    }
+
+    /**
+     * The warp handler instance
+     *
+     * @return The warp handler instance
+     */
+    public WarpHandler warpHandler() {
+        return this.warpHandler;
     }
 }

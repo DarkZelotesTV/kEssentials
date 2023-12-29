@@ -105,3 +105,27 @@ commands:
     description: Opens the armor inventory of a player
     usage: /armorsee [<player>]
     aliases: [ armor, armsee, ruestung ]
+  home:
+    description: Teleports you to your home
+    usage: /home [<home>]
+    aliases: [ zuhause, homes ]
+  sethome:
+    description: Sets your home
+    usage: /sethome [<home>]
+    aliases: [ newhome, delhomes, newhomes, zuhausefestlegen ]
+  deletehome:
+    description: Deletes your home
+    usage: /deletehome [<home>]
+    aliases: [ delhome, removehome, removehomes, zuhauseloeschen ]
+  warp:
+    description: Teleports you to a warp
+    usage: /warp <warp>
+    aliases: [ warps ]
+  setwarp:
+    description: Sets a warp
+    usage: /setwarp <warp>
+    aliases: [ newwarp, addwarp ]
+  deletewarp:
+    description: Deletes a warp
+    usage: /deletewarp <warp>
+    aliases: [ delwarp, removewarp ]

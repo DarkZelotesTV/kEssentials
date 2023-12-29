@@ -53,6 +53,7 @@ public class Messages {
     public static final AdventureMessage TELEPORT_TELEPORTED = AdventureMessage.of("messages.teleport.teleported", LANGUAGE_MANAGER);
     public static final AdventureMessage TELEPORT_TELEPORTED_OTHER = AdventureMessage.of("messages.teleport.teleported-other", LANGUAGE_MANAGER);
     public static final AdventureMessage TELEPORT_USAGE = AdventureMessage.of("messages.teleport.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage TELEPORT_ALREADY_SCHEDULED = AdventureMessage.of("messages.teleport.already-scheduled", LANGUAGE_MANAGER);
 
     public static final AdventureMessage FREEZE_FROZEN = AdventureMessage.of("messages.freeze.frozen", LANGUAGE_MANAGER);
     public static final AdventureMessage FREEZE_FROZEN_OTHER = AdventureMessage.of("messages.freeze.frozen-other", LANGUAGE_MANAGER);
@@ -140,6 +141,38 @@ public class Messages {
     public static final AdventureMessage DISCORD_RESTART_MINECRAFT = AdventureMessage.of("messages.discord.minecraft.restart.countdown", LANGUAGE_MANAGER);
     public static final AdventureMessage DISCORD_WELCOME_MESSAGE = AdventureMessage.of("messages.discord.minecraft.welcome", LANGUAGE_MANAGER);
 
+
+    public static final AdventureMessage HOME_SET_USAGE = AdventureMessage.of("messages.home.set.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_INVALID_NAME = AdventureMessage.of("messages.home.set.invalid-name", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_MAX_HOMES_REACHED = AdventureMessage.of("messages.home.set.max", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_ALREADY_EXISTS = AdventureMessage.of("messages.home.set.already-exists", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_SET = AdventureMessage.of("messages.home.set.set", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage HOME_LIST_HEADER = AdventureMessage.of("messages.home.list.header", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_LIST_ENTRY = AdventureMessage.of("messages.home.list.entry", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_LIST_HOVER = AdventureMessage.of("messages.home.list.hover", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_NOT_FOUND = AdventureMessage.of("messages.home.not-found", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_USAGE = AdventureMessage.of("messages.home.usage", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage HOME_DELETE_USAGE = AdventureMessage.of("messages.home.delete.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_DOES_NOT_EXIST = AdventureMessage.of("messages.home.delete.doesnt-exist", LANGUAGE_MANAGER);
+    public static final AdventureMessage HOME_DELETED = AdventureMessage.of("messages.home.delete.deleted", LANGUAGE_MANAGER);
+
+
+    public static final AdventureMessage WARP_SET_USAGE = AdventureMessage.of("messages.warp.set.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_INVALID_NAME = AdventureMessage.of("messages.warp.set.invalid-name", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_ALREADY_EXISTS = AdventureMessage.of("messages.warp.set.already-exists", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_SET = AdventureMessage.of("messages.warp.set.set", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage WARP_LIST_HEADER = AdventureMessage.of("messages.warp.list.header", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_LIST_ENTRY = AdventureMessage.of("messages.warp.list.entry", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_LIST_HOVER = AdventureMessage.of("messages.warp.list.hover", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_NOT_FOUND = AdventureMessage.of("messages.warp.not-found", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_USAGE = AdventureMessage.of("messages.warp.usage", LANGUAGE_MANAGER);
+
+    public static final AdventureMessage WARP_DELETE_USAGE = AdventureMessage.of("messages.warp.delete.usage", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_DOES_NOT_EXIST = AdventureMessage.of("messages.warp.delete.doesnt-exist", LANGUAGE_MANAGER);
+    public static final AdventureMessage WARP_DELETED = AdventureMessage.of("messages.warp.delete.deleted", LANGUAGE_MANAGER);
 
     private static String getDefaultLocale() {
         return Locale.forLanguageTag(Configuration.DEFAULT_LANGUAGE.getValue()).toLanguageTag();

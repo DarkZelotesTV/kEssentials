@@ -74,7 +74,6 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
         }
     }
 
-
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length <= 1) {
@@ -82,4 +81,5 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
         }
         return Collections.emptyList();
     }
+
 }
