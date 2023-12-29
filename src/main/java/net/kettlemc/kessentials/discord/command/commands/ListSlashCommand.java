@@ -37,7 +37,7 @@ public class ListSlashCommand extends SlashCommand {
             int finalCount = count;
             event.reply(
                     AdventureUtil.componentToLegacy(Messages.DISCORD_ONLINE_LIST.value(
-                            Placeholder.of("player", (ctx, value) -> playerList),
+                            Placeholder.of("list", (ctx, value) -> playerList),
                             Placeholder.of("amount", (ctx, args) -> String.valueOf(finalCount))
                     ))
             ).queue();
