@@ -31,6 +31,8 @@ import net.kettlemc.kessentials.util.Util;
 import net.kettlemc.klanguage.api.LanguageAPI;
 import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -60,6 +62,15 @@ public final class Essentials implements Loadable {
 
     public static Essentials instance() {
         return instance;
+    }
+
+    /**
+     * The luckperms instance
+     *
+     * @return The luckperms instance
+     */
+    public static LuckPerms luckPerms() {
+        return LuckPermsProvider.get();
     }
 
     @Override
@@ -186,7 +197,6 @@ public final class Essentials implements Loadable {
         return this.adventure;
     }
 
-
     /**
      * Returns the underlying plugin
      *
@@ -250,4 +260,5 @@ public final class Essentials implements Loadable {
     public WarpHandler warpHandler() {
         return this.warpHandler;
     }
+
 }
