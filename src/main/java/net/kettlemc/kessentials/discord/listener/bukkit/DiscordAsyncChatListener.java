@@ -2,12 +2,12 @@ package net.kettlemc.kessentials.discord.listener.bukkit;
 
 import io.github.almightysatan.slams.Placeholder;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
+import net.kettlemc.kcommon.bukkit.BukkitUtil;
 import net.kettlemc.kcommon.language.AdventureUtil;
 import net.kettlemc.kcommon.luckperms.LuckPermsUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
-import net.kettlemc.kessentials.util.Util;
 import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,7 +22,7 @@ public class DiscordAsyncChatListener implements Listener {
             return;
 
         // Get the player's prefix
-        String prefix = Util.stripColor(LuckPermsUtil.getLuckPermsPrefix(LuckPermsProvider.get(), event.getPlayer()));
+        String prefix = BukkitUtil.stripColor(LuckPermsUtil.getLuckPermsPrefix(LuckPermsProvider.get(), event.getPlayer()));
         if (prefix.isEmpty()) {
             prefix = DiscordConfiguration.DEFAULT_RANK.getValue();
         }
@@ -31,7 +31,7 @@ public class DiscordAsyncChatListener implements Listener {
         String name = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(event.getPlayer().getDisplayName(), true) : event.getPlayer().getDisplayName());
 
         // Get the player's message
-        String chatMessage = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(Util.stripColor(event.getMessage()), true) : Util.stripColor(event.getMessage()));
+        String chatMessage = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getMessage()), true) : BukkitUtil.stripColor(event.getMessage()));
 
         // Format and send the message
         String finalPrefix = prefix;

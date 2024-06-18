@@ -1,11 +1,11 @@
 package net.kettlemc.kessentials.command.home;
 
 import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kcommon.bukkit.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.teleport.Warp;
-import net.kettlemc.kessentials.util.Util;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -21,7 +21,7 @@ public class SetHomeCommand implements CommandExecutor, TabCompleter {
     private static final List<String> BLOCKED_NAMES = Arrays.asList("list", "delete", "set", "remove", "add", "max");
 
     public static int maxHomes(Player player) {
-        int homes = Util.getPermissionAmount(player, Configuration.PERMISSION_HOME_LAYOUT.getValue());
+        int homes = BukkitUtil.getPermissionAmount(player, Configuration.PERMISSION_HOME_LAYOUT.getValue());
         return homes == 0 ? Configuration.DEFAULT_MAX_HOMES.getValue() : homes;
     }
 

@@ -12,6 +12,7 @@ import net.kettlemc.kessentials.command.tpa.TPDenyCommand;
 import net.kettlemc.kessentials.command.tpa.TPListCommand;
 import net.kettlemc.kessentials.command.warp.DeleteWarpCommand;
 import net.kettlemc.kessentials.command.warp.SetWarpCommand;
+import net.kettlemc.kessentials.command.warp.SpawnCommand;
 import net.kettlemc.kessentials.command.warp.WarpCommand;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
@@ -124,6 +125,7 @@ public final class Essentials implements Loadable {
         this.contentManager.registerCommand("warp", new WarpCommand());
         this.contentManager.registerCommand("setwarp", new SetWarpCommand());
         this.contentManager.registerCommand("delwarp", new DeleteWarpCommand());
+        this.contentManager.registerCommand("spawn", new SpawnCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));

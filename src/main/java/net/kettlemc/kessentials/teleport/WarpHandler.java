@@ -1,5 +1,7 @@
 package net.kettlemc.kessentials.teleport;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
+import com.fasterxml.jackson.annotation.PropertyAccessor;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import net.kettlemc.kessentials.Essentials;
@@ -17,7 +19,11 @@ import java.util.logging.Level;
 
 public class WarpHandler {
 
-    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
+        .enable(SerializationFeature.INDENT_OUTPUT)
+        .configure(SerializationFeature.FAIL_ON_EMPTY_BEANS, false)
+        .setVisibility(PropertyAccessor.FIELD, JsonAutoDetect.Visibility.ANY);
+
     private static final File WARPS_FILE = Configuration.CONFIG_PATH.resolve("data").resolve("warps.json").toFile();
 
     private final Set<Warp> warps = new HashSet<>();

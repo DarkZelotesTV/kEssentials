@@ -129,3 +129,6 @@ commands:
     description: Deletes a warp
     usage: /deletewarp <warp>
     aliases: [ delwarp, removewarp ]
+  spawn:
+    description: Teleports you to the spawn
+    usage: /spawn

@@ -42,7 +42,7 @@ public class DiscordBot {
             jda.awaitReady();
             this.registerCommands();
             return true;
-        } catch (InterruptedException e) {
+        } catch (Exception e) {
             Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Discord bot failed to start.", e);
             return false;
         }
