@@ -10,6 +10,7 @@ import io.github.almightysatan.jaskl.hocon.HoconConfig;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Locale;
 
@@ -23,6 +24,22 @@ public class Configuration {
     public static final StringConfigEntry PERMISSION_HOME_LAYOUT = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-home-layout", "system.home.amount");
 
     public static final ListConfigEntry<String> DISABLED_COMMANDS = ListConfigEntry.of(CONFIG, "kessentials.settings.disabled-commands", Collections.emptyList(), Type.STRING);
+
+    public static final ListConfigEntry<String> RESTART_TIMES = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.times", Collections.singletonList("02:00"), Type.STRING);
+    public static final ListConfigEntry<Long> RESTART_TIMES_WARNING = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.warning-times", Arrays.asList(
+            20L, // 1 second
+            2 * 20L, // 2 seconds
+            3 * 20L, // 3 seconds
+            4 * 20L, // 4 seconds
+            5 * 20L, // 5 seconds
+            10 * 20L, // 10 seconds
+            30 * 20L, // 30 seconds
+            60 * 20L, // 1 minute
+            5 * 60 * 20L, // 5 minutes
+            10 * 60 * 20L, // 10 minutes
+            30 * 60 * 20L, // 30 minutes
+            60 * 60 * 20L // 1 hour
+    ), Type.LONG);
 
     public static final StringConfigEntry DEFAULT_LANGUAGE = StringConfigEntry.of(CONFIG, "kessentials.settings.default-language", Locale.GERMAN.toLanguageTag());
 

@@ -1,203 +1,211 @@
 {
   "messages": {
-	"common": {
-	  "prefix": "<blue>Essentials</blue> <dark_gray>»</dark_gray> ",
-	  "no-permission": "<gray>You do not have permission to use this command.</gray>",
-	  "player-only": "<gray>This command can only be used by players.</gray>",
-	  "console-only": "<gray>This command can only be used by the console.</gray>",
-	  "player-not-found": "<gray>Please specify a valid player.</gray>",
-	  "join": "<dark_gray>[<green>+</green>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has joined the game.</gray>",
-	  "quit": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has left the game.</gray>",
-	  "command-disabled": "<gray>This command has been disabled.</gray>"
-	},
-	"gamemode": {
-	  "set": "<gray>Your game mode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
-	  "set-other": "<gray><dark_aqua><target></dark_aqua>'s gamemode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
-	  "invalid": "<gray>Please specify a valid game mode.</gray>",
-	  "usage": "<gray>/gamemode <gamemode> [<player>]</gray>"
-	},
-	"fly": {
-	  "enabled": "<gray>You can now <green>fly</green>.</gray>",
-	  "enabled-other": "<gray><dark_aqua><target></dark_aqua> can now fly.</gray>",
-	  "disabled": "<gray>You can no longer <red>fly</red>.</gray>",
-	  "disabled-other": "<gray><dark_aqua><target></dark_aqua> can no longer <red>fly</red>.</gray>",
-	  "usage": "<gray>/fly [<player>]</gray>"
-	},
-	"speed": {
-	  "set": {
-		"walking": "<gray>Your walking speed has been set to <dark_aqua><speed></dark_aqua>.</gray>",
-		"flying": "<gray>Your flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
-	  },
-	  "set-other": {
-		"walking": "<gray><dark_aqua><target></dark_aqua>'s speed has been set to <dark_aqua><speed></dark_aqua>.</gray>",
-		"flying": "<gray><dark_aqua><target></dark_aqua>'s flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
-	  },
-	  "invalid": "<gray>Please specify a valid speed between 1 and 10.</gray>",
-	  "usage": "<gray>/speed <speed> [<player>]</gray>"
-	},
-	"teleport": {
-	  "teleported": "<gray>You have been teleported to <dark_aqua><target></dark_aqua>.</gray>",
-	  "teleported-other": "<gray>You have teleported <dark_aqua><player></dark_aqua> to <dark_aqua><target></dark_aqua>.</gray>",
-	  "already-scheduled": "<gray>You're already being teleported.</gray>",
-	  "teleportation-cooldown": "<gray>You'll be teleported in <dark_aqua><cooldown></dark_aqua> seconds.</gray>",
-	  "teleportation-successful": "<gray>You have been teleported!.</gray>",
-	  "teleportation-cancelled": "<gray>Your teleportation has been cancelled.</gray>",
-	  "usage": "<gray>/teleport <player> [<target>]</gray>"
-	},
-	"freeze": {
-	  "frozen": "<gray>You have been frozen.</gray>",
-	  "frozen-other": "<gray><dark_aqua><target></dark_aqua> has been frozen.</gray>",
-	  "unfrozen": "<gray>You have been unfrozen.</gray>",
-	  "unfrozen-other": "<gray><dark_aqua><target></dark_aqua> has been unfrozen.</gray>",
-	  "usage": "<gray>/freeze <player></gray>"
-	},
-	"vanish": {
-	  "vanished": "<gray>You are now <green>invisible</green>.</gray>",
-	  "vanished-other": "<gray><dark_aqua><target></dark_aqua> is now <green>invisible</green>.</gray>",
-	  "unvanished": "<gray>You are visible again.</gray>",
-	  "unvanished-other": "<gray><dark_aqua><target></dark_aqua> has become visible again.</gray>",
-	  "usage": "<gray>/vanish [<player>]</gray>"
-	},
-	"heal": {
-	  "healed": "<gray>You have been healed.</gray>",
-	  "healed-other": "<gray><dark_aqua><target></dark_aqua> has been healed.</gray>",
-	  "usage": "<gray>/heal [<player>]</gray>"
-	},
-	"feed": {
-	  "fed": "<gray>Your hunger has been satisfied.</gray>",
-	  "fed-other": "<gray><dark_aqua><target></dark_aqua>'s hunger has been satisfied.</gray>",
-	  "usage": "<gray>/feed [<player>]</gray>"
-	},
-	"repair": {
-	  "repaired": "<gray>The item in your hand has been repaired.</gray>",
-	  "repaired-other": "<gray><dark_aqua><target></dark_aqua>'s item has been repaired.</gray>",
-	  "usage": "<gray>/repair [<player>]</gray>",
-	  "no-item": "<gray>You must be holding an item to repair it.</gray>",
-	  "no-item-other": "<gray><dark_aqua><target></dark_aqua> must be holding an item to repair it.</gray>",
-	  "not-repairable": "<gray>This item cannot be repaired.</gray>",
-	  "not-repairable-other": "<gray><dark_aqua><target></dark_aqua>'s item cannot be repaired.</gray>"
-
-	},
-	"inventory": {
-	  "usage": "<gray>/inventorysee <player></gray>"
-	},
-	"armor": {
-	  "usage": "<gray>/armorsee <player></gray>"
-	},
-	"weather": {
-	  "sun": "<gray>The weather has been changed to <dark_aqua>Sunny</dark_aqua>.</gray>",
-	  "rain": "<gray>The weather has been changed to <dark_aqua>Rainy</dark_aqua>.</gray>",
-	  "thunder": "<gray>The weather has been changed to <dark_aqua>Thunderstorm</dark_aqua>.</gray>",
-	  "usage": "<gray>/<command> [<world>]</gray>"
-	},
-	"time": {
-	  "morning": "<gray>It is now <dark_aqua>morning.</dark_aqua></gray>",
-	  "day": "<gray>It is now <dark_aqua>daytime.</dark_aqua></gray>",
-	  "midday": "<gray>It is now <dark_aqua>midday.</dark_aqua></gray>",
-	  "evening": "<gray>It is now <dark_aqua>evening.</dark_aqua></gray>",
-	  "night": "<gray>It is now <dark_aqua>nighttime.</dark_aqua></gray>",
-	  "usage": "<gray>/<command> [<world>]</gray>"
-	},
-	"chat": {
-	  "cleared": "<gray>The chat has been cleared.</gray>"
-	},
-	"suicide": {
-	  "killed": "<gray>You have killed yourself.</gray>"
-	},
-	"tpa": {
-	  "tpa": {
-		"sent": "<gray>TPA request sent to <dark_aqua><target></dark_aqua>.</gray>",
-		"already-sent": "<gray>You already sent a request to <dark_aqua><target></dark_aqua>.</gray>",
-		"other-only": "<gray>You cannot send a request to yourself.</gray>",
-		"denied": "<gray>Your TPA request to <dark_aqua><target></dark_aqua> has been denied.</gray>",
-		"accepted": "<gray>Your TPA request to <dark_aqua><target></dark_aqua> has been accepted.</gray>",
-		"received": "<gray>You received a teleport request from <dark_aqua><requester></dark_aqua>.</gray>",
-		"accept": "<green>Accept</green>",
-		"deny": "<red>Deny</red>",
-		"accept-hover": "<gray>Click to <green>accept</green> <requester>'s request.</gray>",
-		"deny-hover": "<gray>Click to <red>deny</red> <requester>'s request.</gray>",
-		"usage": "<gray>/tpa <player></gray>"
-	  },
-	  "list": {
-		"header": "<gray>Pending TPA Requests:</gray>",
-		"entry": "<dark_aqua><requester></dark_aqua>",
-		"no-request": "<gray>You have no pending TPA requests.</gray>"
-	  },
-	  "tpaccept": {
-		"tpaccept": "<gray>You have accepted <dark_aqua><requester></dark_aqua>'s teleport request.</gray>",
-		"usage": "<gray>/tpaccept <player></gray>",
-		"no-request": "<gray>You don't have any active requests from this player.</gray>"
-	  },
-	  "tpdeny": {
-		"tpdeny": "<gray>You have denied the TPA request from <dark_aqua><requester></dark_aqua>.</gray>",
-		"usage": "<gray>/tpdeny <player></gray>"
-	  }
-	},
-	"discord": {
-	  "minecraft": {
-		"chat-format": "<blue><rank></blue> <dark_gray>|</dark_gray> <gray><name> (<white>Discord</white>)</gray> <dark_gray>»</dark_gray> <message>",
-		"restart": {
-		  "instant": "<gray>The server will restart <red>now</red>.</gray>",
-		  "countdown": "<gray>The server will restart in <red><seconds> seconds</red>.</gray>"
-		},
-		"welcome": "<hover:show_text:'<gray>Klicke zum Beitreten.</gray>'><click:open_url:'https://discord.gg/'><gray>The chat of this server is linked with <blue>#<channel></blue> on our discord.</gray></click></hover>"
-	  },
-	  "no-permission": ":x: You're not allowed to use this command!",
-	  "chat-format": ":speech_left: **[<rank>] <player> »** <message>",
-	  "join": ":arrow_right: <message>",
-	  "quit": ":arrow_left: <message>",
-	  "startup": ":white_check_mark: The server has been started!.",
-	  "shutdown": ":octagonal_sign: The server has been stopped.",
-	  "clearlagg": ":broom: <items> have been cleared!",
-	  "online": {
-		"list": ":family_mwgb: **Online (<amount>):** <list>",
-		"no-players": ":person_shrugging: No players online!"
-	  },
-	  "restart": {
-		"instant": ":x: The server will now restart.",
-		"countdown": ":x: The server will restart in <seconds> seconds."
-	  }
-	},
-	"home": {
-	  "set": {
-		"set": "<gray>Your home <dark_aqua><name></dark_aqua> has been set.</gray>",
-		"invalid-name": "<gray>This name is not allowed.</gray>",
-		"usage": "<gray>/sethome <name></gray>",
-		"max": "<gray>You've reached your maximum amount of homes.</gray>",
-		"already-exists": "<gray>You already created a home with this name.</gray>"
-	  },
-	  "delete": {
-		"deleted": "<gray>Your home <dark_aqua><name></dark_aqua> has been deleted.</gray>",
-		"usage": "<gray>/delhome <name></gray>",
-		"doesnt-exist": "<gray>You don't have a home with this name.</gray>"
-	  },
-	  "list": {
-		"header": "<gray>Your homes:</gray>",
-		"entry": "<dark_aqua><name></dark_aqua>",
-		"hover": "<gray>Click to teleport to your home <dark_aqua><name></dark_aqua>.</gray>"
-	  },
-	  "not-found": "<gray>You don't have a home with this name.</gray>",
-	  "usage": "<gray>/home <name></gray>"
-	},
-	"warp": {
-	  "set": {
-		"set": "<gray>Your warp <dark_aqua><name></dark_aqua> has been set.</gray>",
-		"invalid-name": "<gray>This name is not allowed.</gray>",
-		"usage": "<gray>/setwarp <name></gray>",
-		"already-exists": "<gray>A warp with this name already exists.</gray>"
-	  },
-	  "delete": {
-		"deleted": "<gray>Tge warp <dark_aqua><name></dark_aqua> has been deleted.</gray>",
-		"usage": "<gray>/delwarp <name></gray>",
-		"doesnt-exist": "<gray>You don't have a warp with this name.</gray>"
-	  },
-	  "list": {
-		"header": "<gray>Warps:</gray>",
-		"entry": "<dark_aqua><name></dark_aqua>",
-		"hover": "<gray>Click to teleport to the warp <dark_aqua><name></dark_aqua>.</gray>"
-	  },
-	  "not-found": "<gray>A warp with this name doesn't exist.</gray>",
-	  "usage": "<gray>/warp <name></gray>"
-	}
+    "common": {
+      "prefix": "<blue>Essentials</blue> <dark_gray>»</dark_gray> ",
+      "no-permission": "<gray>You do not have permission to use this command.</gray>",
+      "player-only": "<gray>This command can only be used by players.</gray>",
+      "console-only": "<gray>This command can only be used by the console.</gray>",
+      "player-not-found": "<gray>Please specify a valid player.</gray>",
+      "join": "<dark_gray>[<green>+</green>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has joined the game.</gray>",
+      "quit": "<dark_gray>[<red>-</red>]</dark_gray> <gray><dark_aqua><player></dark_aqua> has left the game.</gray>",
+      "command-disabled": "<gray>This command has been disabled.</gray>",
+      "restart": "<gray>The server will restart in <dark_aqua><time></dark_aqua>.</gray>",
+      "timeunit": {
+        "second": "<gray>second</gray>",
+        "seconds": "<gray>seconds</gray>",
+        "minute": "<gray>minute</gray>",
+        "minutes": "<gray>minutes</gray>",
+        "hour": "<gray>hour</gray>",
+        "hours": "<gray>hours</gray>"
+      }
+    },
+    "gamemode": {
+      "set": "<gray>Your game mode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
+      "set-other": "<gray><dark_aqua><target></dark_aqua>'s gamemode has been changed to <dark_aqua><gamemode></dark_aqua>.</gray>",
+      "invalid": "<gray>Please specify a valid game mode.</gray>",
+      "usage": "<gray>/gamemode <gamemode> [<player>]</gray>"
+    },
+    "fly": {
+      "enabled": "<gray>You can now <green>fly</green>.</gray>",
+      "enabled-other": "<gray><dark_aqua><target></dark_aqua> can now fly.</gray>",
+      "disabled": "<gray>You can no longer <red>fly</red>.</gray>",
+      "disabled-other": "<gray><dark_aqua><target></dark_aqua> can no longer <red>fly</red>.</gray>",
+      "usage": "<gray>/fly [<player>]</gray>"
+    },
+    "speed": {
+      "set": {
+        "walking": "<gray>Your walking speed has been set to <dark_aqua><speed></dark_aqua>.</gray>",
+        "flying": "<gray>Your flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
+      },
+      "set-other": {
+        "walking": "<gray><dark_aqua><target></dark_aqua>'s speed has been set to <dark_aqua><speed></dark_aqua>.</gray>",
+        "flying": "<gray><dark_aqua><target></dark_aqua>'s flying speed has been set to <dark_aqua><speed></dark_aqua>.</gray>"
+      },
+      "invalid": "<gray>Please specify a valid speed between 1 and 10.</gray>",
+      "usage": "<gray>/speed <speed> [<player>]</gray>"
+    },
+    "teleport": {
+      "teleported": "<gray>You have been teleported to <dark_aqua><target></dark_aqua>.</gray>",
+      "teleported-other": "<gray>You have teleported <dark_aqua><player></dark_aqua> to <dark_aqua><target></dark_aqua>.</gray>",
+      "already-scheduled": "<gray>You're already being teleported.</gray>",
+      "teleportation-cooldown": "<gray>You'll be teleported in <dark_aqua><cooldown></dark_aqua> seconds.</gray>",
+      "teleportation-successful": "<gray>You have been teleported!.</gray>",
+      "teleportation-cancelled": "<gray>Your teleportation has been cancelled.</gray>",
+      "usage": "<gray>/teleport <player> [<target>]</gray>"
+    },
+    "freeze": {
+      "frozen": "<gray>You have been frozen.</gray>",
+      "frozen-other": "<gray><dark_aqua><target></dark_aqua> has been frozen.</gray>",
+      "unfrozen": "<gray>You have been unfrozen.</gray>",
+      "unfrozen-other": "<gray><dark_aqua><target></dark_aqua> has been unfrozen.</gray>",
+      "usage": "<gray>/freeze <player></gray>"
+    },
+    "vanish": {
+      "vanished": "<gray>You are now <green>invisible</green>.</gray>",
+      "vanished-other": "<gray><dark_aqua><target></dark_aqua> is now <green>invisible</green>.</gray>",
+      "unvanished": "<gray>You are visible again.</gray>",
+      "unvanished-other": "<gray><dark_aqua><target></dark_aqua> has become visible again.</gray>",
+      "usage": "<gray>/vanish [<player>]</gray>"
+    },
+    "heal": {
+      "healed": "<gray>You have been healed.</gray>",
+      "healed-other": "<gray><dark_aqua><target></dark_aqua> has been healed.</gray>",
+      "usage": "<gray>/heal [<player>]</gray>"
+    },
+    "feed": {
+      "fed": "<gray>Your hunger has been satisfied.</gray>",
+      "fed-other": "<gray><dark_aqua><target></dark_aqua>'s hunger has been satisfied.</gray>",
+      "usage": "<gray>/feed [<player>]</gray>"
+    },
+    "repair": {
+      "repaired": "<gray>The item in your hand has been repaired.</gray>",
+      "repaired-other": "<gray><dark_aqua><target></dark_aqua>'s item has been repaired.</gray>",
+      "usage": "<gray>/repair [<player>]</gray>",
+      "no-item": "<gray>You must be holding an item to repair it.</gray>",
+      "no-item-other": "<gray><dark_aqua><target></dark_aqua> must be holding an item to repair it.</gray>",
+      "not-repairable": "<gray>This item cannot be repaired.</gray>",
+      "not-repairable-other": "<gray><dark_aqua><target></dark_aqua>'s item cannot be repaired.</gray>"
+    },
+    "inventory": {
+      "usage": "<gray>/inventorysee <player></gray>"
+    },
+    "armor": {
+      "usage": "<gray>/armorsee <player></gray>"
+    },
+    "weather": {
+      "sun": "<gray>The weather has been changed to <dark_aqua>Sunny</dark_aqua>.</gray>",
+      "rain": "<gray>The weather has been changed to <dark_aqua>Rainy</dark_aqua>.</gray>",
+      "thunder": "<gray>The weather has been changed to <dark_aqua>Thunderstorm</dark_aqua>.</gray>",
+      "usage": "<gray>/<command> [<world>]</gray>"
+    },
+    "time": {
+      "morning": "<gray>It is now <dark_aqua>morning.</dark_aqua></gray>",
+      "day": "<gray>It is now <dark_aqua>daytime.</dark_aqua></gray>",
+      "midday": "<gray>It is now <dark_aqua>midday.</dark_aqua></gray>",
+      "evening": "<gray>It is now <dark_aqua>evening.</dark_aqua></gray>",
+      "night": "<gray>It is now <dark_aqua>nighttime.</dark_aqua></gray>",
+      "usage": "<gray>/<command> [<world>]</gray>"
+    },
+    "chat": {
+      "cleared": "<gray>The chat has been cleared.</gray>"
+    },
+    "suicide": {
+      "killed": "<gray>You have killed yourself.</gray>"
+    },
+    "tpa": {
+      "tpa": {
+        "sent": "<gray>TPA request sent to <dark_aqua><target></dark_aqua>.</gray>",
+        "already-sent": "<gray>You already sent a request to <dark_aqua><target></dark_aqua>.</gray>",
+        "other-only": "<gray>You cannot send a request to yourself.</gray>",
+        "denied": "<gray>Your TPA request to <dark_aqua><target></dark_aqua> has been denied.</gray>",
+        "accepted": "<gray>Your TPA request to <dark_aqua><target></dark_aqua> has been accepted.</gray>",
+        "received": "<gray>You received a teleport request from <dark_aqua><requester></dark_aqua>.</gray>",
+        "accept": "<green>Accept</green>",
+        "deny": "<red>Deny</red>",
+        "accept-hover": "<gray>Click to <green>accept</green> <requester>'s request.</gray>",
+        "deny-hover": "<gray>Click to <red>deny</red> <requester>'s request.</gray>",
+        "usage": "<gray>/tpa <player></gray>"
+      },
+      "list": {
+        "header": "<gray>Pending TPA Requests:</gray>",
+        "entry": "<dark_aqua><requester></dark_aqua>",
+        "no-request": "<gray>You have no pending TPA requests.</gray>"
+      },
+      "tpaccept": {
+        "tpaccept": "<gray>You have accepted <dark_aqua><requester></dark_aqua>'s teleport request.</gray>",
+        "usage": "<gray>/tpaccept <player></gray>",
+        "no-request": "<gray>You don't have any active requests from this player.</gray>"
+      },
+      "tpdeny": {
+        "tpdeny": "<gray>You have denied the TPA request from <dark_aqua><requester></dark_aqua>.</gray>",
+        "usage": "<gray>/tpdeny <player></gray>"
+      }
+    },
+    "discord": {
+      "minecraft": {
+        "chat-format": "<blue><rank></blue> <dark_gray>|</dark_gray> <gray><name> (<white>Discord</white>)</gray> <dark_gray>»</dark_gray> <message>",
+        "restart": {
+          "instant": "<gray>The server will restart <red>now</red>.</gray>",
+          "countdown": "<gray>The server will restart in <red><seconds> seconds</red>.</gray>"
+        },
+        "welcome": "<hover:show_text:'<gray>Klicke zum Beitreten.</gray>'><click:open_url:'https://discord.gg/'><gray>The chat of this server is linked with <blue>#<channel></blue> on our discord.</gray></click></hover>"
+      },
+      "no-permission": ":x: You're not allowed to use this command!",
+      "chat-format": ":speech_left: **[<rank>] <player> »** <message>",
+      "join": ":arrow_right: <message>",
+      "quit": ":arrow_left: <message>",
+      "startup": ":white_check_mark: The server has been started!.",
+      "shutdown": ":octagonal_sign: The server has been stopped.",
+      "clearlagg": ":broom: <items> have been cleared!",
+      "online": {
+        "list": ":family_mwgb: **Online (<amount>):** <list>",
+        "no-players": ":person_shrugging: No players online!"
+      },
+      "restart": {
+        "instant": ":x: The server will now restart.",
+        "countdown": ":x: The server will restart in <seconds> seconds."
+      }
+    },
+    "home": {
+      "set": {
+        "set": "<gray>Your home <dark_aqua><name></dark_aqua> has been set.</gray>",
+        "invalid-name": "<gray>This name is not allowed.</gray>",
+        "usage": "<gray>/sethome <name></gray>",
+        "max": "<gray>You've reached your maximum amount of homes.</gray>",
+        "already-exists": "<gray>You already created a home with this name.</gray>"
+      },
+      "delete": {
+        "deleted": "<gray>Your home <dark_aqua><name></dark_aqua> has been deleted.</gray>",
+        "usage": "<gray>/delhome <name></gray>",
+        "doesnt-exist": "<gray>You don't have a home with this name.</gray>"
+      },
+      "list": {
+        "header": "<gray>Your homes:</gray>",
+        "entry": "<dark_aqua><name></dark_aqua>",
+        "hover": "<gray>Click to teleport to your home <dark_aqua><name></dark_aqua>.</gray>"
+      },
+      "not-found": "<gray>You don't have a home with this name.</gray>",
+      "usage": "<gray>/home <name></gray>"
+    },
+    "warp": {
+      "set": {
+        "set": "<gray>Your warp <dark_aqua><name></dark_aqua> has been set.</gray>",
+        "invalid-name": "<gray>This name is not allowed.</gray>",
+        "usage": "<gray>/setwarp <name></gray>",
+        "already-exists": "<gray>A warp with this name already exists.</gray>"
+      },
+      "delete": {
+        "deleted": "<gray>Tge warp <dark_aqua><name></dark_aqua> has been deleted.</gray>",
+        "usage": "<gray>/delwarp <name></gray>",
+        "doesnt-exist": "<gray>You don't have a warp with this name.</gray>"
+      },
+      "list": {
+        "header": "<gray>Warps:</gray>",
+        "entry": "<dark_aqua><name></dark_aqua>",
+        "hover": "<gray>Click to teleport to the warp <dark_aqua><name></dark_aqua>.</gray>"
+      },
+      "not-found": "<gray>A warp with this name doesn't exist.</gray>",
+      "usage": "<gray>/warp <name></gray>"
+    }
   }
 }

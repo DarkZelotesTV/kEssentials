@@ -25,6 +25,14 @@ public class Messages {
     public static final AdventureMessage PLAYER_NOT_FOUND = AdventureMessage.of("messages.common.player-not-found", LANGUAGE_MANAGER);
     public static final AdventureMessage COMMAND_DISABLED = AdventureMessage.of("messages.common.command-disabled", LANGUAGE_MANAGER);
 
+    public static final AdventureMessage RESTART = AdventureMessage.of("messages.common.restart", LANGUAGE_MANAGER);
+    public static final AdventureMessage TIMEUNIT_SECOND = AdventureMessage.of("messages.common.timeunit.second", LANGUAGE_MANAGER);
+    public static final AdventureMessage TIMEUNIT_SECONDS = AdventureMessage.of("messages.common.timeunit.seconds", LANGUAGE_MANAGER);
+    public static final AdventureMessage TIMEUNIT_MINUTE = AdventureMessage.of("messages.common.timeunit.minute", LANGUAGE_MANAGER);
+    public static final AdventureMessage TIMEUNIT_MINUTES = AdventureMessage.of("messages.common.timeunit.minutes", LANGUAGE_MANAGER);
+    public static final AdventureMessage TIMEUNIT_HOUR = AdventureMessage.of("messages.common.timeunit.hour", LANGUAGE_MANAGER);
+    public static final AdventureMessage TIMEUNIT_HOURS = AdventureMessage.of("messages.common.timeunit.hours", LANGUAGE_MANAGER);
+
     public static final AdventureMessage JOIN_MESSAGE = AdventureMessage.of("messages.common.join", LANGUAGE_MANAGER);
     public static final AdventureMessage QUIT_MESSAGE = AdventureMessage.of("messages.common.quit", LANGUAGE_MANAGER);
 
@@ -141,7 +149,6 @@ public class Messages {
     public static final AdventureMessage DISCORD_RESTART_MINECRAFT = AdventureMessage.of("messages.discord.minecraft.restart.countdown", LANGUAGE_MANAGER);
     public static final AdventureMessage DISCORD_WELCOME_MESSAGE = AdventureMessage.of("messages.discord.minecraft.welcome", LANGUAGE_MANAGER);
 
-
     public static final AdventureMessage HOME_SET_USAGE = AdventureMessage.of("messages.home.set.usage", LANGUAGE_MANAGER);
     public static final AdventureMessage HOME_INVALID_NAME = AdventureMessage.of("messages.home.set.invalid-name", LANGUAGE_MANAGER);
     public static final AdventureMessage HOME_MAX_HOMES_REACHED = AdventureMessage.of("messages.home.set.max", LANGUAGE_MANAGER);
@@ -157,7 +164,6 @@ public class Messages {
     public static final AdventureMessage HOME_DELETE_USAGE = AdventureMessage.of("messages.home.delete.usage", LANGUAGE_MANAGER);
     public static final AdventureMessage HOME_DOES_NOT_EXIST = AdventureMessage.of("messages.home.delete.doesnt-exist", LANGUAGE_MANAGER);
     public static final AdventureMessage HOME_DELETED = AdventureMessage.of("messages.home.delete.deleted", LANGUAGE_MANAGER);
-
 
     public static final AdventureMessage WARP_SET_USAGE = AdventureMessage.of("messages.warp.set.usage", LANGUAGE_MANAGER);
     public static final AdventureMessage WARP_INVALID_NAME = AdventureMessage.of("messages.warp.set.invalid-name", LANGUAGE_MANAGER);

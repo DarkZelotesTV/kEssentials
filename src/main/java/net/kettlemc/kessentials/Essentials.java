@@ -28,6 +28,7 @@ import net.kettlemc.kessentials.listener.PlayerMoveListener;
 import net.kettlemc.kessentials.loading.Loadable;
 import net.kettlemc.kessentials.teleport.HomeHandler;
 import net.kettlemc.kessentials.teleport.WarpHandler;
+import net.kettlemc.kessentials.util.RestartTimer;
 import net.kettlemc.kessentials.util.Util;
 import net.kettlemc.klanguage.api.LanguageAPI;
 import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
@@ -163,6 +164,9 @@ public final class Essentials implements Loadable {
         this.warpHandler.loadWarps();
         this.homeHandler = new HomeHandler();
         this.homeHandler.init();
+
+        this.plugin.getLogger().info("Starting restart timer...");
+        RestartTimer.scheduleRestart();
 
     }
 
