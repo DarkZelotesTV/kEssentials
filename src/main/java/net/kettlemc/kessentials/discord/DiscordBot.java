@@ -97,6 +97,10 @@ public class DiscordBot {
         return this.jda;
     }
 
+    public void updateStatusDelayed() {
+        Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), this::updateStatus, 20L);
+    }
+
     public void updateStatus() {
         String status = DiscordConfiguration.DISCORD_BOT_STATUS.getValue().replace("<online>", String.valueOf(Bukkit.getOnlinePlayers().size()));
         this.getJDA().getPresence().setActivity(Activity.playing(status));
