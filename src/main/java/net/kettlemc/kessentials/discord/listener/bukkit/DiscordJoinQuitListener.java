@@ -23,7 +23,7 @@ public class DiscordJoinQuitListener implements Listener {
         Essentials.instance().messages().sendMessage(event.getPlayer(), Messages.DISCORD_WELCOME_MESSAGE, Placeholder.of("channel", (ctx, args) -> channel));
 
         String message = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getJoinMessage()), true) : BukkitUtil.stripColor(event.getJoinMessage()));
-        if (message == null || message.isEmpty()) {
+        if (message != null && !message.isEmpty()) {
             Essentials.instance().getDiscordBot().sendMessage(AdventureUtil.componentToLegacy(Messages.DISCORD_JOIN.value(Placeholder.of("message", (ctx, args) -> message))));
         }
         Essentials.instance().getDiscordBot().updateStatusDelayed();
@@ -32,7 +32,7 @@ public class DiscordJoinQuitListener implements Listener {
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
         String message = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getQuitMessage()), true) : BukkitUtil.stripColor(event.getQuitMessage()));
-        if (message == null || message.isEmpty()) {
+        if (message != null && !message.isEmpty()) {
             Essentials.instance().getDiscordBot().sendMessage(AdventureUtil.componentToLegacy(Messages.DISCORD_QUIT.value(Placeholder.of("message", (ctx, args) -> message))));
         }
         Essentials.instance().getDiscordBot().updateStatusDelayed();
