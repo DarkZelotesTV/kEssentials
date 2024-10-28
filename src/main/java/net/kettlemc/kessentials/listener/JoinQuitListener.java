@@ -3,6 +3,7 @@ package net.kettlemc.kessentials.listener;
 import io.github.almightysatan.slams.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.command.VanishCommand;
+import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -31,6 +32,13 @@ public class JoinQuitListener implements Listener {
             event.setJoinMessage("");
             hideFromAllPlayers(event.getPlayer());
         }
+
+        Configuration.ON_JOIN_COMMANDS.getValue().forEach(command ->
+                Essentials.instance().getPlugin().getServer().dispatchCommand(
+                        Essentials.instance().getPlugin().getServer().getConsoleSender(),
+                        command.replace("%player%", event.getPlayer().getName())
+                )
+        );
 
         // Set the player's speed to the frozen speed if they are frozen
         if (FROZEN_PLAYERS.contains(event.getPlayer().getUniqueId())) {

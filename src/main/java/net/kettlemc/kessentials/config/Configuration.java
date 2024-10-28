@@ -4,15 +4,15 @@ import io.github.almightysatan.jaskl.Config;
 import io.github.almightysatan.jaskl.Type;
 import io.github.almightysatan.jaskl.entries.IntegerConfigEntry;
 import io.github.almightysatan.jaskl.entries.ListConfigEntry;
+import io.github.almightysatan.jaskl.entries.MapConfigEntry;
 import io.github.almightysatan.jaskl.entries.StringConfigEntry;
 import io.github.almightysatan.jaskl.hocon.HoconConfig;
+import net.kettlemc.kessentials.Essentials;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Locale;
+import java.util.*;
 
 public class Configuration {
 
@@ -23,7 +23,18 @@ public class Configuration {
     public static final StringConfigEntry PERMISSION_LAYOUT_OTHER = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-layout-other", "system.%command%.other");
     public static final StringConfigEntry PERMISSION_HOME_LAYOUT = StringConfigEntry.of(CONFIG, "kessentials.settings.permission-home-layout", "system.home.amount");
 
-    public static final ListConfigEntry<String> DISABLED_COMMANDS = ListConfigEntry.of(CONFIG, "kessentials.settings.disabled-commands", Collections.emptyList(), Type.STRING);
+    public static final ListConfigEntry<String> DISABLED_COMMANDS = ListConfigEntry.of(CONFIG, "kessentials.settings.commands.disabled", Collections.emptyList(), Type.STRING);
+    public static final ListConfigEntry<String> ON_JOIN_COMMANDS = ListConfigEntry.of(CONFIG, "kessentials.settings.commands.on-join", Collections.emptyList(), Type.STRING);
+    public static final Map<String, Map<String, List<String>>> COMMAND_MAP_DEFAULT = new HashMap<>();
+
+    static {
+        Map<String, List<String>> spawn = new HashMap<>();
+        spawn.put("player", new ArrayList<>());
+        spawn.put("console", new ArrayList<>());
+        COMMAND_MAP_DEFAULT.put("spawn", spawn);
+    }
+
+    public static final MapConfigEntry<String, Map<String, List<String>>> ON_COMMAND_COMMANDS = MapConfigEntry.of(CONFIG, "kessentials.settings.commands.on-command", COMMAND_MAP_DEFAULT, Type.STRING, Type.map(Type.STRING, Type.list(Type.STRING)));
 
     public static final ListConfigEntry<String> RESTART_TIMES = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.times", Collections.singletonList("02:00"), Type.STRING);
     public static final ListConfigEntry<Long> RESTART_TIMES_WARNING = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.warning-times", Arrays.asList(
@@ -58,6 +69,8 @@ public class Configuration {
             CONFIG.write();
             return true;
         } catch (IOException e) {
+            Essentials.instance().getPlugin().getLogger().severe("Failed to load configuration: " + e.getMessage());
+            e.printStackTrace();
             return false;
         }
     }

@@ -6,7 +6,7 @@ import net.kettlemc.kcommon.language.AdventureUtil;
 import net.kettlemc.kessentials.Essentials;
 import org.bukkit.Bukkit;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 public class Util {
@@ -32,12 +32,13 @@ public class Util {
      * @param time The time string
      * @return The LocalTime object or 00:00 if the parsing failed
      */
-    public static LocalTime parseTime(String time) {
+    public static LocalDateTime parseTime(String time) {
         String[] split = time.split(":");
         try {
-            return LocalTime.of(Integer.parseInt(split[0]), Integer.parseInt(split[1]));
+            LocalDateTime now = LocalDateTime.now();
+            return now.withHour(Integer.parseInt(split[0])).withMinute(Integer.parseInt(split[1])).withSecond(0);
         } catch (Exception e) {
-            return LocalTime.of(0, 0);
+            return LocalDateTime.now().withHour(0).withMinute(0).withSecond(0);
         }
     }
 

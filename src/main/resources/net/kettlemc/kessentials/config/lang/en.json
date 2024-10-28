@@ -206,6 +206,10 @@
       },
       "not-found": "<gray>A warp with this name doesn't exist.</gray>",
       "usage": "<gray>/warp <name></gray>"
+    },
+    "reload": {
+      "success": "<gray>The config has been reloaded.</gray>",
+      "fail": "<gray>An error occurred, please check the console.</gray>"
     }
   }
 }

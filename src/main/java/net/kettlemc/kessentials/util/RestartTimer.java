@@ -8,18 +8,20 @@ import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.klanguage.common.LanguageEntity;
 import org.bukkit.Bukkit;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.UUID;
 
 public class RestartTimer {
 
     public static void scheduleRestart() {
         // Get the restart time closest to the current time in the future
-        LocalTime now = LocalTime.now();
-        LocalTime closest = null;
+        LocalDateTime now = LocalDateTime.now();
+        LocalDateTime closest = null;
         for (String time : Configuration.RESTART_TIMES.getValue()) {
-            LocalTime parsed = Util.parseTime(time);
+            LocalDateTime parsed = Util.parseTime(time);
             if (parsed.isBefore(now)) {
+                Essentials.instance().getPlugin().getLogger().info("Restart time " + parsed + " is in the past, adding 24 hours.");
                 parsed = parsed.plusHours(24);
             }
             if (closest == null || parsed.isBefore(closest)) {
@@ -32,8 +34,8 @@ public class RestartTimer {
             return;
         }
 
-        // Schedule the restart
-        long delay = (closest.toSecondOfDay() - now.toSecondOfDay()) * 20L;
+        // Schedule the restart TODO this doesnt work as toSecondOfDay doesnt respect the 24 hour addition
+        long delay = closest.toEpochSecond(ZoneOffset.MAX) - now.toEpochSecond(ZoneOffset.MAX);
         Essentials.instance().getPlugin().getLogger().info("Scheduled restart at " + closest + " in " + delay + " ticks.");
         Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), Bukkit::shutdown, delay);
 

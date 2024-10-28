@@ -21,10 +21,7 @@ import net.kettlemc.kessentials.discord.DiscordBot;
 import net.kettlemc.kessentials.discord.listener.bukkit.DiscordAsyncChatListener;
 import net.kettlemc.kessentials.discord.listener.bukkit.DiscordClearLaggListener;
 import net.kettlemc.kessentials.discord.listener.bukkit.DiscordJoinQuitListener;
-import net.kettlemc.kessentials.listener.BlockListener;
-import net.kettlemc.kessentials.listener.InventoryClickListener;
-import net.kettlemc.kessentials.listener.JoinQuitListener;
-import net.kettlemc.kessentials.listener.PlayerMoveListener;
+import net.kettlemc.kessentials.listener.*;
 import net.kettlemc.kessentials.loading.Loadable;
 import net.kettlemc.kessentials.teleport.HomeHandler;
 import net.kettlemc.kessentials.teleport.WarpHandler;
@@ -127,6 +124,7 @@ public final class Essentials implements Loadable {
         this.contentManager.registerCommand("setwarp", new SetWarpCommand());
         this.contentManager.registerCommand("delwarp", new DeleteWarpCommand());
         this.contentManager.registerCommand("spawn", new SpawnCommand());
+        this.contentManager.registerCommand("kessentials", new KEssentialsCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));
@@ -135,6 +133,7 @@ public final class Essentials implements Loadable {
         this.contentManager.registerListener(new BlockListener());
         this.contentManager.registerListener(new PlayerMoveListener());
         this.contentManager.registerListener(new InventoryClickListener());
+        this.contentManager.registerListener(new CommandListener());
 
         this.plugin.getLogger().info("Loading Discord bot...");
 
