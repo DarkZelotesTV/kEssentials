@@ -209,6 +209,7 @@
     "reload": {
       "success": "<gray>Die Konfiguration wurde neu geladen.</gray>",
       "fail": "<gray>Ein Fehler ist aufgetreten. Bitte überprüfe die Konsole.</gray>"
-    }
+    },
+    "material": "<gray><material>:<damage></gray>"
   }
 }

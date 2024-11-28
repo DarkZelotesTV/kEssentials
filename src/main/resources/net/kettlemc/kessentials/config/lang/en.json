@@ -210,6 +210,7 @@
     "reload": {
       "success": "<gray>The config has been reloaded.</gray>",
       "fail": "<gray>An error occurred, please check the console.</gray>"
-    }
+    },
+    "material": "<gray><material>:<damage></gray>"
   }
 }

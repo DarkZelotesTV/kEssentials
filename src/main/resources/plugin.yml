@@ -136,3 +136,7 @@ commands:
     description: Main command for kEssentials
     usage: /kessentials
     aliases: [ essentials, kessential ]
+  material:
+    description: Get the name of the material in your hand
+    usage: /material
+    aliases: [ mat ]

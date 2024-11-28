@@ -125,6 +125,7 @@ public final class Essentials implements Loadable {
         this.contentManager.registerCommand("delwarp", new DeleteWarpCommand());
         this.contentManager.registerCommand("spawn", new SpawnCommand());
         this.contentManager.registerCommand("kessentials", new KEssentialsCommand());
+        this.contentManager.registerCommand("material", new MaterialCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));

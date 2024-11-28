@@ -183,6 +183,8 @@ public class Messages {
     public static final AdventureMessage RELOAD_SUCCESS = AdventureMessage.of("messages.reload.success", LANGUAGE_MANAGER);
     public static final AdventureMessage RELOAD_FAIL = AdventureMessage.of("messages.reload.fail", LANGUAGE_MANAGER);
 
+    public static final AdventureMessage MATERIAL = AdventureMessage.of("messages.material", LANGUAGE_MANAGER);
+
     private static String getDefaultLocale() {
         return Locale.forLanguageTag(Configuration.DEFAULT_LANGUAGE.getValue()).toLanguageTag();
     }
