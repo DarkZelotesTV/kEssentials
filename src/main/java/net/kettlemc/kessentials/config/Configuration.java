@@ -36,7 +36,7 @@ public class Configuration {
 
     public static final MapConfigEntry<String, Map<String, List<String>>> ON_COMMAND_COMMANDS = MapConfigEntry.of(CONFIG, "kessentials.settings.commands.on-command", COMMAND_MAP_DEFAULT, Type.STRING, Type.map(Type.STRING, Type.list(Type.STRING)));
 
-    public static final ListConfigEntry<String> RESTART_TIMES = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.times", Collections.singletonList("02:00"), Type.STRING);
+    public static final ListConfigEntry<String> RESTART_TIMES = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.times", Collections.emptyList(), Type.STRING);
     public static final ListConfigEntry<Long> RESTART_TIMES_WARNING = ListConfigEntry.of(CONFIG, "kessentials.settings.restart.warning-times", Arrays.asList(
             20L, // 1 second
             2 * 20L, // 2 seconds

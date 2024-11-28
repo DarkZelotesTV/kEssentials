@@ -34,21 +34,20 @@ public class RestartTimer {
             return;
         }
 
-        // Schedule the restart TODO this doesnt work as toSecondOfDay doesnt respect the 24 hour addition
-        long delay = closest.toEpochSecond(ZoneOffset.MAX) - now.toEpochSecond(ZoneOffset.MAX);
-        Essentials.instance().getPlugin().getLogger().info("Scheduled restart at " + closest + " in " + delay + " ticks.");
-        Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), Bukkit::shutdown, delay);
+        // Schedule the restart
+        long delay = closest.toEpochSecond(ZoneOffset.UTC) - now.toEpochSecond(ZoneOffset.UTC);
 
-        for (long time : Configuration.RESTART_TIMES_WARNING.getValue()) {
-            if (delay >= time) {
-                Essentials.instance().getPlugin().getLogger().info("Scheduled restart warning at " + (delay - time) + " ticks before restart.");
+        for (long timeWarning : Configuration.RESTART_TIMES_WARNING.getValue()) {
+            if (delay >= timeWarning) {
+                Essentials.instance().getPlugin().getLogger().info("Scheduled restart warning " + timeWarning + " ticks before restart.");
+                long warningDelay = delay - timeWarning;
                 Bukkit.getScheduler().runTaskLaterAsynchronously(Essentials.instance().getPlugin(), () -> {
-                    Placeholder timeValue = Placeholder.of("time", (ctx, args) -> timeMessage(ctx, delay));
+                    Placeholder timeValue = Placeholder.of("time", (ctx, args) -> timeMessage(ctx, warningDelay * 20));
                     Essentials.instance().messages().broadcastMessage(Messages.RESTART, timeValue);
-                }, delay - time);
-                break;
+                }, warningDelay);
             }
         }
+
     }
 
 
