@@ -208,4 +208,13 @@ public class Messages {
         }
     }
 
+    public static boolean reload() {
+        try {
+            LANGUAGE_MANAGER.reload();
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
+    }
+
 }

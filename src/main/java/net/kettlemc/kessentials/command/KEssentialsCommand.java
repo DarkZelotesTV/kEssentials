@@ -21,7 +21,7 @@ public class KEssentialsCommand implements CommandExecutor, TabCompleter {
             if (args[0].equalsIgnoreCase("reload")) {
                 Configuration.unload();
 
-                Essentials.instance().messages().sendMessage(sender, Configuration.load() ? Messages.RELOAD_SUCCESS : Messages.RELOAD_FAIL);
+                Essentials.instance().messages().sendMessage(sender, Messages.reload() && Configuration.load() ? Messages.RELOAD_SUCCESS : Messages.RELOAD_FAIL);
             }
         }
 
