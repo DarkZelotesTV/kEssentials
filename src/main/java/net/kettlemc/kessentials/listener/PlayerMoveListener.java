@@ -1,16 +1,15 @@
 package net.kettlemc.kessentials.listener;
 
+import net.kettlemc.kessentials.command.FreezeCommand;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
-
-import static net.kettlemc.kessentials.command.FreezeCommand.FROZEN_PLAYERS;
 
 public class PlayerMoveListener implements Listener {
 
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
-        if (!FROZEN_PLAYERS.contains(event.getPlayer().getUniqueId())) {
+        if (FreezeCommand.isFrozen(event.getPlayer())) {
             return;
         }
 

@@ -53,8 +53,8 @@ public class FeedCommand implements CommandExecutor, TabCompleter {
     }
 
     private void feed(CommandSender sender, Player target) {
-        target.setFoodLevel(Integer.MAX_VALUE);
-        target.setSaturation(Integer.MAX_VALUE);
+        target.setFoodLevel(20);
+        target.setSaturation(40);
 
         Essentials.instance().messages().sendMessage(target, Messages.FEED_FED);
 

@@ -210,6 +210,11 @@
       "success": "<gray>Die Konfiguration wurde neu geladen.</gray>",
       "fail": "<gray>Ein Fehler ist aufgetreten. Bitte überprüfe die Konsole.</gray>"
     },
-    "material": "<gray><material>:<damage></gray>"
+    "material": "<gray><material>:<damage></gray>",
+    "gui": {
+      "enchantingtable": {
+        "usage": "<gray>/enchantingtable <Level1> <Level2> <Level3> [<Spieler>]</gray>"
+      }
+    }
   }
 }

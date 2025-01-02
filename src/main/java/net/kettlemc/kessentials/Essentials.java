@@ -3,6 +3,9 @@ package net.kettlemc.kessentials;
 import net.kettlemc.kcommon.bukkit.ContentManager;
 import net.kettlemc.kcommon.language.MessageManager;
 import net.kettlemc.kessentials.command.*;
+import net.kettlemc.kessentials.command.gui.EnchantingTableCommand;
+import net.kettlemc.kessentials.command.gui.EnderchestCommand;
+import net.kettlemc.kessentials.command.gui.WorkbenchCommand;
 import net.kettlemc.kessentials.command.home.DeleteHomeCommand;
 import net.kettlemc.kessentials.command.home.HomeCommand;
 import net.kettlemc.kessentials.command.home.SetHomeCommand;
@@ -126,6 +129,8 @@ public final class Essentials implements Loadable {
         this.contentManager.registerCommand("spawn", new SpawnCommand());
         this.contentManager.registerCommand("kessentials", new KEssentialsCommand());
         this.contentManager.registerCommand("material", new MaterialCommand());
+        this.contentManager.registerCommand("enchantingtable", new EnchantingTableCommand());
+        this.contentManager.registerCommand("workbench", new WorkbenchCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));
@@ -135,6 +140,7 @@ public final class Essentials implements Loadable {
         this.contentManager.registerListener(new PlayerMoveListener());
         this.contentManager.registerListener(new InventoryClickListener());
         this.contentManager.registerListener(new CommandListener());
+        this.contentManager.registerListener(new EnchantingTableListener());
 
         this.plugin.getLogger().info("Loading Discord bot...");
 

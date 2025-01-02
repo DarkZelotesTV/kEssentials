@@ -185,6 +185,8 @@ public class Messages {
 
     public static final AdventureMessage MATERIAL = AdventureMessage.of("messages.material", LANGUAGE_MANAGER);
 
+    public static final AdventureMessage ENCHANTINGTABLE_USAGE = AdventureMessage.of("messages.gui.enchantingtable.usage", LANGUAGE_MANAGER);
+
     private static String getDefaultLocale() {
         return Locale.forLanguageTag(Configuration.DEFAULT_LANGUAGE.getValue()).toLanguageTag();
     }

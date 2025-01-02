@@ -211,6 +211,11 @@
       "success": "<gray>The config has been reloaded.</gray>",
       "fail": "<gray>An error occurred, please check the console.</gray>"
     },
-    "material": "<gray><material>:<damage></gray>"
+    "material": "<gray><material>:<damage></gray>",
+    "gui": {
+      "enchantingtable": {
+        "usage": "<gray>/enchantingtable <level1> <level2> <level3> [<player>]</gray>"
+      }
+    }
   }
 }

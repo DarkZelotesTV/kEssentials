@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
+import org.bukkit.metadata.FixedMetadataValue;
 
 import java.util.*;
 
@@ -17,7 +18,7 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
     public static final float DEFAULT_WALK_SPEED = 0.2f;
     public static final float DEFAULT_FLY_SPEED = 0.1f;
     public static final float FROZEN_SPEED = 0f;
-    public static final Set<UUID> FROZEN_PLAYERS = new HashSet<>();
+    private static final String FROZEN_TAG = "kettlemc.essentials.frozen";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
@@ -57,20 +58,20 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
 
     private void toggleFreeze(CommandSender sender, Player target) {
 
-        if (FROZEN_PLAYERS.contains(target.getUniqueId())) {
-            FROZEN_PLAYERS.remove(target.getUniqueId());
+        if (isFrozen(target)) {
+            setFrozen(target, false);
             Essentials.instance().messages().sendMessage(target, Messages.FREEZE_UNFROZEN);
             target.setWalkSpeed(DEFAULT_WALK_SPEED);
             target.setFlySpeed(DEFAULT_FLY_SPEED);
         } else {
-            FROZEN_PLAYERS.add(target.getUniqueId());
+            setFrozen(target, true);
             Essentials.instance().messages().sendMessage(target, Messages.FREEZE_FROZEN);
             target.setWalkSpeed(FROZEN_SPEED);
             target.setFlySpeed(FROZEN_SPEED);
         }
 
         if (sender != target) {
-            Essentials.instance().messages().sendMessage(sender, FROZEN_PLAYERS.contains(target.getUniqueId()) ? Messages.FREEZE_FROZEN_OTHER : Messages.FREEZE_UNFROZEN_OTHER, Placeholder.of("target", ((ctx, args) -> target.getName())));
+            Essentials.instance().messages().sendMessage(sender, isFrozen(target) ? Messages.FREEZE_FROZEN_OTHER : Messages.FREEZE_UNFROZEN_OTHER, Placeholder.of("target", ((ctx, args) -> target.getName())));
         }
     }
 
@@ -80,6 +81,18 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
             return null;
         }
         return Collections.emptyList();
+    }
+
+    public static boolean isFrozen(Player player) {
+        return player.hasMetadata(FROZEN_TAG) && player.getMetadata(FROZEN_TAG).get(0).asBoolean();
+    }
+
+    private static void setFrozen(Player player, boolean frozen) {
+        if (frozen) {
+            player.removeMetadata(FROZEN_TAG, Essentials.instance().getPlugin());
+        } else {
+            player.setMetadata(FROZEN_TAG, new FixedMetadataValue(Essentials.instance().getPlugin(), true));
+        }
     }
 
 }

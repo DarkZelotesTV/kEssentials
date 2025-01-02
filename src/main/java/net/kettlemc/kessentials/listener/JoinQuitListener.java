@@ -2,6 +2,7 @@ package net.kettlemc.kessentials.listener;
 
 import io.github.almightysatan.slams.Placeholder;
 import net.kettlemc.kessentials.Essentials;
+import net.kettlemc.kessentials.command.FreezeCommand;
 import net.kettlemc.kessentials.command.VanishCommand;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
@@ -41,7 +42,7 @@ public class JoinQuitListener implements Listener {
         );
 
         // Set the player's speed to the frozen speed if they are frozen
-        if (FROZEN_PLAYERS.contains(event.getPlayer().getUniqueId())) {
+        if (FreezeCommand.isFrozen(event.getPlayer())) {
             event.getPlayer().setWalkSpeed(FROZEN_SPEED);
             event.getPlayer().setFlySpeed(FROZEN_SPEED);
         } else {

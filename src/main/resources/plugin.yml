@@ -69,10 +69,6 @@ commands:
     description: Clears the chat for all players
     usage: /chatclear
     aliases: [ cc, chatleeren ]
-  enderchest:
-    description: Opens a enderchest
-    usage: /enderchest [<player>]
-    aliases: [ ec, enderkiste ]
   teleportplayer:
     description: Teleports players to each other
     usage: /teleportplayer <player> [<player>]
@@ -140,3 +136,19 @@ commands:
     description: Get the name of the material in your hand
     usage: /material
     aliases: [ mat ]
+  enchantingtable:
+    description: Opens a enchanting table
+    usage: /enchantingtable <level> <level> <level> [<player>]
+    aliases: [ verzauberungstisch, enchantmenttable ]
+  workbench:
+    description: Opens a workbench
+    usage: /workbench [<player>]
+    aliases: [ werkbank, craftingtable, craft, crafting ]
+  anvil:
+    description: Opens a anvil
+    usage: /anvil [<player>]
+    aliases: [ amboss ]
+  enderchest:
+    description: Opens a enderchest
+    usage: /enderchest [<player>]
+    aliases: [ ec, enderkiste ]

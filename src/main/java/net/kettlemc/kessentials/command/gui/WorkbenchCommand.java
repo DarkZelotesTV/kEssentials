@@ -1,4 +1,4 @@
-package net.kettlemc.kessentials.command;
+package net.kettlemc.kessentials.command.gui;
 
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
@@ -12,28 +12,29 @@ import org.bukkit.entity.Player;
 import java.util.Collections;
 import java.util.List;
 
-public class EnderchestCommand implements CommandExecutor, TabCompleter {
+public class WorkbenchCommand implements CommandExecutor, TabCompleter {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 
-        if (!(sender instanceof Player)) {
-            Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
-            return true;
-        }
-
-        if (!Essentials.instance().checkPermission(sender, command, false)) {
-            Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
-            return true;
-        }
-
-        Player player = (Player) sender;
 
         if (args.length == 0) {
 
-            player.openInventory(player.getEnderChest());
+            if (!(sender instanceof Player)) {
+                Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_ONLY);
+                return true;
+            }
 
-        } else if (args.length == 1 && Bukkit.getPlayer(args[0]) != null) {
+            if (!Essentials.instance().checkPermission(sender, command, false)) {
+                Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
+                return true;
+            }
+
+            Player player = (Player) sender;
+
+            player.openWorkbench(null, true);
+
+        } else if (args.length == 1) {
 
             if (!Essentials.instance().checkPermission(sender, command, true)) {
                 Essentials.instance().messages().sendMessage(sender, Messages.NO_PERMISSION);
@@ -41,7 +42,13 @@ public class EnderchestCommand implements CommandExecutor, TabCompleter {
             }
 
             Player target = Bukkit.getPlayer(args[0]);
-            player.openInventory(target.getEnderChest());
+
+            if (target == null) {
+                Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_NOT_FOUND);
+                return true;
+            }
+
+            target.openWorkbench(null, true);
 
         } else {
             Essentials.instance().messages().sendMessage(sender, Messages.PLAYER_NOT_FOUND);
