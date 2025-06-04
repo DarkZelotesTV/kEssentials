@@ -16,6 +16,13 @@ import net.kettlemc.kessentials.discord.command.SlashCommand;
 import net.kettlemc.kessentials.discord.command.SlashCommandListener;
 import net.kettlemc.kessentials.discord.command.commands.ListSlashCommand;
 import net.kettlemc.kessentials.discord.command.commands.StopServerCommand;
+import net.kettlemc.kessentials.discord.command.commands.PlayerInfoSlashCommand;
+import net.kettlemc.kessentials.discord.command.commands.AdminInfoSlashCommand;
+import net.kettlemc.kessentials.discord.command.commands.TeamInfoSlashCommand;
+import net.kettlemc.kessentials.discord.command.commands.TopKillsSlashCommand;
+import net.kettlemc.kessentials.discord.command.commands.TopTeamsSlashCommand;
+import net.kettlemc.kessentials.discord.command.commands.PositionSlashCommand;
+import net.kettlemc.kessentials.discord.command.commands.VerifySlashCommand;
 import net.kettlemc.kessentials.discord.listener.MessageListener;
 import net.kettlemc.kessentials.discord.listener.ReadyListener;
 import org.bukkit.Bukkit;
@@ -53,6 +60,13 @@ public class DiscordBot {
         // Add commands to the map
         new ListSlashCommand().register();
         new StopServerCommand().register();
+        new PlayerInfoSlashCommand().register();
+        new AdminInfoSlashCommand().register();
+        new TeamInfoSlashCommand().register();
+        new TopKillsSlashCommand().register();
+        new TopTeamsSlashCommand().register();
+        new PositionSlashCommand().register();
+        new VerifySlashCommand().register();
 
         // Delete any existing commands (prevents duplicates)
         this.jda.retrieveCommands().complete().forEach(cmd -> cmd.delete().queue());

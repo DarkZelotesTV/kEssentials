@@ -152,3 +152,15 @@ commands:
     description: Opens a enderchest
     usage: /enderchest [<player>]
     aliases: [ ec, enderkiste ]
+  team:
+    description: Manage clans/teams
+    usage: /team <create|join|leave> <name>
+  link:
+    description: Generates a Discord verification code
+    usage: /link
+  botreload:
+    description: Reloads discord.conf
+    usage: /botreload
+  bot:
+    description: Discord bot commands
+    usage: /bot say <text>
