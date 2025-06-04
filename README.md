@@ -86,3 +86,49 @@ This plugin now includes an integrated system originally based on JetMP. The fol
 
 These additions were implemented without changing the original command structure of kEssentials, making the plugin fully backward compatible.
 
+### Feature Overview
+
+- **Discord Bot Integration**
+  - Automatically starts with the server
+  - Real-time killfeed as Discord embeds
+  - Supports player skins as avatars
+  - Role-based permissions for commands
+- **Killfeed System**
+  - Captures kills via PlayerDeathEvent
+  - Shows avatars in the Discord killfeed
+  - Counts kills and deaths in SQLite
+  - Messages configurable through `config.json`
+- **Clan System (/team)**
+  - Create, join, or leave teams
+  - Clan leaders manage members
+  - Team point statistics
+  - Clan tag displayed on the scoreboard
+- **Scoreboard**
+  - Displays current kills, deaths, and team tag
+  - Automatically updates on events
+- **SQLite Database**
+  - Automatically created at startup
+  - Stores player, clan, and link data
+  - Tables: `player_data`, `clans`, `clan_members`, `link_codes`
+- **Discord Commands**
+  - `!playerinfo`, `!admininfo`, `!teaminfo`, `!topkills`, `!topteams`, `!position`, `!verify`
+- **Minecraft Commands**
+  - `/team create <name>`, `/team join <name>`, `/team leave`
+  - `/link` generates a verification code
+  - `/botreload` reloads `config.json`
+  - `/bot say <text>` sends a message via the bot
+- **Configurability**
+  - `config.json` contains the token, channel ID, admin roles, and messages
+
+### Discord Command Reference
+
+| Command | Description |
+|---------|-------------|
+| `!playerinfo <name>` | Shows the kill and death count for a player |
+| `!admininfo <name>` | Includes the player's position (admin only) |
+| `!teaminfo <name>` | Displays clan members and points |
+| `!topkills` | Lists the players with the most kills |
+| `!topteams` | Lists the clans with the most points |
+| `!position <name>` | Shows a player's coordinates (admin only) |
+| `!verify <code>` | Links a Minecraft account with Discord |
+

@@ -26,6 +26,12 @@ import net.kettlemc.kessentials.discord.listener.bukkit.DiscordClearLaggListener
 import net.kettlemc.kessentials.discord.listener.bukkit.DiscordJoinQuitListener;
 import net.kettlemc.kessentials.listener.*;
 import net.kettlemc.kessentials.loading.Loadable;
+import net.kettlemc.kessentials.data.Database;
+import net.kettlemc.kessentials.data.PlayerDataDAO;
+import net.kettlemc.kessentials.data.ClanDAO;
+import net.kettlemc.kessentials.data.LinkDAO;
+import net.kettlemc.kessentials.listener.KillListener;
+import net.kettlemc.kessentials.util.ScoreboardHandler;
 import net.kettlemc.kessentials.teleport.HomeHandler;
 import net.kettlemc.kessentials.teleport.WarpHandler;
 import net.kettlemc.kessentials.util.RestartTimer;
@@ -56,6 +62,11 @@ public final class Essentials implements Loadable {
     private DiscordBot discordBot;
     private HomeHandler homeHandler;
     private WarpHandler warpHandler;
+    private Database database;
+    private PlayerDataDAO playerDataDAO;
+    private ClanDAO clanDAO;
+    private LinkDAO linkDAO;
+    private ScoreboardHandler scoreboardHandler;
 
     public Essentials(JavaPlugin plugin) {
         this.plugin = plugin;
@@ -131,6 +142,10 @@ public final class Essentials implements Loadable {
         this.contentManager.registerCommand("material", new MaterialCommand());
         this.contentManager.registerCommand("enchantingtable", new EnchantingTableCommand());
         this.contentManager.registerCommand("workbench", new WorkbenchCommand());
+        this.contentManager.registerCommand("team", new net.kettlemc.kessentials.command.team.TeamCommand());
+        this.contentManager.registerCommand("link", new LinkCommand());
+        this.contentManager.registerCommand("botreload", new BotReloadCommand());
+        this.contentManager.registerCommand("bot", new BotCommand());
 
         // Disable all commands disabled in the config
         Configuration.DISABLED_COMMANDS.getValue().forEach(cmd -> Bukkit.getPluginCommand(cmd).setExecutor(new DisabledCommandExecutor()));
@@ -171,6 +186,20 @@ public final class Essentials implements Loadable {
         this.homeHandler = new HomeHandler();
         this.homeHandler.init();
 
+        this.plugin.getLogger().info("Initializing database and scoreboard...");
+        this.database = new Database(getPlugin().getDataFolder().toPath().resolve("data.db").toFile());
+        try {
+            this.database.open();
+        } catch (Exception e) {
+            this.plugin.getLogger().severe("Failed to load database: " + e.getMessage());
+        }
+        this.playerDataDAO = new PlayerDataDAO(this.database.getConnection());
+        this.clanDAO = new ClanDAO(this.database.getConnection());
+        this.linkDAO = new LinkDAO(this.database.getConnection());
+        this.scoreboardHandler = new ScoreboardHandler(this.playerDataDAO, this.clanDAO);
+        this.contentManager.registerListener(this.scoreboardHandler);
+        this.contentManager.registerListener(new KillListener(this.playerDataDAO, this.scoreboardHandler));
+
         this.plugin.getLogger().info("Starting restart timer...");
         RestartTimer.scheduleRestart();
 
@@ -193,6 +222,9 @@ public final class Essentials implements Loadable {
 
         if (this.homeHandler != null) {
             this.homeHandler.unload();
+        }
+        if (this.database != null) {
+            this.database.close();
         }
         instance = null;
     }
@@ -271,6 +303,38 @@ public final class Essentials implements Loadable {
      */
     public WarpHandler warpHandler() {
         return this.warpHandler;
+    }
+
+    /**
+     * Provides access to stored player statistics.
+     *
+     * @return The player data DAO
+     */
+    public PlayerDataDAO playerDataDAO() {
+        return this.playerDataDAO;
+    }
+
+    /**
+     * Provides access to clan data.
+     */
+    public ClanDAO clanDAO() {
+        return this.clanDAO;
+    }
+
+    /**
+     * Provides access to account link data.
+     */
+    public LinkDAO linkDAO() {
+        return this.linkDAO;
+    }
+
+    /**
+     * The scoreboard handler instance
+     *
+     * @return The scoreboard handler
+     */
+    public ScoreboardHandler scoreboardHandler() {
+        return this.scoreboardHandler;
     }
 
 }
