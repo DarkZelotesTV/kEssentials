@@ -11,7 +11,7 @@ import net.dv8tion.jda.api.interactions.commands.build.CommandData;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
-import net.kettlemc.kcommon.language.AdventureUtil;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.discord.command.SlashCommand;
@@ -26,7 +26,7 @@ public class StopServerCommand extends SlashCommand {
     @Override
     public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
         if (!member.hasPermission(Permission.ADMINISTRATOR)) {
-            event.reply(AdventureUtil.componentToLegacy(Messages.DISCORD_NO_PERMISSION.value())).queue();
+            event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_NO_PERMISSION.value())).queue();
             return;
         }
 
@@ -39,13 +39,13 @@ public class StopServerCommand extends SlashCommand {
         }
 
         if (seconds == 0) {
-            event.reply(AdventureUtil.componentToLegacy(Messages.DISCORD_RESTART_INSTANT.value())).queue();
+            event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART_INSTANT.value())).queue();
             Bukkit.getServer().shutdown();
             return;
         }
 
-        event.reply(AdventureUtil.componentToLegacy(Messages.DISCORD_RESTART.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds))))).queue();
-        Bukkit.getServer().broadcastMessage(AdventureUtil.componentToLegacy(Messages.DISCORD_RESTART_MINECRAFT.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds)))));
+        event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds))))).queue();
+        Bukkit.getServer().broadcastMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART_MINECRAFT.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds)))));
         Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), () -> Bukkit.getServer().shutdown(), seconds * 20L);
     }
 

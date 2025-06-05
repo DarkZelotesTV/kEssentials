@@ -2,12 +2,10 @@ package net.kettlemc.kessentials.util;
 
 import io.github.almightysatan.slams.Placeholder;
 import io.github.almightysatan.slams.minimessage.AdventureMessage;
-import net.kettlemc.kcommon.language.AdventureUtil;
-import net.kettlemc.kessentials.Essentials;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 public class Util {
 
@@ -43,8 +41,8 @@ public class Util {
     }
 
 
-    public static String translate(UUID uuid, AdventureMessage message, Placeholder... placeholders) {
-        return AdventureUtil.componentToLegacy(message.value(Essentials.LANGUAGE_API.getEntity(uuid), placeholders));
+    public static String translate(AdventureMessage message, Placeholder... placeholders) {
+        return LegacyComponentSerializer.legacySection().serialize(message.value(placeholders));
     }
 
 }
