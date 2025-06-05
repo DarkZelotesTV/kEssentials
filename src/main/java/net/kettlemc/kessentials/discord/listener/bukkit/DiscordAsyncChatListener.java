@@ -3,7 +3,7 @@ package net.kettlemc.kessentials.discord.listener.bukkit;
 import io.github.almightysatan.slams.Placeholder;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
 import net.kettlemc.kcommon.bukkit.BukkitUtil;
-import net.kettlemc.kcommon.language.AdventureUtil;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kcommon.luckperms.LuckPermsUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
@@ -35,7 +35,7 @@ public class DiscordAsyncChatListener implements Listener {
 
         // Format and send the message
         String finalPrefix = prefix;
-        String message = AdventureUtil.componentToLegacy(Messages.DISCORD_CHAT_FORMAT.value(
+        String message = LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_CHAT_FORMAT.value(
                 Placeholder.of("rank", (ctx, args) -> finalPrefix),
                 Placeholder.of("player", (ctx, args) -> name),
                 Placeholder.of("message", (ctx, args) -> chatMessage)

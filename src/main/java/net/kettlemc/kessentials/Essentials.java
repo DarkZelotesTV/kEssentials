@@ -1,7 +1,7 @@
 package net.kettlemc.kessentials;
 
 import net.kettlemc.kcommon.bukkit.ContentManager;
-import net.kettlemc.kcommon.language.MessageManager;
+import net.kettlemc.kessentials.util.MessageManager;
 import net.kettlemc.kessentials.command.*;
 import net.kettlemc.kessentials.command.gui.EnchantingTableCommand;
 import net.kettlemc.kessentials.command.gui.EnderchestCommand;
@@ -36,8 +36,6 @@ import net.kettlemc.kessentials.teleport.HomeHandler;
 import net.kettlemc.kessentials.teleport.WarpHandler;
 import net.kettlemc.kessentials.util.RestartTimer;
 import net.kettlemc.kessentials.util.Util;
-import net.kettlemc.klanguage.api.LanguageAPI;
-import net.kettlemc.klanguage.bukkit.BukkitLanguageAPI;
 import net.kyori.adventure.platform.bukkit.BukkitAudiences;
 import net.luckperms.api.LuckPerms;
 import net.luckperms.api.LuckPermsProvider;
@@ -51,7 +49,6 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Essentials implements Loadable {
 
-    public static final LanguageAPI<Player> LANGUAGE_API = BukkitLanguageAPI.of();
     private static Essentials instance;
 
     private final ContentManager contentManager;
@@ -104,7 +101,7 @@ public final class Essentials implements Loadable {
             this.plugin.getLogger().severe("Failed to load messages!");
         }
 
-        this.messageManager = new MessageManager(Messages.PREFIX, LANGUAGE_API, adventure);
+        this.messageManager = new MessageManager(Messages.PREFIX, adventure);
 
         this.plugin.getLogger().info("Registering commands and listeners...");
 

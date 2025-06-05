@@ -1,16 +1,13 @@
 package net.kettlemc.kessentials.util;
 
-import io.github.almightysatan.slams.Context;
 import io.github.almightysatan.slams.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
-import net.kettlemc.klanguage.common.LanguageEntity;
 import org.bukkit.Bukkit;
 
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
-import java.util.UUID;
 
 public class RestartTimer {
 
@@ -42,7 +39,7 @@ public class RestartTimer {
                 Essentials.instance().getPlugin().getLogger().info("Scheduled restart warning " + timeWarning + " ticks before restart.");
                 long warningDelay = delay - timeWarning;
                 Bukkit.getScheduler().runTaskLaterAsynchronously(Essentials.instance().getPlugin(), () -> {
-                    Placeholder timeValue = Placeholder.of("time", (ctx, args) -> timeMessage(ctx, warningDelay * 20));
+                    Placeholder timeValue = Placeholder.of("time", (ctx, args) -> timeMessage(warningDelay * 20));
                     Essentials.instance().messages().broadcastMessage(Messages.RESTART, timeValue);
                 }, warningDelay);
             }
@@ -61,13 +58,10 @@ public class RestartTimer {
      * <p>
      * Example: 7200 ticks will return "6 minutes"
      *
-     * @param player The player to send the message to
-     * @param ticks  The amount of ticks
+     * @param ticks The amount of ticks
      * @return The message
      */
-    public static String timeMessage(Context player, long ticks) {
-
-        LanguageEntity entity = (LanguageEntity) player;
+    public static String timeMessage(long ticks) {
 
         long seconds = ticks / 20;
         long minutes = seconds / 60;
@@ -76,38 +70,36 @@ public class RestartTimer {
         seconds %= 60;
         minutes %= 60;
 
-        UUID uuid = UUID.fromString(entity.uuid());
-
         StringBuilder message = new StringBuilder();
 
         if (hours == 1) {
-            message.append(hours).append(" ").append(Util.translate(uuid, Messages.TIMEUNIT_HOUR));
+            message.append(hours).append(" ").append(Util.translate(Messages.TIMEUNIT_HOUR));
         } else if (hours > 1) {
-            message.append(hours).append(" ").append(Util.translate(uuid, Messages.TIMEUNIT_HOURS));
+            message.append(hours).append(" ").append(Util.translate(Messages.TIMEUNIT_HOURS));
         }
 
         if (minutes == 1) {
             if (message.length() > 0) {
                 message.append(" ");
             }
-            message.append(minutes).append(" ").append(Util.translate(uuid, Messages.TIMEUNIT_MINUTE));
+            message.append(minutes).append(" ").append(Util.translate(Messages.TIMEUNIT_MINUTE));
         } else if (minutes > 1) {
             if (message.length() > 0) {
                 message.append(" ");
             }
-            message.append(minutes).append(" ").append(Util.translate(uuid, Messages.TIMEUNIT_MINUTES));
+            message.append(minutes).append(" ").append(Util.translate(Messages.TIMEUNIT_MINUTES));
         }
 
         if (seconds == 1) {
             if (message.length() > 0) {
                 message.append(" ");
             }
-            message.append(seconds).append(" ").append(Util.translate(uuid, Messages.TIMEUNIT_SECOND));
+            message.append(seconds).append(" ").append(Util.translate(Messages.TIMEUNIT_SECOND));
         } else if (seconds > 1) {
             if (message.length() > 0) {
                 message.append(" ");
             }
-            message.append(seconds).append(" ").append(Util.translate(uuid, Messages.TIMEUNIT_SECONDS));
+            message.append(seconds).append(" ").append(Util.translate(Messages.TIMEUNIT_SECONDS));
         }
 
         return message.toString();
