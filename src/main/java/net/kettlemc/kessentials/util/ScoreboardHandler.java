@@ -42,7 +42,8 @@ public class ScoreboardHandler implements Listener {
             String clan = clanDAO.getClan(player.getUniqueId());
 
             Scoreboard board = manager.getNewScoreboard();
-            Objective obj = board.registerNewObjective("stats", "dummy", ChatColor.GREEN + "Stats");
+            Objective obj = board.registerNewObjective("stats", "dummy");
+            obj.setDisplayName(ChatColor.GREEN + "Stats");
             obj.setDisplaySlot(DisplaySlot.SIDEBAR);
 
             Score killScore = obj.getScore(ChatColor.YELLOW + "Kills: ");
