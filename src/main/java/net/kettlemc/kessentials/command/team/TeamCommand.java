@@ -12,6 +12,7 @@ import org.bukkit.util.StringUtil;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -81,7 +82,7 @@ public class TeamCommand implements CommandExecutor, TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (args.length == 1) {
-            return StringUtil.copyPartialMatches(args[0], List.of("create", "join", "leave"), new ArrayList<>());
+            return StringUtil.copyPartialMatches(args[0], Arrays.asList("create", "join", "leave"), new ArrayList<>());
         } else if (args.length == 2 && args[0].equalsIgnoreCase("join")) {
             // Suggest existing clans
             ClanDAO dao = Essentials.instance().clanDAO();
