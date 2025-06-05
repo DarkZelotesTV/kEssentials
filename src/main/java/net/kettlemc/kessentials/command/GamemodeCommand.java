@@ -1,7 +1,7 @@
 package net.kettlemc.kessentials.command;
 
 import io.github.almightysatan.slams.Placeholder;
-import net.kettlemc.kcommon.java.NumberUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -89,7 +89,7 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
         try {
             return GameMode.valueOf(gm.toUpperCase());
         } catch (Exception e) {
-            return NumberUtil.isInteger(gm) ? GameMode.getByValue(Integer.parseInt(gm)) : null;
+            return BukkitUtil.isInteger(gm) ? GameMode.getByValue(Integer.parseInt(gm)) : null;
         }
     }
 

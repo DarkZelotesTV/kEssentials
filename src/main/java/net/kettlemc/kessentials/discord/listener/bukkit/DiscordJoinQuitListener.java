@@ -2,8 +2,7 @@ package net.kettlemc.kessentials.discord.listener.bukkit;
 
 import io.github.almightysatan.slams.Placeholder;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
-import net.kettlemc.kcommon.bukkit.BukkitUtil;
-import net.kettlemc.kcommon.java.StringUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
@@ -18,7 +17,7 @@ public class DiscordJoinQuitListener implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
 
-        String channel = StringUtil.stripEmojis(Essentials.instance().getDiscordBot().getMessageChannelById(DiscordConfiguration.DISCORD_CHANNEL_ID.getValue()).getName()).trim();
+        String channel = BukkitUtil.stripEmojis(Essentials.instance().getDiscordBot().getMessageChannelById(DiscordConfiguration.DISCORD_CHANNEL_ID.getValue()).getName()).trim();
 
         Essentials.instance().messages().sendMessage(event.getPlayer(), Messages.DISCORD_WELCOME_MESSAGE, Placeholder.of("channel", (ctx, args) -> channel));
 

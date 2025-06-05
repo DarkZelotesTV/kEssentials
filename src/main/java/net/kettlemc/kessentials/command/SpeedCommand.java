@@ -1,7 +1,7 @@
 package net.kettlemc.kessentials.command;
 
 import io.github.almightysatan.slams.Placeholder;
-import net.kettlemc.kcommon.java.NumberUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -56,7 +56,7 @@ public class SpeedCommand implements CommandExecutor, TabCompleter {
     }
 
     private void speed(CommandSender sender, Player target, String arg) {
-        if (!NumberUtil.isInteger(arg)) {
+        if (!BukkitUtil.isInteger(arg)) {
             Essentials.instance().messages().sendMessage(sender, Messages.SPEED_USAGE);
             return;
         }

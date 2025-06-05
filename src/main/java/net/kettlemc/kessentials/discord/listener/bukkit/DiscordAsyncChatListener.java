@@ -2,13 +2,11 @@ package net.kettlemc.kessentials.discord.listener.bukkit;
 
 import io.github.almightysatan.slams.Placeholder;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
-import net.kettlemc.kcommon.bukkit.BukkitUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import net.kettlemc.kcommon.luckperms.LuckPermsUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
-import net.luckperms.api.LuckPermsProvider;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
@@ -22,7 +20,7 @@ public class DiscordAsyncChatListener implements Listener {
             return;
 
         // Get the player's prefix
-        String prefix = BukkitUtil.stripColor(LuckPermsUtil.getLuckPermsPrefix(LuckPermsProvider.get(), event.getPlayer()));
+        String prefix = BukkitUtil.stripColor(BukkitUtil.getLuckPermsPrefix(event.getPlayer()));
         if (prefix.isEmpty()) {
             prefix = DiscordConfiguration.DEFAULT_RANK.getValue();
         }

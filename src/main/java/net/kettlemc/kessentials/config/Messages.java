@@ -3,7 +3,7 @@ package net.kettlemc.kessentials.config;
 import io.github.almightysatan.slams.Slams;
 import io.github.almightysatan.slams.minimessage.AdventureMessage;
 import io.github.almightysatan.slams.parser.JacksonParser;
-import net.kettlemc.kcommon.java.FileUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 
 import java.io.File;
 import java.io.IOException;
@@ -193,8 +193,8 @@ public class Messages {
 
     public static boolean load() {
         try {
-            FileUtil.saveResourceAsFile(Messages.class, "lang/de.json", LANGUAGE_PATH.resolve("de.json"));
-            FileUtil.saveResourceAsFile(Messages.class, "lang/en.json", LANGUAGE_PATH.resolve("en.json"));
+            BukkitUtil.saveResource(Messages.class, "lang/de.json", LANGUAGE_PATH.resolve("de.json"));
+            BukkitUtil.saveResource(Messages.class, "lang/en.json", LANGUAGE_PATH.resolve("en.json"));
             loadFromFilesInDirectory(LANGUAGE_PATH.toFile());
             return true;
         } catch (IOException | URISyntaxException e) {

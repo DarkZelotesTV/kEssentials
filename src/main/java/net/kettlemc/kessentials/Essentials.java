@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials;
 
-import net.kettlemc.kcommon.bukkit.ContentManager;
+import net.kettlemc.kessentials.content.ContentManager;
 import net.kettlemc.kessentials.util.MessageManager;
 import net.kettlemc.kessentials.command.*;
 import net.kettlemc.kessentials.command.gui.EnchantingTableCommand;

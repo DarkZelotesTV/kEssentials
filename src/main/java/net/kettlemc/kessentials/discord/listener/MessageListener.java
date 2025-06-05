@@ -5,7 +5,7 @@ import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.kettlemc.kcommon.java.StringUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
@@ -28,7 +28,7 @@ public class MessageListener extends ListenerAdapter {
             roles = event.getMember().getRoles();
         }
 
-        String rank = roles.isEmpty() ? DiscordConfiguration.DEFAULT_RANK.getValue() : StringUtil.stripEmojis(roles.get(0).getName()).trim();
+        String rank = roles.isEmpty() ? DiscordConfiguration.DEFAULT_RANK.getValue() : BukkitUtil.stripEmojis(roles.get(0).getName()).trim();
 
         Essentials.instance().messages().broadcastMessage(Messages.DISCORD_CHAT_FORMAT_MINECRAFT,
                 false,
