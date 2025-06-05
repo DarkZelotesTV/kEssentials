@@ -3,6 +3,7 @@ package net.kettlemc.kessentials.discord.command.commands;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -27,7 +28,8 @@ public class TeamInfoSlashCommand extends SlashCommand {
 
     @Override
     public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
-        String name = event.getOption("name", String.class);
+        OptionMapping nameOption = event.getOption("name");
+        String name = nameOption != null ? nameOption.getAsString() : null;
         if (name == null || name.isEmpty()) {
             event.reply("Please provide a clan name.").setEphemeral(true).queue();
             return;
