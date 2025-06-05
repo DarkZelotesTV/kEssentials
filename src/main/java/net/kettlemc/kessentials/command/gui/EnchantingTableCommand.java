@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.gui;
 
-import net.kettlemc.kcommon.java.NumberUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -34,7 +34,7 @@ public class EnchantingTableCommand implements CommandExecutor, TabCompleter {
 
             Player player = (Player) sender;
 
-            if (NumberUtil.isInteger(args[0]) && NumberUtil.isInteger(args[1]) && NumberUtil.isInteger(args[2])) {
+            if (BukkitUtil.isInteger(args[0]) && BukkitUtil.isInteger(args[1]) && BukkitUtil.isInteger(args[2])) {
                 int level1 = Integer.parseInt(args[0]);
                 int level2 = Integer.parseInt(args[1]);
                 int level3 = Integer.parseInt(args[2]);
@@ -58,7 +58,7 @@ public class EnchantingTableCommand implements CommandExecutor, TabCompleter {
                 return true;
             }
 
-            if (NumberUtil.isInteger(args[1]) && NumberUtil.isInteger(args[2]) && NumberUtil.isInteger(args[3])) {
+            if (BukkitUtil.isInteger(args[1]) && BukkitUtil.isInteger(args[2]) && BukkitUtil.isInteger(args[3])) {
                 int level1 = Integer.parseInt(args[1]);
                 int level2 = Integer.parseInt(args[2]);
                 int level3 = Integer.parseInt(args[3]);

@@ -1,7 +1,7 @@
 package net.kettlemc.kessentials.command.home;
 
 import io.github.almightysatan.slams.Placeholder;
-import net.kettlemc.kcommon.bukkit.BukkitUtil;
+import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;

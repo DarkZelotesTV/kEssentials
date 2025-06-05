@@ -133,11 +133,6 @@ if (klanguageVersion) {
     }
 }
 
-if (kcommonVersion) {
-    dependencies {
-        implementation "net.kettlemc:kcommon:${kcommonVersion}"
-    }
-}
 
 // Use repositories from "repositories.gradle"
 if (file("repositories.gradle").exists()) {
