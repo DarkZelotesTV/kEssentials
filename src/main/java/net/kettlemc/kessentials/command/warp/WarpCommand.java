@@ -37,7 +37,8 @@ public class WarpCommand implements CommandExecutor, TabCompleter {
         if (args[0].equalsIgnoreCase("list")) {
             Essentials.instance().messages().sendMessage(player, Messages.WARP_LIST_HEADER);
             Essentials.instance().warpHandler().getWarps().forEach(
-                    warp -> Essentials.instance().messages().sendMessage(player, Messages.WARP_LIST_ENTRY, true, Messages.WARP_LIST_HOVER, "/warp " + warp.name(), Placeholder.of("name", (ctx, argument) -> warp.name()))
+                    warp -> Essentials.instance().messages().sendMessage(player, Messages.WARP_LIST_ENTRY,
+                            Placeholder.of("name", (ctx, argument) -> warp.name()))
             );
             return true;
         }

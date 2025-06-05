@@ -37,7 +37,8 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
         if (args[0].equalsIgnoreCase("list")) {
             Essentials.instance().messages().sendMessage(player, Messages.HOME_LIST_HEADER);
             Essentials.instance().homeHandler().getHomes(player.getUniqueId()).forEach(
-                    home -> Essentials.instance().messages().sendMessage(player, Messages.HOME_LIST_ENTRY, true, Messages.HOME_LIST_HOVER, "/home " + home.name(), Placeholder.of("name", (ctx, argument) -> home.name()))
+                    home -> Essentials.instance().messages().sendMessage(player, Messages.HOME_LIST_ENTRY,
+                            Placeholder.of("name", (ctx, argument) -> home.name()))
             );
             return true;
         }
