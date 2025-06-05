@@ -3,6 +3,7 @@ package net.kettlemc.kessentials.discord.command.commands;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -24,7 +25,8 @@ public class VerifySlashCommand extends SlashCommand {
 
     @Override
     public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
-        String code = event.getOption("code", String.class);
+        OptionMapping codeOpt = event.getOption("code");
+        String code = codeOpt != null ? codeOpt.getAsString() : null;
         if (code == null || code.isEmpty()) {
             event.reply("Please provide your verification code.").setEphemeral(true).queue();
             return;

@@ -4,6 +4,7 @@ import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.interactions.commands.build.OptionData;
@@ -30,7 +31,8 @@ public class AdminInfoSlashCommand extends SlashCommand {
             event.reply("You do not have permission to use this command.").setEphemeral(true).queue();
             return;
         }
-        String name = event.getOption("name", String.class);
+        OptionMapping nameOpt = event.getOption("name");
+        String name = nameOpt != null ? nameOpt.getAsString() : null;
         if (name == null || name.isEmpty()) {
             event.reply("Please provide a player name.").setEphemeral(true).queue();
             return;

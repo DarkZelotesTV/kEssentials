@@ -4,7 +4,7 @@ import io.github.almightysatan.slams.Placeholder;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
 import net.kettlemc.kcommon.bukkit.BukkitUtil;
 import net.kettlemc.kcommon.java.StringUtil;
-import net.kettlemc.kcommon.language.AdventureUtil;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
@@ -24,7 +24,7 @@ public class DiscordJoinQuitListener implements Listener {
 
         String message = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getJoinMessage()), true) : BukkitUtil.stripColor(event.getJoinMessage()));
         if (message != null && !message.isEmpty()) {
-            Essentials.instance().getDiscordBot().sendMessage(AdventureUtil.componentToLegacy(Messages.DISCORD_JOIN.value(Placeholder.of("message", (ctx, args) -> message))));
+            Essentials.instance().getDiscordBot().sendMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_JOIN.value(Placeholder.of("message", (ctx, args) -> message))));
         }
         Essentials.instance().getDiscordBot().updateStatusDelayed();
     }
@@ -33,7 +33,7 @@ public class DiscordJoinQuitListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         String message = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getQuitMessage()), true) : BukkitUtil.stripColor(event.getQuitMessage()));
         if (message != null && !message.isEmpty()) {
-            Essentials.instance().getDiscordBot().sendMessage(AdventureUtil.componentToLegacy(Messages.DISCORD_QUIT.value(Placeholder.of("message", (ctx, args) -> message))));
+            Essentials.instance().getDiscordBot().sendMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_QUIT.value(Placeholder.of("message", (ctx, args) -> message))));
         }
         Essentials.instance().getDiscordBot().updateStatusDelayed();
     }

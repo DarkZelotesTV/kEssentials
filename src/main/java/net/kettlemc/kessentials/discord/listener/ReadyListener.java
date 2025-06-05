@@ -2,7 +2,7 @@ package net.kettlemc.kessentials.discord.listener;
 
 import net.dv8tion.jda.api.events.session.ReadyEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-import net.kettlemc.kcommon.language.AdventureUtil;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.discord.DiscordBot;
@@ -20,7 +20,7 @@ public class ReadyListener extends ListenerAdapter {
     @Override
     public void onReady(@NotNull ReadyEvent event) {
         System.out.println("Discord bot is ready.");
-        this.bot.sendMessage(DiscordConfiguration.DISCORD_CHANNEL_ID.getValue(), AdventureUtil.componentToLegacy(Messages.DISCORD_STARTUP.value()));
+        this.bot.sendMessage(DiscordConfiguration.DISCORD_CHANNEL_ID.getValue(), LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_STARTUP.value()));
     }
 
 

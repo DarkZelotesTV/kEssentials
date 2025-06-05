@@ -7,7 +7,7 @@ import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEve
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
-import net.kettlemc.kcommon.language.AdventureUtil;
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.discord.command.SlashCommand;
@@ -36,13 +36,13 @@ public class ListSlashCommand extends SlashCommand {
         if (count != 0) {
             int finalCount = count;
             event.reply(
-                    AdventureUtil.componentToLegacy(Messages.DISCORD_ONLINE_LIST.value(
+                    LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_ONLINE_LIST.value(
                             Placeholder.of("list", (ctx, value) -> playerList),
                             Placeholder.of("amount", (ctx, args) -> String.valueOf(finalCount))
                     ))
             ).queue();
         } else {
-            event.reply(AdventureUtil.componentToLegacy(Messages.DISCORD_NO_PLAYERS.value())).queue();
+            event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_NO_PLAYERS.value())).queue();
         }
     }
 
