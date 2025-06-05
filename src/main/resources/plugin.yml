@@ -5,9 +5,6 @@ author: ${author}
 description: ${description}
 api-version: ${apiversion}
 website: ${website}
-depend:
-  - kLanguage
-  - kLoader
 commands:
   morning:
     description: Set the time to morning
