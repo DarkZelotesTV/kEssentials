@@ -6,9 +6,10 @@ The plugin allows for easy moderation of players and the server, as well as a fe
 
 ## 📦 Setup
 1. Clone this repository
-2. Open the project in your IDE
-3. Use `./gradlew build` to build the project
-4. Install the plugin in your server and restart it
+2. Ensure your environment uses **JDK 8 or newer**. kEssentials targets **Java 8**.
+3. Open the project in your IDE
+4. Use `./gradlew build` to build the project
+5. Install the plugin in your server and restart it
 
 ## 🧾 Commands
 ```
