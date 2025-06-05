@@ -31,8 +31,8 @@ public class AdminInfoSlashCommand extends SlashCommand {
             event.reply("You do not have permission to use this command.").setEphemeral(true).queue();
             return;
         }
-        OptionMapping nameOpt = event.getOption("name");
-        String name = nameOpt != null ? nameOpt.getAsString() : null;
+        OptionMapping nameOption = event.getOption("name");
+        String name = nameOption != null ? nameOption.getAsString() : null;
         if (name == null || name.isEmpty()) {
             event.reply("Please provide a player name.").setEphemeral(true).queue();
             return;

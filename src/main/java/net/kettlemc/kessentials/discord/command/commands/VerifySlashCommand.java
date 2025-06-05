@@ -25,8 +25,8 @@ public class VerifySlashCommand extends SlashCommand {
 
     @Override
     public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
-        OptionMapping codeOpt = event.getOption("code");
-        String code = codeOpt != null ? codeOpt.getAsString() : null;
+        OptionMapping codeOption = event.getOption("code");
+        String code = codeOption != null ? codeOption.getAsString() : null;
         if (code == null || code.isEmpty()) {
             event.reply("Please provide your verification code.").setEphemeral(true).queue();
             return;

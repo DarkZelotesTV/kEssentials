@@ -25,8 +25,8 @@ public class PlayerInfoSlashCommand extends SlashCommand {
 
     @Override
     public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
-        OptionMapping nameOpt = event.getOption("name");
-        String name = nameOpt != null ? nameOpt.getAsString() : null;
+        OptionMapping nameOption = event.getOption("name");
+        String name = nameOption != null ? nameOption.getAsString() : null;
         if (name == null || name.isEmpty()) {
             event.reply("Please provide a player name.").setEphemeral(true).queue();
             return;
