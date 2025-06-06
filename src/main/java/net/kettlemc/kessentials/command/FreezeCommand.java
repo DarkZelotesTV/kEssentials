@@ -89,9 +89,10 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
 
     private static void setFrozen(Player player, boolean frozen) {
         if (frozen) {
-            player.removeMetadata(FROZEN_TAG, Essentials.instance().getPlugin());
+            player.setMetadata(FROZEN_TAG,
+                    new FixedMetadataValue(Essentials.instance().getPlugin(), true));
         } else {
-            player.setMetadata(FROZEN_TAG, new FixedMetadataValue(Essentials.instance().getPlugin(), true));
+            player.removeMetadata(FROZEN_TAG, Essentials.instance().getPlugin());
         }
     }
 
