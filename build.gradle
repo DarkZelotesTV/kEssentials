@@ -3,7 +3,8 @@
 
 plugins {
     id "java"
-    id "com.github.johnrengelman.shadow" version "7.0.0"
+    // Update Shadow plugin to handle class files from newer Java versions
+    id "com.github.johnrengelman.shadow" version "8.1.1"
 }
 
 
