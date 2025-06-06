@@ -10,6 +10,7 @@ public class PlayerMoveListener implements Listener {
     @EventHandler
     public void onMove(PlayerMoveEvent event) {
         if (FreezeCommand.isFrozen(event.getPlayer())) {
+            event.setCancelled(true);
             return;
         }
 
