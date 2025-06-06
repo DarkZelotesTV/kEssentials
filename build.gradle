@@ -25,10 +25,12 @@ configurations {
 }
 
 jar {
-    from {
-        configurations.internal.collect { it.isDirectory() ? it : zipTree(it) }
-    }
     duplicatesStrategy = DuplicatesStrategy.INCLUDE
+}
+
+shadowJar {
+    configurations = [project.configurations.internal]
+    relocate 'com.typesafe.config', "net.kettlemc.${pluginName}.libs.typesafe.config"
 }
 
 compileJava { options.encoding = "UTF-8" }
@@ -191,3 +193,5 @@ if (libby == "true") {
         relocate 'com.alessiodp.libby', "net.kettlemc.${pluginName}.libs.com.alessiodp.libby"
     }
 }
+
+tasks.build.dependsOn shadowJar
