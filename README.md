@@ -6,10 +6,14 @@ The plugin allows for easy moderation of players and the server, as well as a fe
 
 ## 📦 Setup
 1. Clone this repository
-2. Ensure your environment uses **JDK 8 or newer**. kEssentials targets **Java 8**.
+2. Use **JDK 17 or newer** when running Gradle (Gradle 8 requires Java 17)
 3. Open the project in your IDE
-4. Use `./gradlew build` to build the project
-5. Install the plugin in your server and restart it
+4. Run `./gradlew build` to build the plugin
+5. Install the plugin on your server and restart it
+
+6. Run the server on **JDK 8 or newer**. Discord features rely on JDA 5 and therefore need **JDK 11+** at runtime
+
+> **Build vs. Runtime JDK**: Use JDK 17+ to run Gradle, but the compiled plugin works on Java 8 servers. Only the optional Discord integration requires Java 11 or newer at runtime.
 
 ## 🧾 Commands
 ```
