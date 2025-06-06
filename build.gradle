@@ -103,6 +103,9 @@ if (jasklVersion && jasklImplementation) {
         dependencies {
             internal "io.github.almighty-satan.jaskl:jaskl-${jasklImplementation}:${jasklVersion}"
         }
+        shadowJar {
+            relocate 'com.typesafe.config', "net.kettlemc.${pluginName}.libs.typesafe.config"
+        }
     } else {
         dependencies {
             implementation "io.github.almighty-satan.jaskl:jaskl-${jasklImplementation}:${jasklVersion}"
