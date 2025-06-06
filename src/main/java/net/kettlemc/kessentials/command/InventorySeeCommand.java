@@ -27,11 +27,20 @@ public class InventorySeeCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        Player target = Bukkit.getPlayer(args[0]);
-
-        if (target == null) {
-            Essentials.instance().messages().sendMessage(sender, Messages.INVENTORY_USAGE);
-            return true;
+        Player target;
+        if (args.length == 0) {
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                Essentials.instance().messages().sendMessage(sender, Messages.INVENTORY_USAGE);
+                return true;
+            }
+        } else {
+            target = Bukkit.getPlayer(args[0]);
+            if (target == null) {
+                Essentials.instance().messages().sendMessage(sender, Messages.INVENTORY_USAGE);
+                return true;
+            }
         }
 
         ((Player) sender).openInventory(target.getInventory());
