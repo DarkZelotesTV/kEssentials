@@ -29,8 +29,8 @@ The plugin allows for easy moderation of players and the server, as well as a fe
 /night [<World>]
 /speed <Speed> [<Player>]
 /vanish [<Player>]
-/inventorysee <Player>
-/armorsee <Player>
+/inventorysee [<Player>]
+/armorsee [<Player>]
 /enderchest [<Player>]
 /chatclear
 /f3d

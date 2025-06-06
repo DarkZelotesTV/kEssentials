@@ -31,11 +31,20 @@ public class ArmorSeeCommand implements CommandExecutor, TabCompleter {
             return true;
         }
 
-        Player target = Bukkit.getPlayer(args[0]);
-
-        if (target == null) {
-            Essentials.instance().messages().sendMessage(sender, Messages.ARMOR_USAGE);
-            return true;
+        Player target;
+        if (args.length == 0) {
+            if (sender instanceof Player) {
+                target = (Player) sender;
+            } else {
+                Essentials.instance().messages().sendMessage(sender, Messages.ARMOR_USAGE);
+                return true;
+            }
+        } else {
+            target = Bukkit.getPlayer(args[0]);
+            if (target == null) {
+                Essentials.instance().messages().sendMessage(sender, Messages.ARMOR_USAGE);
+                return true;
+            }
         }
 
         Inventory inventory = Bukkit.createInventory(new ArmorInventoryHolder(target), InventoryType.HOPPER, target.getName() + "'s Armor");

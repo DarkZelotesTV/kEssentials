@@ -87,10 +87,10 @@
       "not-repairable-other": "<gray><dark_aqua><target></dark_aqua>'s item cannot be repaired.</gray>"
     },
     "inventory": {
-      "usage": "<gray>/inventorysee <player></gray>"
+      "usage": "<gray>/inventorysee [<player>]</gray>"
     },
     "armor": {
-      "usage": "<gray>/armorsee <player></gray>"
+      "usage": "<gray>/armorsee [<player>]</gray>"
     },
     "weather": {
       "sun": "<gray>The weather has been changed to <dark_aqua>Sunny</dark_aqua>.</gray>",
