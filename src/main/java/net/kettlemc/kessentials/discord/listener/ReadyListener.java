@@ -6,6 +6,7 @@ import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.config.DiscordConfiguration;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.discord.DiscordBot;
+import net.kettlemc.kessentials.Essentials;
 import org.jetbrains.annotations.NotNull;
 
 public class ReadyListener extends ListenerAdapter {
@@ -13,14 +14,18 @@ public class ReadyListener extends ListenerAdapter {
     private final DiscordBot bot;
 
     public ReadyListener(DiscordBot bot) {
-        System.out.println("ReadyListener created.");
         this.bot = bot;
+        Essentials.instance().getPlugin().getLogger().info(
+                bot.getJDA().getSelfUser().getName() + " ReadyListener created.");
     }
 
     @Override
     public void onReady(@NotNull ReadyEvent event) {
-        System.out.println("Discord bot is ready.");
-        this.bot.sendMessage(DiscordConfiguration.DISCORD_CHANNEL_ID.getValue(), LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_STARTUP.value()));
+        Essentials.instance().getPlugin().getLogger().info(
+                "Discord bot " + bot.getJDA().getSelfUser().getName() + " is ready.");
+        this.bot.sendMessage(
+                DiscordConfiguration.DISCORD_CHANNEL_ID.getValue(),
+                LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_STARTUP.value()));
     }
 
 

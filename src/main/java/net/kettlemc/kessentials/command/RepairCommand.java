@@ -65,8 +65,6 @@ public class RepairCommand implements CommandExecutor, TabCompleter {
 
         short max = stack.getType().getMaxDurability();
 
-        System.out.println(max);
-
         if (max == 0) {
             Essentials.instance().messages().sendMessage(target, Messages.REPAIR_NOT_REPAIRABLE);
 
