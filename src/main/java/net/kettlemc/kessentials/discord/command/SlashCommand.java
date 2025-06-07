@@ -1,8 +1,8 @@
 package net.kettlemc.kessentials.discord.command;
 
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandEvent;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.kettlemc.kessentials.Essentials;
 
@@ -18,7 +18,7 @@ public abstract class SlashCommand {
         this.name = name;
     }
 
-    public abstract void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel);
+    public abstract void onExecute(SlashCommandEvent event, Member member, MessageChannel channel);
 
     public abstract void construct(CommandListUpdateAction commands);
 

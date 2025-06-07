@@ -1,8 +1,8 @@
 package net.kettlemc.kessentials.discord.command.commands;
 
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import net.dv8tion.jda.api.requests.restaction.CommandListUpdateAction;
 import net.kettlemc.kessentials.Essentials;
@@ -23,7 +23,7 @@ public class TopTeamsSlashCommand extends SlashCommand {
     }
 
     @Override
-    public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
+    public void onExecute(SlashCommandEvent event, Member member, MessageChannel channel) {
         ClanDAO dao = Essentials.instance().clanDAO();
         try {
             List<Map.Entry<String, Integer>> list = dao.getTopClans(5);
