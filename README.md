@@ -11,9 +11,9 @@ The plugin allows for easy moderation of players and the server, as well as a fe
 4. Run `./gradlew build` to build the plugin
 5. Install the plugin on your server and restart it
 
-6. Run the server on **JDK 8 or newer**. Discord features rely on JDA 5 and therefore need **JDK 11+** at runtime
+6. Run the server on **JDK 8 or newer**. Discord features use JDA 4 and also run on Java 8.
 
-> **Build vs. Runtime JDK**: Use JDK 17+ to run Gradle, but the compiled plugin works on Java 8 servers. Only the optional Discord integration requires Java 11 or newer at runtime.
+> **Build vs. Runtime JDK**: Use JDK 17+ to run Gradle, but the compiled plugin works on Java 8 servers. When no Discord token is set the bot is disabled and Discord-related commands won't function.
 
 ## 🧾 Commands
 ```

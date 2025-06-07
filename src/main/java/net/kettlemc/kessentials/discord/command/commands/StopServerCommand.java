@@ -3,8 +3,8 @@ package net.kettlemc.kessentials.discord.command.commands;
 import net.kettlemc.kessentials.util.Placeholder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
-import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.events.interaction.command.SlashCommandEvent;
 import net.dv8tion.jda.api.interactions.commands.OptionMapping;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.CommandData;
@@ -24,7 +24,7 @@ public class StopServerCommand extends SlashCommand {
     }
 
     @Override
-    public void onExecute(SlashCommandInteractionEvent event, Member member, MessageChannel channel) {
+    public void onExecute(SlashCommandEvent event, Member member, MessageChannel channel) {
         if (!member.hasPermission(Permission.ADMINISTRATOR)) {
             event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_NO_PERMISSION.value())).queue();
             return;
