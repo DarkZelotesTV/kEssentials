@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.tpa;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.teleport.TeleportRequest;
@@ -30,16 +30,16 @@ public class TPACommand implements CommandExecutor, TabCompleter {
 
         if (TeleportRequest.request(requester, target)) {
             Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_SENT,
-                    Placeholder.of("target", (ctx, args) -> target.getName()));
+                    Placeholder.of("target", () -> target.getName()));
             Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_RECEIVED,
-                    Placeholder.of("requester", (ctx, args) -> requester.getName()));
+                    Placeholder.of("requester", () -> requester.getName()));
             Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_ACCEPT,
-                    Placeholder.of("requester", (ctx, args) -> requester.getName()));
+                    Placeholder.of("requester", () -> requester.getName()));
             Essentials.instance().messages().sendMessage(target, Messages.TPA_REQUEST_DENY,
-                    Placeholder.of("requester", (ctx, args) -> requester.getName()));
+                    Placeholder.of("requester", () -> requester.getName()));
 
         } else {
-            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_ALREADY_SENT, Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_ALREADY_SENT, Placeholder.of("target", () -> target.getName()));
         }
     }
 

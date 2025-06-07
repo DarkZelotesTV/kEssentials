@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.discord.command.commands;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.dv8tion.jda.api.Permission;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
@@ -44,8 +44,8 @@ public class StopServerCommand extends SlashCommand {
             return;
         }
 
-        event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds))))).queue();
-        Bukkit.getServer().broadcastMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART_MINECRAFT.value(Placeholder.of("seconds", (ctx, args) -> String.valueOf(seconds)))));
+        event.reply(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART.value(Placeholder.of("seconds", () -> String.valueOf(seconds))))).queue();
+        Bukkit.getServer().broadcastMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_RESTART_MINECRAFT.value(Placeholder.of("seconds", () -> String.valueOf(seconds)))));
         Bukkit.getScheduler().runTaskLater(Essentials.instance().getPlugin(), () -> Bukkit.getServer().shutdown(), seconds * 20L);
     }
 

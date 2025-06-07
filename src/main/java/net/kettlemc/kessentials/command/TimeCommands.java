@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.minimessage.AdventureMessage;
+import net.kettlemc.kessentials.util.Message;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 public class TimeCommands implements CommandExecutor, TabCompleter {
 
     public static final Map<String, Integer> TIME_MAP = new HashMap<>();
-    public static final Map<String, AdventureMessage> MESSAGE_MAP = new HashMap<>();
+    public static final Map<String, Message> MESSAGE_MAP = new HashMap<>();
 
     static {
         TIME_MAP.put("morning", 23500);
@@ -72,7 +72,7 @@ public class TimeCommands implements CommandExecutor, TabCompleter {
      * @param time           The time to set the world to
      * @param successMessage The message to send to the sender if the time was set successfully
      */
-    private void setTime(CommandSender sender, World world, int time, AdventureMessage successMessage) {
+    private void setTime(CommandSender sender, World world, int time, Message successMessage) {
 
         if (sender instanceof ConsoleCommandSender && world == null) {
             Essentials.instance().messages().sendMessage(sender, Messages.TIME_USAGE);

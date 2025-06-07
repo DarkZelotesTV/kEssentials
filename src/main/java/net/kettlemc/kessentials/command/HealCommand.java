@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -61,7 +61,7 @@ public class HealCommand implements CommandExecutor, TabCompleter {
         Essentials.instance().messages().sendMessage(target, Messages.HEAL_HEALED);
 
         if (sender != target) {
-            Essentials.instance().messages().sendMessage(sender, Messages.HEAL_HEALED_OTHER, Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(sender, Messages.HEAL_HEALED_OTHER, Placeholder.of("target", () -> target.getName()));
         }
     }
 

@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
@@ -66,10 +66,10 @@ public class GamemodeCommand implements CommandExecutor, TabCompleter {
 
         target.setGameMode(gameMode);
 
-        Essentials.instance().messages().sendMessage(target, Messages.GAMEMODE_SET, Placeholder.of("gamemode", (ctx, args) -> gameMode.name()));
+        Essentials.instance().messages().sendMessage(target, Messages.GAMEMODE_SET, Placeholder.of("gamemode", () -> gameMode.name()));
 
         if (sender != target) {
-            Essentials.instance().messages().sendMessage(sender, Messages.GAMEMODE_SET_OTHER, Placeholder.of("gamemode", (ctx, args) -> gameMode.name()), Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(sender, Messages.GAMEMODE_SET_OTHER, Placeholder.of("gamemode", () -> gameMode.name()), Placeholder.of("target", () -> target.getName()));
         }
 
     }

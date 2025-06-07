@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.discord.listener;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.channel.ChannelType;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -32,9 +32,9 @@ public class MessageListener extends ListenerAdapter {
 
         Essentials.instance().messages().broadcastMessage(Messages.DISCORD_CHAT_FORMAT_MINECRAFT,
                 false,
-                Placeholder.of("name", (ctx, value) -> event.getAuthor().getName()),
-                Placeholder.of("message", (ctx, value) -> event.getMessage().getContentDisplay()),
-                Placeholder.of("rank", (ctx, value) -> rank)
+                Placeholder.of("name", () -> event.getAuthor().getName()),
+                Placeholder.of("message", () -> event.getMessage().getContentDisplay()),
+                Placeholder.of("rank", () -> rank)
         );
     }
 

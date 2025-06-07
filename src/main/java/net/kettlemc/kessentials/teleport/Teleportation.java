@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.teleport;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Location;
@@ -51,7 +51,7 @@ public class Teleportation {
 
     private static void startScheduler(Teleportation teleportation) {
 
-        Essentials.instance().messages().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_COOLDOWN, Placeholder.of("cooldown", (ctx, args) -> String.valueOf(teleportation.cooldown)));
+        Essentials.instance().messages().sendMessage(teleportation.getPlayer(), Messages.TELEPORTATION_COOLDOWN, Placeholder.of("cooldown", () -> String.valueOf(teleportation.cooldown)));
 
         new BukkitRunnable() {
 

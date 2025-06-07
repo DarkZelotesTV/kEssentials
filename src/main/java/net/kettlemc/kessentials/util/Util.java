@@ -1,7 +1,7 @@
 package net.kettlemc.kessentials.util;
 
-import io.github.almightysatan.slams.Placeholder;
-import io.github.almightysatan.slams.minimessage.AdventureMessage;
+import net.kettlemc.kessentials.util.Placeholder;
+import net.kettlemc.kessentials.util.Message;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.Bukkit;
 
@@ -15,14 +15,6 @@ public class Util {
         return Bukkit.getPluginManager().getPlugin("LuckPerms") != null;
     }
 
-    public static boolean miniMessagesAvailable() {
-        try {
-            Class.forName("net.kyori.adventure.text.minimessage.MiniMessage");
-            return true;
-        } catch (ClassNotFoundException e) {
-            return false;
-        }
-    }
 
     /**
      * Parse a time string in the format of "HH:mm" to a LocalTime object
@@ -41,7 +33,7 @@ public class Util {
     }
 
 
-    public static String translate(AdventureMessage message, Placeholder... placeholders) {
+    public static String translate(Message message, Placeholder... placeholders) {
         return LegacyComponentSerializer.legacySection().serialize(message.value(placeholders));
     }
 

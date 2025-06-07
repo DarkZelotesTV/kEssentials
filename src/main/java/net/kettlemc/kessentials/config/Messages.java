@@ -1,224 +1,222 @@
 package net.kettlemc.kessentials.config;
 
-import io.github.almightysatan.slams.Slams;
-import io.github.almightysatan.slams.minimessage.AdventureMessage;
-import io.github.almightysatan.slams.parser.JacksonParser;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import net.kettlemc.kessentials.util.BukkitUtil;
+import net.kettlemc.kessentials.util.Message;
 
-import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Locale;
-import java.util.Objects;
+import java.util.Map;
 
 public class Messages {
 
     private static final Path LANGUAGE_PATH = Paths.get("plugins", "kEssentials", "languages");
-    private static final Slams LANGUAGE_MANAGER = Slams.create(getDefaultLocale());
+    private static Map<String, Object> LANGUAGE_DATA;
+    private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    public static final AdventureMessage PREFIX = AdventureMessage.of("messages.common.prefix", LANGUAGE_MANAGER);
-    public static final AdventureMessage NO_PERMISSION = AdventureMessage.of("messages.common.no-permission", LANGUAGE_MANAGER);
-    public static final AdventureMessage PLAYER_ONLY = AdventureMessage.of("messages.common.player-only", LANGUAGE_MANAGER);
-    public static final AdventureMessage CONSOLE_ONLY = AdventureMessage.of("messages.common.console-only", LANGUAGE_MANAGER);
-    public static final AdventureMessage PLAYER_NOT_FOUND = AdventureMessage.of("messages.common.player-not-found", LANGUAGE_MANAGER);
-    public static final AdventureMessage COMMAND_DISABLED = AdventureMessage.of("messages.common.command-disabled", LANGUAGE_MANAGER);
+    public static final Message PREFIX = Message.of("messages.common.prefix");
+    public static final Message NO_PERMISSION = Message.of("messages.common.no-permission");
+    public static final Message PLAYER_ONLY = Message.of("messages.common.player-only");
+    public static final Message CONSOLE_ONLY = Message.of("messages.common.console-only");
+    public static final Message PLAYER_NOT_FOUND = Message.of("messages.common.player-not-found");
+    public static final Message COMMAND_DISABLED = Message.of("messages.common.command-disabled");
 
-    public static final AdventureMessage RESTART = AdventureMessage.of("messages.common.restart", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIMEUNIT_SECOND = AdventureMessage.of("messages.common.timeunit.second", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIMEUNIT_SECONDS = AdventureMessage.of("messages.common.timeunit.seconds", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIMEUNIT_MINUTE = AdventureMessage.of("messages.common.timeunit.minute", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIMEUNIT_MINUTES = AdventureMessage.of("messages.common.timeunit.minutes", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIMEUNIT_HOUR = AdventureMessage.of("messages.common.timeunit.hour", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIMEUNIT_HOURS = AdventureMessage.of("messages.common.timeunit.hours", LANGUAGE_MANAGER);
+    public static final Message RESTART = Message.of("messages.common.restart");
+    public static final Message TIMEUNIT_SECOND = Message.of("messages.common.timeunit.second");
+    public static final Message TIMEUNIT_SECONDS = Message.of("messages.common.timeunit.seconds");
+    public static final Message TIMEUNIT_MINUTE = Message.of("messages.common.timeunit.minute");
+    public static final Message TIMEUNIT_MINUTES = Message.of("messages.common.timeunit.minutes");
+    public static final Message TIMEUNIT_HOUR = Message.of("messages.common.timeunit.hour");
+    public static final Message TIMEUNIT_HOURS = Message.of("messages.common.timeunit.hours");
 
-    public static final AdventureMessage JOIN_MESSAGE = AdventureMessage.of("messages.common.join", LANGUAGE_MANAGER);
-    public static final AdventureMessage QUIT_MESSAGE = AdventureMessage.of("messages.common.quit", LANGUAGE_MANAGER);
+    public static final Message JOIN_MESSAGE = Message.of("messages.common.join");
+    public static final Message QUIT_MESSAGE = Message.of("messages.common.quit");
 
-    public static final AdventureMessage TELEPORTATION_CANCELLED = AdventureMessage.of("messages.teleport.teleportation-cancelled", LANGUAGE_MANAGER);
-    public static final AdventureMessage TELEPORTATION_SUCCESSFUL = AdventureMessage.of("messages.teleport.teleportation-successful", LANGUAGE_MANAGER);
-    public static final AdventureMessage TELEPORTATION_COOLDOWN = AdventureMessage.of("messages.teleport.teleportation-cooldown", LANGUAGE_MANAGER);
+    public static final Message TELEPORTATION_CANCELLED = Message.of("messages.teleport.teleportation-cancelled");
+    public static final Message TELEPORTATION_SUCCESSFUL = Message.of("messages.teleport.teleportation-successful");
+    public static final Message TELEPORTATION_COOLDOWN = Message.of("messages.teleport.teleportation-cooldown");
 
-    public static final AdventureMessage GAMEMODE_SET = AdventureMessage.of("messages.gamemode.set", LANGUAGE_MANAGER);
-    public static final AdventureMessage GAMEMODE_SET_OTHER = AdventureMessage.of("messages.gamemode.set-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage GAMEMODE_INVALID = AdventureMessage.of("messages.gamemode.invalid", LANGUAGE_MANAGER);
-    public static final AdventureMessage GAMEMODE_USAGE = AdventureMessage.of("messages.gamemode.usage", LANGUAGE_MANAGER);
+    public static final Message GAMEMODE_SET = Message.of("messages.gamemode.set");
+    public static final Message GAMEMODE_SET_OTHER = Message.of("messages.gamemode.set-other");
+    public static final Message GAMEMODE_INVALID = Message.of("messages.gamemode.invalid");
+    public static final Message GAMEMODE_USAGE = Message.of("messages.gamemode.usage");
 
-    public static final AdventureMessage FLY_ENABLED = AdventureMessage.of("messages.fly.enabled", LANGUAGE_MANAGER);
-    public static final AdventureMessage FLY_ENABLED_OTHER = AdventureMessage.of("messages.fly.enabled-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage FLY_DISABLED = AdventureMessage.of("messages.fly.disabled", LANGUAGE_MANAGER);
-    public static final AdventureMessage FLY_DISABLED_OTHER = AdventureMessage.of("messages.fly.disabled-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage FLY_USAGE = AdventureMessage.of("messages.fly.usage", LANGUAGE_MANAGER);
+    public static final Message FLY_ENABLED = Message.of("messages.fly.enabled");
+    public static final Message FLY_ENABLED_OTHER = Message.of("messages.fly.enabled-other");
+    public static final Message FLY_DISABLED = Message.of("messages.fly.disabled");
+    public static final Message FLY_DISABLED_OTHER = Message.of("messages.fly.disabled-other");
+    public static final Message FLY_USAGE = Message.of("messages.fly.usage");
 
-    public static final AdventureMessage SPEED_SET_WALKING = AdventureMessage.of("messages.speed.set.walking", LANGUAGE_MANAGER);
-    public static final AdventureMessage SPEED_SET_FLYING = AdventureMessage.of("messages.speed.set.flying", LANGUAGE_MANAGER);
-    public static final AdventureMessage SPEED_SET_WALKING_OTHER = AdventureMessage.of("messages.speed.set-other.walking", LANGUAGE_MANAGER);
-    public static final AdventureMessage SPEED_SET_FLYING_OTHER = AdventureMessage.of("messages.speed.set-other.flying", LANGUAGE_MANAGER);
-    public static final AdventureMessage SPEED_INVALID = AdventureMessage.of("messages.speed.invalid", LANGUAGE_MANAGER);
-    public static final AdventureMessage SPEED_USAGE = AdventureMessage.of("messages.speed.usage", LANGUAGE_MANAGER);
+    public static final Message SPEED_SET_WALKING = Message.of("messages.speed.set.walking");
+    public static final Message SPEED_SET_FLYING = Message.of("messages.speed.set.flying");
+    public static final Message SPEED_SET_WALKING_OTHER = Message.of("messages.speed.set-other.walking");
+    public static final Message SPEED_SET_FLYING_OTHER = Message.of("messages.speed.set-other.flying");
+    public static final Message SPEED_INVALID = Message.of("messages.speed.invalid");
+    public static final Message SPEED_USAGE = Message.of("messages.speed.usage");
 
-    public static final AdventureMessage TELEPORT_TELEPORTED = AdventureMessage.of("messages.teleport.teleported", LANGUAGE_MANAGER);
-    public static final AdventureMessage TELEPORT_TELEPORTED_OTHER = AdventureMessage.of("messages.teleport.teleported-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage TELEPORT_USAGE = AdventureMessage.of("messages.teleport.usage", LANGUAGE_MANAGER);
-    public static final AdventureMessage TELEPORT_ALREADY_SCHEDULED = AdventureMessage.of("messages.teleport.already-scheduled", LANGUAGE_MANAGER);
+    public static final Message TELEPORT_TELEPORTED = Message.of("messages.teleport.teleported");
+    public static final Message TELEPORT_TELEPORTED_OTHER = Message.of("messages.teleport.teleported-other");
+    public static final Message TELEPORT_USAGE = Message.of("messages.teleport.usage");
+    public static final Message TELEPORT_ALREADY_SCHEDULED = Message.of("messages.teleport.already-scheduled");
 
-    public static final AdventureMessage FREEZE_FROZEN = AdventureMessage.of("messages.freeze.frozen", LANGUAGE_MANAGER);
-    public static final AdventureMessage FREEZE_FROZEN_OTHER = AdventureMessage.of("messages.freeze.frozen-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage FREEZE_UNFROZEN = AdventureMessage.of("messages.freeze.unfrozen", LANGUAGE_MANAGER);
-    public static final AdventureMessage FREEZE_UNFROZEN_OTHER = AdventureMessage.of("messages.freeze.unfrozen-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage FREEZE_USAGE = AdventureMessage.of("messages.freeze.usage", LANGUAGE_MANAGER);
+    public static final Message FREEZE_FROZEN = Message.of("messages.freeze.frozen");
+    public static final Message FREEZE_FROZEN_OTHER = Message.of("messages.freeze.frozen-other");
+    public static final Message FREEZE_UNFROZEN = Message.of("messages.freeze.unfrozen");
+    public static final Message FREEZE_UNFROZEN_OTHER = Message.of("messages.freeze.unfrozen-other");
+    public static final Message FREEZE_USAGE = Message.of("messages.freeze.usage");
 
-    public static final AdventureMessage VANISH_VANISHED = AdventureMessage.of("messages.vanish.vanished", LANGUAGE_MANAGER);
-    public static final AdventureMessage VANISH_VANISHED_OTHER = AdventureMessage.of("messages.vanish.vanished-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage VANISH_UNVANISHED = AdventureMessage.of("messages.vanish.unvanished", LANGUAGE_MANAGER);
-    public static final AdventureMessage VANISH_UNVANISHED_OTHER = AdventureMessage.of("messages.vanish.unvanished-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage VANISH_USAGE = AdventureMessage.of("messages.vanish.usage", LANGUAGE_MANAGER);
+    public static final Message VANISH_VANISHED = Message.of("messages.vanish.vanished");
+    public static final Message VANISH_VANISHED_OTHER = Message.of("messages.vanish.vanished-other");
+    public static final Message VANISH_UNVANISHED = Message.of("messages.vanish.unvanished");
+    public static final Message VANISH_UNVANISHED_OTHER = Message.of("messages.vanish.unvanished-other");
+    public static final Message VANISH_USAGE = Message.of("messages.vanish.usage");
 
-    public static final AdventureMessage HEAL_HEALED = AdventureMessage.of("messages.heal.healed", LANGUAGE_MANAGER);
-    public static final AdventureMessage HEAL_HEALED_OTHER = AdventureMessage.of("messages.heal.healed-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage HEAL_USAGE = AdventureMessage.of("messages.heal.usage", LANGUAGE_MANAGER);
+    public static final Message HEAL_HEALED = Message.of("messages.heal.healed");
+    public static final Message HEAL_HEALED_OTHER = Message.of("messages.heal.healed-other");
+    public static final Message HEAL_USAGE = Message.of("messages.heal.usage");
 
-    public static final AdventureMessage FEED_FED = AdventureMessage.of("messages.feed.fed", LANGUAGE_MANAGER);
-    public static final AdventureMessage FEED_FED_OTHER = AdventureMessage.of("messages.feed.fed-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage FEED_USAGE = AdventureMessage.of("messages.feed.usage", LANGUAGE_MANAGER);
+    public static final Message FEED_FED = Message.of("messages.feed.fed");
+    public static final Message FEED_FED_OTHER = Message.of("messages.feed.fed-other");
+    public static final Message FEED_USAGE = Message.of("messages.feed.usage");
 
-    public static final AdventureMessage REPAIR_REPAIRED = AdventureMessage.of("messages.repair.repaired", LANGUAGE_MANAGER);
-    public static final AdventureMessage REPAIR_REPAIRED_OTHER = AdventureMessage.of("messages.repair.repaired-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage REPAIR_USAGE = AdventureMessage.of("messages.repair.usage", LANGUAGE_MANAGER);
-    public static final AdventureMessage REPAIR_NOT_REPAIRABLE = AdventureMessage.of("messages.repair.not-repairable", LANGUAGE_MANAGER);
-    public static final AdventureMessage REPAIR_NOT_REPAIRABLE_OTHER = AdventureMessage.of("messages.repair.not-repairable-other", LANGUAGE_MANAGER);
-    public static final AdventureMessage REPAIR_NO_ITEM = AdventureMessage.of("messages.repair.no-item", LANGUAGE_MANAGER);
-    public static final AdventureMessage REPAIR_NO_ITEM_OTHER = AdventureMessage.of("messages.repair.no-item-other", LANGUAGE_MANAGER);
+    public static final Message REPAIR_REPAIRED = Message.of("messages.repair.repaired");
+    public static final Message REPAIR_REPAIRED_OTHER = Message.of("messages.repair.repaired-other");
+    public static final Message REPAIR_USAGE = Message.of("messages.repair.usage");
+    public static final Message REPAIR_NOT_REPAIRABLE = Message.of("messages.repair.not-repairable");
+    public static final Message REPAIR_NOT_REPAIRABLE_OTHER = Message.of("messages.repair.not-repairable-other");
+    public static final Message REPAIR_NO_ITEM = Message.of("messages.repair.no-item");
+    public static final Message REPAIR_NO_ITEM_OTHER = Message.of("messages.repair.no-item-other");
 
-    public static final AdventureMessage INVENTORY_USAGE = AdventureMessage.of("messages.inventory.usage", LANGUAGE_MANAGER);
+    public static final Message INVENTORY_USAGE = Message.of("messages.inventory.usage");
 
-    public static final AdventureMessage ARMOR_USAGE = AdventureMessage.of("messages.armor.usage", LANGUAGE_MANAGER);
+    public static final Message ARMOR_USAGE = Message.of("messages.armor.usage");
 
-    public static final AdventureMessage SUN = AdventureMessage.of("messages.weather.sun", LANGUAGE_MANAGER);
-    public static final AdventureMessage RAIN = AdventureMessage.of("messages.weather.rain", LANGUAGE_MANAGER);
-    public static final AdventureMessage THUNDER = AdventureMessage.of("messages.weather.thunder", LANGUAGE_MANAGER);
-    public static final AdventureMessage WEATHER_USAGE = AdventureMessage.of("messages.weather.usage", LANGUAGE_MANAGER);
+    public static final Message SUN = Message.of("messages.weather.sun");
+    public static final Message RAIN = Message.of("messages.weather.rain");
+    public static final Message THUNDER = Message.of("messages.weather.thunder");
+    public static final Message WEATHER_USAGE = Message.of("messages.weather.usage");
 
-    public static final AdventureMessage MORNING = AdventureMessage.of("messages.time.morning", LANGUAGE_MANAGER);
-    public static final AdventureMessage DAY = AdventureMessage.of("messages.time.day", LANGUAGE_MANAGER);
-    public static final AdventureMessage MIDDAY = AdventureMessage.of("messages.time.midday", LANGUAGE_MANAGER);
-    public static final AdventureMessage EVENING = AdventureMessage.of("messages.time.evening", LANGUAGE_MANAGER);
-    public static final AdventureMessage NIGHT = AdventureMessage.of("messages.time.night", LANGUAGE_MANAGER);
-    public static final AdventureMessage TIME_USAGE = AdventureMessage.of("messages.time.usage", LANGUAGE_MANAGER);
+    public static final Message MORNING = Message.of("messages.time.morning");
+    public static final Message DAY = Message.of("messages.time.day");
+    public static final Message MIDDAY = Message.of("messages.time.midday");
+    public static final Message EVENING = Message.of("messages.time.evening");
+    public static final Message NIGHT = Message.of("messages.time.night");
+    public static final Message TIME_USAGE = Message.of("messages.time.usage");
 
-    public static final AdventureMessage CHATCLEAR_CLEARED = AdventureMessage.of("messages.chat.cleared", LANGUAGE_MANAGER);
+    public static final Message CHATCLEAR_CLEARED = Message.of("messages.chat.cleared");
 
-    public static final AdventureMessage SUICIDE = AdventureMessage.of("messages.suicide.killed", LANGUAGE_MANAGER);
+    public static final Message SUICIDE = Message.of("messages.suicide.killed");
 
-    public static final AdventureMessage TPA_OTHER_ONLY = AdventureMessage.of("messages.tpa.tpa.other-only", LANGUAGE_MANAGER);
+    public static final Message TPA_OTHER_ONLY = Message.of("messages.tpa.tpa.other-only");
 
-    public static final AdventureMessage TPA_LIST = AdventureMessage.of("messages.tpa.list.header", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_LIST_NO_REQUEST = AdventureMessage.of("messages.tpa.list.no-request", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_LIST_ENTRY = AdventureMessage.of("messages.tpa.list.entry", LANGUAGE_MANAGER);
+    public static final Message TPA_LIST = Message.of("messages.tpa.list.header");
+    public static final Message TPA_LIST_NO_REQUEST = Message.of("messages.tpa.list.no-request");
+    public static final Message TPA_LIST_ENTRY = Message.of("messages.tpa.list.entry");
 
-    public static final AdventureMessage TPA_REQUEST_SENT = AdventureMessage.of("messages.tpa.tpa.sent", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_RECEIVED = AdventureMessage.of("messages.tpa.tpa.received", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_ACCEPT = AdventureMessage.of("messages.tpa.tpa.accept", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_DENY = AdventureMessage.of("messages.tpa.tpa.deny", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_ACCEPT_HOVER = AdventureMessage.of("messages.tpa.tpa.accept-hover", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_DENY_HOVER = AdventureMessage.of("messages.tpa.tpa.deny-hover", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_ALREADY_SENT = AdventureMessage.of("messages.tpa.tpa.already-sent", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_DENIED = AdventureMessage.of("messages.tpa.tpa.denied", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_ACCEPTED = AdventureMessage.of("messages.tpa.tpa.accepted", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_REQUEST_USAGE = AdventureMessage.of("messages.tpa.tpa.usage", LANGUAGE_MANAGER);
+    public static final Message TPA_REQUEST_SENT = Message.of("messages.tpa.tpa.sent");
+    public static final Message TPA_REQUEST_RECEIVED = Message.of("messages.tpa.tpa.received");
+    public static final Message TPA_REQUEST_ACCEPT = Message.of("messages.tpa.tpa.accept");
+    public static final Message TPA_REQUEST_DENY = Message.of("messages.tpa.tpa.deny");
+    public static final Message TPA_REQUEST_ACCEPT_HOVER = Message.of("messages.tpa.tpa.accept-hover");
+    public static final Message TPA_REQUEST_DENY_HOVER = Message.of("messages.tpa.tpa.deny-hover");
+    public static final Message TPA_REQUEST_ALREADY_SENT = Message.of("messages.tpa.tpa.already-sent");
+    public static final Message TPA_REQUEST_DENIED = Message.of("messages.tpa.tpa.denied");
+    public static final Message TPA_REQUEST_ACCEPTED = Message.of("messages.tpa.tpa.accepted");
+    public static final Message TPA_REQUEST_USAGE = Message.of("messages.tpa.tpa.usage");
 
-    public static final AdventureMessage TPA_TPACCEPT = AdventureMessage.of("messages.tpa.tpaccept.tpaccept", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_TPACCEPT_USAGE = AdventureMessage.of("messages.tpa.tpaccept.usage", LANGUAGE_MANAGER);
+    public static final Message TPA_TPACCEPT = Message.of("messages.tpa.tpaccept.tpaccept");
+    public static final Message TPA_TPACCEPT_USAGE = Message.of("messages.tpa.tpaccept.usage");
 
-    public static final AdventureMessage TPA_TPDENY = AdventureMessage.of("messages.tpa.tpdeny.tpdeny", LANGUAGE_MANAGER);
-    public static final AdventureMessage TPA_TPDENY_USAGE = AdventureMessage.of("messages.tpa.tpdeny.usage", LANGUAGE_MANAGER);
+    public static final Message TPA_TPDENY = Message.of("messages.tpa.tpdeny.tpdeny");
+    public static final Message TPA_TPDENY_USAGE = Message.of("messages.tpa.tpdeny.usage");
 
-    public static final AdventureMessage DISCORD_CHAT_FORMAT = AdventureMessage.of("messages.discord.chat-format", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_NO_PERMISSION = AdventureMessage.of("messages.discord.no-permission", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_JOIN = AdventureMessage.of("messages.discord.join", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_QUIT = AdventureMessage.of("messages.discord.quit", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_STARTUP = AdventureMessage.of("messages.discord.startup", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_SHUTDOWN = AdventureMessage.of("messages.discord.shutdown", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_CLEARLAGG = AdventureMessage.of("messages.discord.clearlagg", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_ONLINE_LIST = AdventureMessage.of("messages.discord.online.list", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_NO_PLAYERS = AdventureMessage.of("messages.discord.online.no-players", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_RESTART = AdventureMessage.of("messages.discord.restart.countdown", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_RESTART_INSTANT = AdventureMessage.of("messages.discord.restart.instant", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_CHAT_FORMAT_MINECRAFT = AdventureMessage.of("messages.discord.minecraft.chat-format", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_RESTART_MINECRAFT = AdventureMessage.of("messages.discord.minecraft.restart.countdown", LANGUAGE_MANAGER);
-    public static final AdventureMessage DISCORD_WELCOME_MESSAGE = AdventureMessage.of("messages.discord.minecraft.welcome", LANGUAGE_MANAGER);
+    public static final Message DISCORD_CHAT_FORMAT = Message.of("messages.discord.chat-format");
+    public static final Message DISCORD_NO_PERMISSION = Message.of("messages.discord.no-permission");
+    public static final Message DISCORD_JOIN = Message.of("messages.discord.join");
+    public static final Message DISCORD_QUIT = Message.of("messages.discord.quit");
+    public static final Message DISCORD_STARTUP = Message.of("messages.discord.startup");
+    public static final Message DISCORD_SHUTDOWN = Message.of("messages.discord.shutdown");
+    public static final Message DISCORD_CLEARLAGG = Message.of("messages.discord.clearlagg");
+    public static final Message DISCORD_ONLINE_LIST = Message.of("messages.discord.online.list");
+    public static final Message DISCORD_NO_PLAYERS = Message.of("messages.discord.online.no-players");
+    public static final Message DISCORD_RESTART = Message.of("messages.discord.restart.countdown");
+    public static final Message DISCORD_RESTART_INSTANT = Message.of("messages.discord.restart.instant");
+    public static final Message DISCORD_CHAT_FORMAT_MINECRAFT = Message.of("messages.discord.minecraft.chat-format");
+    public static final Message DISCORD_RESTART_MINECRAFT = Message.of("messages.discord.minecraft.restart.countdown");
+    public static final Message DISCORD_WELCOME_MESSAGE = Message.of("messages.discord.minecraft.welcome");
 
-    public static final AdventureMessage HOME_SET_USAGE = AdventureMessage.of("messages.home.set.usage", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_INVALID_NAME = AdventureMessage.of("messages.home.set.invalid-name", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_MAX_HOMES_REACHED = AdventureMessage.of("messages.home.set.max", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_ALREADY_EXISTS = AdventureMessage.of("messages.home.set.already-exists", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_SET = AdventureMessage.of("messages.home.set.set", LANGUAGE_MANAGER);
+    public static final Message HOME_SET_USAGE = Message.of("messages.home.set.usage");
+    public static final Message HOME_INVALID_NAME = Message.of("messages.home.set.invalid-name");
+    public static final Message HOME_MAX_HOMES_REACHED = Message.of("messages.home.set.max");
+    public static final Message HOME_ALREADY_EXISTS = Message.of("messages.home.set.already-exists");
+    public static final Message HOME_SET = Message.of("messages.home.set.set");
 
-    public static final AdventureMessage HOME_LIST_HEADER = AdventureMessage.of("messages.home.list.header", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_LIST_ENTRY = AdventureMessage.of("messages.home.list.entry", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_LIST_HOVER = AdventureMessage.of("messages.home.list.hover", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_NOT_FOUND = AdventureMessage.of("messages.home.not-found", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_USAGE = AdventureMessage.of("messages.home.usage", LANGUAGE_MANAGER);
+    public static final Message HOME_LIST_HEADER = Message.of("messages.home.list.header");
+    public static final Message HOME_LIST_ENTRY = Message.of("messages.home.list.entry");
+    public static final Message HOME_LIST_HOVER = Message.of("messages.home.list.hover");
+    public static final Message HOME_NOT_FOUND = Message.of("messages.home.not-found");
+    public static final Message HOME_USAGE = Message.of("messages.home.usage");
 
-    public static final AdventureMessage HOME_DELETE_USAGE = AdventureMessage.of("messages.home.delete.usage", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_DOES_NOT_EXIST = AdventureMessage.of("messages.home.delete.doesnt-exist", LANGUAGE_MANAGER);
-    public static final AdventureMessage HOME_DELETED = AdventureMessage.of("messages.home.delete.deleted", LANGUAGE_MANAGER);
+    public static final Message HOME_DELETE_USAGE = Message.of("messages.home.delete.usage");
+    public static final Message HOME_DOES_NOT_EXIST = Message.of("messages.home.delete.doesnt-exist");
+    public static final Message HOME_DELETED = Message.of("messages.home.delete.deleted");
 
-    public static final AdventureMessage WARP_SET_USAGE = AdventureMessage.of("messages.warp.set.usage", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_INVALID_NAME = AdventureMessage.of("messages.warp.set.invalid-name", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_ALREADY_EXISTS = AdventureMessage.of("messages.warp.set.already-exists", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_SET = AdventureMessage.of("messages.warp.set.set", LANGUAGE_MANAGER);
+    public static final Message WARP_SET_USAGE = Message.of("messages.warp.set.usage");
+    public static final Message WARP_INVALID_NAME = Message.of("messages.warp.set.invalid-name");
+    public static final Message WARP_ALREADY_EXISTS = Message.of("messages.warp.set.already-exists");
+    public static final Message WARP_SET = Message.of("messages.warp.set.set");
 
-    public static final AdventureMessage WARP_LIST_HEADER = AdventureMessage.of("messages.warp.list.header", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_LIST_ENTRY = AdventureMessage.of("messages.warp.list.entry", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_LIST_HOVER = AdventureMessage.of("messages.warp.list.hover", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_NOT_FOUND = AdventureMessage.of("messages.warp.not-found", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_USAGE = AdventureMessage.of("messages.warp.usage", LANGUAGE_MANAGER);
+    public static final Message WARP_LIST_HEADER = Message.of("messages.warp.list.header");
+    public static final Message WARP_LIST_ENTRY = Message.of("messages.warp.list.entry");
+    public static final Message WARP_LIST_HOVER = Message.of("messages.warp.list.hover");
+    public static final Message WARP_NOT_FOUND = Message.of("messages.warp.not-found");
+    public static final Message WARP_USAGE = Message.of("messages.warp.usage");
 
-    public static final AdventureMessage WARP_DELETE_USAGE = AdventureMessage.of("messages.warp.delete.usage", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_DOES_NOT_EXIST = AdventureMessage.of("messages.warp.delete.doesnt-exist", LANGUAGE_MANAGER);
-    public static final AdventureMessage WARP_DELETED = AdventureMessage.of("messages.warp.delete.deleted", LANGUAGE_MANAGER);
+    public static final Message WARP_DELETE_USAGE = Message.of("messages.warp.delete.usage");
+    public static final Message WARP_DOES_NOT_EXIST = Message.of("messages.warp.delete.doesnt-exist");
+    public static final Message WARP_DELETED = Message.of("messages.warp.delete.deleted");
 
-    public static final AdventureMessage RELOAD_SUCCESS = AdventureMessage.of("messages.reload.success", LANGUAGE_MANAGER);
-    public static final AdventureMessage RELOAD_FAIL = AdventureMessage.of("messages.reload.fail", LANGUAGE_MANAGER);
+    public static final Message RELOAD_SUCCESS = Message.of("messages.reload.success");
+    public static final Message RELOAD_FAIL = Message.of("messages.reload.fail");
 
-    public static final AdventureMessage MATERIAL = AdventureMessage.of("messages.material", LANGUAGE_MANAGER);
+    public static final Message MATERIAL = Message.of("messages.material");
 
-    public static final AdventureMessage ENCHANTINGTABLE_USAGE = AdventureMessage.of("messages.gui.enchantingtable.usage", LANGUAGE_MANAGER);
+    public static final Message ENCHANTINGTABLE_USAGE = Message.of("messages.gui.enchantingtable.usage");
 
     private static String getDefaultLocale() {
         return Locale.forLanguageTag(Configuration.DEFAULT_LANGUAGE.getValue()).toLanguageTag();
+    }
+
+    public static String get(String path) {
+        String[] parts = path.split("\\.");
+        Object current = LANGUAGE_DATA;
+        for (String part : parts) {
+            if (!(current instanceof Map)) return null;
+            current = ((Map<?, ?>) current).get(part);
+            if (current == null) return null;
+        }
+        return current.toString();
     }
 
     public static boolean load() {
         try {
             BukkitUtil.saveResource(Messages.class, "lang/de.json", LANGUAGE_PATH.resolve("de.json"));
             BukkitUtil.saveResource(Messages.class, "lang/en.json", LANGUAGE_PATH.resolve("en.json"));
-            loadFromFilesInDirectory(LANGUAGE_PATH.toFile());
-            return true;
-        } catch (IOException | URISyntaxException e) {
-            return false;
-        }
-
-    }
-
-    private static void loadFromFilesInDirectory(File directory) throws IOException, URISyntaxException {
-        if (!directory.isDirectory()) return;
-        for (File file : Objects.requireNonNull(LANGUAGE_PATH.toFile().listFiles())) {
-            if (file.isDirectory()) loadFromFilesInDirectory(file);
-            else if (file.getName().endsWith(".json"))
-                LANGUAGE_MANAGER.load(file.getName().replace(".json", ""), JacksonParser.createJsonParser(file));
-        }
-    }
-
-    public static boolean reload() {
-        try {
-            LANGUAGE_MANAGER.reload();
+            Path langFile = LANGUAGE_PATH.resolve(getDefaultLocale() + ".json");
+            if (Files.notExists(langFile)) {
+                langFile = LANGUAGE_PATH.resolve("en.json");
+            }
+            LANGUAGE_DATA = MAPPER.readValue(langFile.toFile(), Map.class);
             return true;
         } catch (IOException e) {
             return false;
         }
     }
 
+    public static boolean reload() {
+        return load();
+    }
 }

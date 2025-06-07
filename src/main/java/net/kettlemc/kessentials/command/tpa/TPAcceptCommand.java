@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.tpa;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
@@ -29,13 +29,13 @@ public class TPAcceptCommand implements CommandExecutor, TabCompleter {
         }
 
         if (TeleportRequest.getRequestsFor(target).contains(requester)) {
-            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_ACCEPTED, Placeholder.of("target", (ctx, args) -> target.getName()));
-            Essentials.instance().messages().sendMessage(target, Messages.TPA_TPACCEPT, Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(requester, Messages.TPA_REQUEST_ACCEPTED, Placeholder.of("target", () -> target.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_TPACCEPT, Placeholder.of("requester", () -> requester.getName()));
             Teleportation.schedule(Teleportation.prepare(requester, target.getLocation(), Configuration.TELEPORT_COUNTDOWN_SECONDS.getValue(), () -> TeleportRequest.remove(target, requester)));
 
 
         } else {
-            Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_NO_REQUEST, Placeholder.of("requester", (ctx, args) -> requester.getName()));
+            Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_NO_REQUEST, Placeholder.of("requester", () -> requester.getName()));
         }
     }
 

@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.discord.command.commands;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.events.interaction.command.SlashCommandInteractionEvent;
@@ -37,8 +37,8 @@ public class ListSlashCommand extends SlashCommand {
             int finalCount = count;
             event.reply(
                     LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_ONLINE_LIST.value(
-                            Placeholder.of("list", (ctx, value) -> playerList),
-                            Placeholder.of("amount", (ctx, args) -> String.valueOf(finalCount))
+                            Placeholder.of("list", () -> playerList),
+                            Placeholder.of("amount", () -> String.valueOf(finalCount))
                     ))
             ).queue();
         } else {

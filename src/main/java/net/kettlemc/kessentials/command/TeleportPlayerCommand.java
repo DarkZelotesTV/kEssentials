@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -37,7 +37,7 @@ public class TeleportPlayerCommand implements CommandExecutor, TabCompleter {
                 }
 
                 player.teleport(target.getLocation());
-                Essentials.instance().messages().sendMessage(sender, Messages.TELEPORT_TELEPORTED, Placeholder.of("target", ((ctx, args1) -> target.getName())));
+                Essentials.instance().messages().sendMessage(sender, Messages.TELEPORT_TELEPORTED, Placeholder.of("target", () -> target.getName()));
             } else {
                 Essentials.instance().messages().sendMessage(sender, Messages.TELEPORT_USAGE);
             }
@@ -57,7 +57,7 @@ public class TeleportPlayerCommand implements CommandExecutor, TabCompleter {
             }
 
             player.teleport(target.getLocation());
-            Essentials.instance().messages().sendMessage(sender, Messages.TELEPORT_TELEPORTED_OTHER, Placeholder.of("player", ((ctx, arguments) -> player.getName())), Placeholder.of("target", ((ctx, args1) -> target.getName())));
+            Essentials.instance().messages().sendMessage(sender, Messages.TELEPORT_TELEPORTED_OTHER, Placeholder.of("player", () -> player.getName()), Placeholder.of("target", () -> target.getName()));
         } else {
             Essentials.instance().messages().sendMessage(sender, Messages.TELEPORT_USAGE);
         }

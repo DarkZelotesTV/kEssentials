@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.warp;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.teleport.Warp;
@@ -44,7 +44,7 @@ public class DeleteWarpCommand implements CommandExecutor, TabCompleter {
         }
 
         Essentials.instance().warpHandler().removeWarp(warp);
-        Essentials.instance().messages().sendMessage(player, Messages.WARP_DELETED, Placeholder.of("name", (ctx, args1) -> warp.name()));
+        Essentials.instance().messages().sendMessage(player, Messages.WARP_DELETED, Placeholder.of("name", () -> warp.name()));
 
         return true;
     }

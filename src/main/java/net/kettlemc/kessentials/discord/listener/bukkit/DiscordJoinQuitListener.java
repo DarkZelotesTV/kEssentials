@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.discord.listener.bukkit;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.dv8tion.jda.api.utils.MarkdownSanitizer;
 import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
@@ -19,11 +19,11 @@ public class DiscordJoinQuitListener implements Listener {
 
         String channel = BukkitUtil.stripEmojis(Essentials.instance().getDiscordBot().getMessageChannelById(DiscordConfiguration.DISCORD_CHANNEL_ID.getValue()).getName()).trim();
 
-        Essentials.instance().messages().sendMessage(event.getPlayer(), Messages.DISCORD_WELCOME_MESSAGE, Placeholder.of("channel", (ctx, args) -> channel));
+        Essentials.instance().messages().sendMessage(event.getPlayer(), Messages.DISCORD_WELCOME_MESSAGE, Placeholder.of("channel", () -> channel));
 
         String message = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getJoinMessage()), true) : BukkitUtil.stripColor(event.getJoinMessage()));
         if (message != null && !message.isEmpty()) {
-            Essentials.instance().getDiscordBot().sendMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_JOIN.value(Placeholder.of("message", (ctx, args) -> message))));
+            Essentials.instance().getDiscordBot().sendMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_JOIN.value(Placeholder.of("message", () -> message))));
         }
         Essentials.instance().getDiscordBot().updateStatusDelayed();
     }
@@ -32,7 +32,7 @@ public class DiscordJoinQuitListener implements Listener {
     public void onQuit(PlayerQuitEvent event) {
         String message = (DiscordConfiguration.DISCORD_DISABLE_FORMATTING.getValue() ? MarkdownSanitizer.escape(BukkitUtil.stripColor(event.getQuitMessage()), true) : BukkitUtil.stripColor(event.getQuitMessage()));
         if (message != null && !message.isEmpty()) {
-            Essentials.instance().getDiscordBot().sendMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_QUIT.value(Placeholder.of("message", (ctx, args) -> message))));
+            Essentials.instance().getDiscordBot().sendMessage(LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_QUIT.value(Placeholder.of("message", () -> message))));
         }
         Essentials.instance().getDiscordBot().updateStatusDelayed();
     }

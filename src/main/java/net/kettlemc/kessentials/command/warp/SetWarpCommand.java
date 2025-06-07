@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.warp;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
@@ -57,7 +57,7 @@ public class SetWarpCommand implements CommandExecutor, TabCompleter {
 
         Warp warp = new Warp(args[0], player.getLocation());
         Essentials.instance().warpHandler().addWarp(warp);
-        Essentials.instance().messages().sendMessage(player, Messages.WARP_SET, Placeholder.of("name", (ctx, args1) -> warp.name()));
+        Essentials.instance().messages().sendMessage(player, Messages.WARP_SET, Placeholder.of("name", () -> warp.name()));
 
         return true;
     }

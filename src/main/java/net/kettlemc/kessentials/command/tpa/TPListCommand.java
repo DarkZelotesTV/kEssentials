@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.tpa;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.teleport.TeleportRequest;
@@ -33,7 +33,7 @@ public class TPListCommand implements CommandExecutor, TabCompleter {
         Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST);
 
         TeleportRequest.getRequestsFor(target).forEach(
-                requester -> Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_ENTRY, Placeholder.of("requester", (ctx, args1) -> requester.getName()))
+                requester -> Essentials.instance().messages().sendMessage(target, Messages.TPA_LIST_ENTRY, Placeholder.of("requester", () -> requester.getName()))
         );
 
         return true;

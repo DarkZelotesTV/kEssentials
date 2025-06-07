@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.home;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
@@ -42,7 +42,7 @@ public class SetHomeCommand implements CommandExecutor, TabCompleter {
 
         int maxHomes = maxHomes(player);
         if (Essentials.instance().homeHandler().getHomes(player.getUniqueId()).size() >= maxHomes) {
-            Essentials.instance().messages().sendMessage(player, Messages.HOME_MAX_HOMES_REACHED, Placeholder.of("max", (ctx, args1) -> String.valueOf(maxHomes)));
+            Essentials.instance().messages().sendMessage(player, Messages.HOME_MAX_HOMES_REACHED, Placeholder.of("max", () -> String.valueOf(maxHomes)));
             return true;
         }
 
@@ -58,7 +58,7 @@ public class SetHomeCommand implements CommandExecutor, TabCompleter {
 
         Warp home = new Warp(player.getUniqueId(), args[0], player.getLocation());
         Essentials.instance().homeHandler().addHome(home);
-        Essentials.instance().messages().sendMessage(player, Messages.HOME_SET, Placeholder.of("name", (ctx, args1) -> home.name()));
+        Essentials.instance().messages().sendMessage(player, Messages.HOME_SET, Placeholder.of("name", () -> home.name()));
 
         return true;
     }

@@ -1,14 +1,13 @@
 package net.kettlemc.kessentials.listener;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
+import net.kettlemc.kessentials.util.Message;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.command.FreezeCommand;
 import net.kettlemc.kessentials.command.VanishCommand;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
-import net.kyori.adventure.text.Component;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
-import org.bukkit.ChatColor;
+import net.kettlemc.kessentials.util.Util;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -24,8 +23,7 @@ public class JoinQuitListener implements Listener {
 
         Essentials.instance().homeHandler().loadHomes(event.getPlayer().getUniqueId());
 
-        Component component = Messages.JOIN_MESSAGE.value(Placeholder.of("player", (ctx, args) -> event.getPlayer().getName()));
-        event.setJoinMessage(ChatColor.translateAlternateColorCodes('&', LegacyComponentSerializer.legacyAmpersand().serialize(component)));
+        event.setJoinMessage(Util.translate(Messages.JOIN_MESSAGE, Placeholder.of("player", () -> event.getPlayer().getName())));
 
         // Hide vanished players from the player and disable the join message if the player is vanished
         hideVanished(event.getPlayer());
@@ -54,8 +52,7 @@ public class JoinQuitListener implements Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        Component component = Messages.QUIT_MESSAGE.value(Placeholder.of("player", (ctx, args) -> event.getPlayer().getName()));
-        event.setQuitMessage(ChatColor.translateAlternateColorCodes('&', LegacyComponentSerializer.legacyAmpersand().serialize(component)));
+        event.setQuitMessage(Util.translate(Messages.QUIT_MESSAGE, Placeholder.of("player", () -> event.getPlayer().getName())));
 
         // Disable the quit message if the player is vanished
         if (VanishCommand.isVanished(event.getPlayer())) {
