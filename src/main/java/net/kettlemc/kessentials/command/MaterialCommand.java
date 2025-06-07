@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Material;
@@ -35,7 +35,7 @@ public class MaterialCommand implements CommandExecutor, TabCompleter {
         Material material = itemStack.getType();
         int damage = itemStack.getDurability();
 
-        Essentials.instance().messages().sendMessage(player, Messages.MATERIAL, Placeholder.of("material", (p, ctx) -> material.name()), Placeholder.of("damage", (p, ctx) -> String.valueOf(damage)));
+        Essentials.instance().messages().sendMessage(player, Messages.MATERIAL, Placeholder.of("material", () -> material.name()), Placeholder.of("damage", () -> String.valueOf(damage)));
 
         return true;
 

@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -59,7 +59,7 @@ public class FeedCommand implements CommandExecutor, TabCompleter {
         Essentials.instance().messages().sendMessage(target, Messages.FEED_FED);
 
         if (sender != target) {
-            Essentials.instance().messages().sendMessage(sender, Messages.FEED_FED_OTHER, Placeholder.of("target", (ctx, args) -> target.getName()));
+            Essentials.instance().messages().sendMessage(sender, Messages.FEED_FED_OTHER, Placeholder.of("target", () -> target.getName()));
         }
     }
 

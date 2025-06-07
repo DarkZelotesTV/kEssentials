@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.util.BukkitUtil;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
@@ -70,15 +70,15 @@ public class SpeedCommand implements CommandExecutor, TabCompleter {
 
         if (target.isFlying()) {
             target.setFlySpeed(getRealMoveSpeed(speed, true));
-            Essentials.instance().messages().sendMessage(target, Messages.SPEED_SET_FLYING, Placeholder.of("speed", (ctx, args) -> String.valueOf(speed)));
+            Essentials.instance().messages().sendMessage(target, Messages.SPEED_SET_FLYING, Placeholder.of("speed", () -> String.valueOf(speed)));
             if (sender != target) {
-                Essentials.instance().messages().sendMessage(sender, Messages.SPEED_SET_FLYING_OTHER, Placeholder.of("speed", (ctx, args) -> String.valueOf(speed)), Placeholder.of("player", (ctx, args) -> target.getName()));
+                Essentials.instance().messages().sendMessage(sender, Messages.SPEED_SET_FLYING_OTHER, Placeholder.of("speed", () -> String.valueOf(speed)), Placeholder.of("player", () -> target.getName()));
             }
         } else {
             target.setWalkSpeed(getRealMoveSpeed(speed, false));
-            Essentials.instance().messages().sendMessage(target, Messages.SPEED_SET_WALKING, Placeholder.of("speed", (ctx, args) -> String.valueOf(speed)));
+            Essentials.instance().messages().sendMessage(target, Messages.SPEED_SET_WALKING, Placeholder.of("speed", () -> String.valueOf(speed)));
             if (sender != target) {
-                Essentials.instance().messages().sendMessage(sender, Messages.SPEED_SET_WALKING_OTHER, Placeholder.of("speed", (ctx, args) -> String.valueOf(speed)), Placeholder.of("player", (ctx, args) -> target.getName()));
+                Essentials.instance().messages().sendMessage(sender, Messages.SPEED_SET_WALKING_OTHER, Placeholder.of("speed", () -> String.valueOf(speed)), Placeholder.of("player", () -> target.getName()));
             }
         }
     }

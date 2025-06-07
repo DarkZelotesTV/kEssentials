@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -71,7 +71,7 @@ public class FreezeCommand implements CommandExecutor, TabCompleter {
         }
 
         if (sender != target) {
-            Essentials.instance().messages().sendMessage(sender, isFrozen(target) ? Messages.FREEZE_FROZEN_OTHER : Messages.FREEZE_UNFROZEN_OTHER, Placeholder.of("target", ((ctx, args) -> target.getName())));
+            Essentials.instance().messages().sendMessage(sender, isFrozen(target) ? Messages.FREEZE_FROZEN_OTHER : Messages.FREEZE_UNFROZEN_OTHER, Placeholder.of("target", () -> target.getName()));
         }
     }
 

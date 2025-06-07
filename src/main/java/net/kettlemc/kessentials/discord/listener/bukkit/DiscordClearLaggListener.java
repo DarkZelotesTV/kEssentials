@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.discord.listener.bukkit;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import me.minebuilders.clearlag.events.EntityRemoveEvent;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kettlemc.kessentials.Essentials;
@@ -32,7 +32,7 @@ public class DiscordClearLaggListener implements Listener {
                 @Override
                 public void run() {
                     String message = LegacyComponentSerializer.legacySection().serialize(Messages.DISCORD_CLEARLAGG.value(
-                            Placeholder.of("items", (ctx, args) -> String.valueOf(lastCleared))
+                            Placeholder.of("items", () -> String.valueOf(lastCleared))
                     ));
                     Essentials.instance().getDiscordBot().sendMessage(message);
                     lastCleared = 0;

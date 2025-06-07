@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import org.bukkit.Bukkit;
@@ -58,7 +58,7 @@ public class FlyCommand implements CommandExecutor, TabCompleter {
         target.setAllowFlight(!target.getAllowFlight());
         Essentials.instance().messages().sendMessage(target, target.getAllowFlight() ? Messages.FLY_ENABLED : Messages.FLY_DISABLED);
         if (sender != target) {
-            Essentials.instance().messages().sendMessage(sender, target.getAllowFlight() ? Messages.FLY_ENABLED_OTHER : Messages.FLY_DISABLED_OTHER, Placeholder.of("player", ((ctx, args) -> target.getName())));
+            Essentials.instance().messages().sendMessage(sender, target.getAllowFlight() ? Messages.FLY_ENABLED_OTHER : Messages.FLY_DISABLED_OTHER, Placeholder.of("player", () -> target.getName()));
         }
     }
 

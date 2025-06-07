@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.home;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
@@ -38,7 +38,7 @@ public class HomeCommand implements CommandExecutor, TabCompleter {
             Essentials.instance().messages().sendMessage(player, Messages.HOME_LIST_HEADER);
             Essentials.instance().homeHandler().getHomes(player.getUniqueId()).forEach(
                     home -> Essentials.instance().messages().sendMessage(player, Messages.HOME_LIST_ENTRY,
-                            Placeholder.of("name", (ctx, argument) -> home.name()))
+                            Placeholder.of("name", () -> home.name()))
             );
             return true;
         }

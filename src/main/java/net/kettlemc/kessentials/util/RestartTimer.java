@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.util;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Configuration;
 import net.kettlemc.kessentials.config.Messages;
@@ -39,7 +39,7 @@ public class RestartTimer {
                 Essentials.instance().getPlugin().getLogger().info("Scheduled restart warning " + timeWarning + " ticks before restart.");
                 long warningDelay = delay - timeWarning;
                 Bukkit.getScheduler().runTaskLaterAsynchronously(Essentials.instance().getPlugin(), () -> {
-                    Placeholder timeValue = Placeholder.of("time", (ctx, args) -> timeMessage(warningDelay * 20));
+                    Placeholder timeValue = Placeholder.of("time", () -> timeMessage(warningDelay * 20));
                     Essentials.instance().messages().broadcastMessage(Messages.RESTART, timeValue);
                 }, warningDelay);
             }

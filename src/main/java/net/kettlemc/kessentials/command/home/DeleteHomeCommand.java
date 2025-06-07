@@ -1,6 +1,6 @@
 package net.kettlemc.kessentials.command.home;
 
-import io.github.almightysatan.slams.Placeholder;
+import net.kettlemc.kessentials.util.Placeholder;
 import net.kettlemc.kessentials.Essentials;
 import net.kettlemc.kessentials.config.Messages;
 import net.kettlemc.kessentials.teleport.Warp;
@@ -39,7 +39,7 @@ public class DeleteHomeCommand implements CommandExecutor, TabCompleter {
         }
 
         Essentials.instance().homeHandler().removeHome(home);
-        Essentials.instance().messages().sendMessage(player, Messages.HOME_DELETED, Placeholder.of("name", (ctx, args1) -> home.name()));
+        Essentials.instance().messages().sendMessage(player, Messages.HOME_DELETED, Placeholder.of("name", () -> home.name()));
 
         return true;
     }
