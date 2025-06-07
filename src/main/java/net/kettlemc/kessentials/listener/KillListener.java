@@ -9,6 +9,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 /**
  * Captures kill events, updates the database and notifies Discord.
@@ -33,7 +34,7 @@ public class KillListener implements Listener {
                 dao.incrementKills(killer.getUniqueId());
             }
         } catch (SQLException e) {
-            e.printStackTrace();
+            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Failed to update kill statistics", e);
         }
 
         scoreboardHandler.updateScoreboard(victim);

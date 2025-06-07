@@ -2,6 +2,7 @@ package net.kettlemc.kessentials.util;
 
 import net.kettlemc.kessentials.data.PlayerDataDAO;
 import net.kettlemc.kessentials.data.ClanDAO;
+import net.kettlemc.kessentials.Essentials;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -15,6 +16,7 @@ import org.bukkit.scoreboard.Scoreboard;
 import org.bukkit.scoreboard.ScoreboardManager;
 
 import java.sql.SQLException;
+import java.util.logging.Level;
 
 /**
  * Simple scoreboard handler to display kills and deaths for each player.
@@ -57,7 +59,7 @@ public class ScoreboardHandler implements Listener {
 
             player.setScoreboard(board);
         } catch (SQLException e) {
-            e.printStackTrace();
+            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Failed to update scoreboard for " + player.getName(), e);
         }
     }
 }

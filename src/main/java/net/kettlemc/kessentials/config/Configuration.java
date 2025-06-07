@@ -10,6 +10,7 @@ import io.github.almightysatan.jaskl.hocon.HoconConfig;
 import net.kettlemc.kessentials.Essentials;
 
 import java.io.IOException;
+import java.util.logging.Level;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
@@ -70,7 +71,7 @@ public class Configuration {
             return true;
         } catch (IOException e) {
             Essentials.instance().getPlugin().getLogger().severe("Failed to load configuration: " + e.getMessage());
-            e.printStackTrace();
+            Essentials.instance().getPlugin().getLogger().log(Level.SEVERE, "Failed to load configuration", e);
             return false;
         }
     }
