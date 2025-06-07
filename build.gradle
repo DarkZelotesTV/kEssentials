@@ -40,10 +40,6 @@ javadoc { options.encoding = "UTF-8" }
 repositories {
     mavenCentral()
     maven {
-        name = "papermc-legacy"
-        url = "https://papermc.io/repo/repository/maven-public/"
-    }
-    maven {
         name = "papermc"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
