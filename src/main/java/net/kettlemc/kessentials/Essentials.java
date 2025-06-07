@@ -151,6 +151,7 @@ public final class Essentials implements Loadable {
         this.contentManager.registerListener(new BlockListener());
         this.contentManager.registerListener(new PlayerMoveListener());
         this.contentManager.registerListener(new InventoryClickListener());
+        this.contentManager.registerListener(new ArmorChangeListener());
         this.contentManager.registerListener(new CommandListener());
         this.contentManager.registerListener(new EnchantingTableListener());
 

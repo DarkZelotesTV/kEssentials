@@ -53,11 +53,33 @@ public class ArmorSeeCommand implements CommandExecutor, TabCompleter {
         inventory.setItem(1, target.getInventory().getChestplate());
         inventory.setItem(2, target.getInventory().getLeggings());
         inventory.setItem(3, target.getInventory().getBoots());
-        inventory.setItem(4, new ItemStack(Material.AIR)); // TODO: Offhand
+        inventory.setItem(4, target.getInventory().getItemInOffHand());
 
         ((Player) sender).openInventory(inventory);
 
         return true;
+    }
+
+    /**
+     * Refreshes all open armor inventories of the given player.
+     *
+     * @param player The player whose armor should be displayed
+     */
+    public static void refreshArmorInventories(Player player) {
+        for (Player viewer : Bukkit.getOnlinePlayers()) {
+            Inventory open = viewer.getOpenInventory().getTopInventory();
+            if (open.getHolder() instanceof ArmorInventoryHolder) {
+                ArmorInventoryHolder holder = (ArmorInventoryHolder) open.getHolder();
+                if (holder.player().equals(player)) {
+                    open.setItem(0, player.getInventory().getHelmet());
+                    open.setItem(1, player.getInventory().getChestplate());
+                    open.setItem(2, player.getInventory().getLeggings());
+                    open.setItem(3, player.getInventory().getBoots());
+                    open.setItem(4, player.getInventory().getItemInOffHand());
+                    viewer.updateInventory();
+                }
+            }
+        }
     }
 
     @Override
